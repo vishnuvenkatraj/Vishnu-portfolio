@@ -1,13 +1,10 @@
 {
   "css.lint.unknownAtRules": "ignore",
   "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
   "css.lint.unknownProperties": "ignore",
   "css.lint.vendorPrefix": "ignore",
-  "css.validate": true,
-  "files.associations": {
-    "*.css": "tailwindcss"
-  },
-  "editor.quickSuggestions": {
-    "strings": true
-  }
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false
 }
