@@ -86,12 +86,13 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
 
           {/* Cover Image Preview */}
-          <div className="relative w-full h-64 sm:h-80 rounded-xl overflow-hidden border border-white/10 bg-black">
+          <div className="relative w-full h-64 sm:h-80 rounded-xl overflow-hidden border border-white/10 bg-[#02050e] flex items-center justify-center p-2">
             <Image
               src={project.coverImage}
               alt={project.title}
               fill
-              className="object-cover"
+              className="object-contain object-center"
+              sizes="(max-width: 768px) 100vw, 800px"
             />
           </div>
 
@@ -253,6 +254,41 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               ))}
             </div>
           </div>
+
+          {/* Project Image Gallery (All 3 Images) */}
+          {project.gallery && project.gallery.length > 0 && (
+            <div className="space-y-4 pt-4 border-t border-white/10">
+              <h3 className="text-base font-semibold text-white uppercase font-mono tracking-wider text-cyan-400">
+                Interface Gallery &amp; Screenshots ({project.gallery.length} Images)
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {project.gallery.map((item, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl overflow-hidden border border-white/10 bg-[#050811] p-3 space-y-2 flex flex-col justify-between"
+                  >
+                    <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-[#02050e] border border-white/5 flex items-center justify-center p-1.5">
+                      <Image
+                        src={item.imageUrl}
+                        alt={item.title}
+                        fill
+                        className="object-contain object-center"
+                        sizes="(max-width: 640px) 100vw, 33vw"
+                      />
+                    </div>
+                    <div>
+                      <div className="font-semibold text-xs text-white line-clamp-1">
+                        {item.title}
+                      </div>
+                      <div className="text-[11px] text-slate-400 mt-1 line-clamp-2 font-light leading-relaxed">
+                        {item.caption}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </motion.div>
       </div>
     </AnimatePresence>

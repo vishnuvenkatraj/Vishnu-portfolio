@@ -145,13 +145,14 @@ export default async function ProjectDetailPage({
         </div>
 
         {/* Hero Cover Image Preview */}
-        <div className="relative w-full h-80 sm:h-[460px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-slate-950">
+        <div className="relative w-full h-80 sm:h-[460px] rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#02050e] flex items-center justify-center p-3">
           <Image
             src={project.coverImage}
             alt={project.title}
             fill
             priority
-            className="object-cover"
+            className="object-contain object-center"
+            sizes="(max-width: 1200px) 100vw, 1200px"
           />
         </div>
 
@@ -314,25 +315,31 @@ export default async function ProjectDetailPage({
           <h2 className="text-xl sm:text-2xl font-bold text-white uppercase font-mono tracking-wider text-cyan-400 flex items-center gap-2">
             <span>07</span>
             <span className="w-6 h-[1px] bg-cyan-400/50" />
-            <span>Interface Gallery &amp; Screenshots</span>
+            <span>Interface Gallery &amp; Screenshots ({project.gallery.length} Images)</span>
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {project.gallery.map((item, i) => (
               <div
                 key={i}
-                className="rounded-2xl overflow-hidden border border-white/10 bg-black space-y-3 p-3 bg-white/[0.01]"
+                className="rounded-2xl overflow-hidden border border-white/10 bg-[#060a17]/90 space-y-3 p-3.5 backdrop-blur-md flex flex-col justify-between hover:border-cyan-500/30 transition-all group"
               >
-                <div className="relative w-full h-56 rounded-xl overflow-hidden">
+                {/* 16:10 aspect ratio container with object-contain to prevent cropping or stretching */}
+                <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-[#030611] border border-white/5 flex items-center justify-center p-2">
                   <Image
                     src={item.imageUrl}
                     alt={item.title}
                     fill
-                    className="object-cover"
+                    className="object-contain object-center group-hover:scale-[1.02] transition-transform duration-500"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
-                <div className="px-2 pb-1">
-                  <div className="font-semibold text-sm text-white">{item.title}</div>
-                  <div className="text-xs text-slate-400 mt-1 font-light">{item.caption}</div>
+                <div className="px-1 pb-1">
+                  <div className="font-semibold text-sm text-white group-hover:text-cyan-300 transition-colors">
+                    {item.title}
+                  </div>
+                  <div className="text-xs text-slate-400 mt-1.5 font-light leading-relaxed">
+                    {item.caption}
+                  </div>
                 </div>
               </div>
             ))}
