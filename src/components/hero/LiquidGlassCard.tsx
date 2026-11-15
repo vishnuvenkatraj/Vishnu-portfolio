@@ -71,8 +71,8 @@ export function LiquidGlassCard() {
           <div className="text-slate-500">// Initialize developer profile context</div>
           <div>
             <span className="text-pink-400">const</span>{" "}
-            <span className="text-cyan-300">architect</span>:{" "}
-            <span className="text-amber-300">Engineer</span> = &#123;
+            <span className="text-cyan-300">developer</span>:{" "}
+            <span className="text-amber-300">SoftwareEngineer</span> = &#123;
           </div>
           <div className="pl-4">
             <span className="text-slate-400">name:</span>{" "}
@@ -80,16 +80,16 @@ export function LiquidGlassCard() {
           </div>
           <div className="pl-4">
             <span className="text-slate-400">focus:</span> [
-            <span className="text-cyan-200">&quot;High-Throughput APIs&quot;</span>,{" "}
-            <span className="text-cyan-200">&quot;Physics Sim&quot;</span>],
+            <span className="text-cyan-200">&quot;Software Engineering&quot;</span>,{" "}
+            <span className="text-cyan-200">&quot;AI Integration&quot;</span>],
           </div>
           <div className="pl-4">
             <span className="text-slate-400">status:</span>{" "}
             <span className="text-emerald-400">&quot;{profileData.availability.status}&quot;</span>,
           </div>
           <div className="pl-4">
-            <span className="text-slate-400">execute:</span> () =&gt;{" "}
-            <span className="text-sky-300">buildResilientSystems</span>(),
+            <span className="text-slate-400">goal:</span> () =&gt;{" "}
+            <span className="text-sky-300">buildInnovativeSolutions</span>(),
           </div>
           <div>&#125;;</div>
         </div>
@@ -101,8 +101,8 @@ export function LiquidGlassCard() {
               <Cpu className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-[10px] uppercase font-mono text-slate-400">Architecture</div>
-              <div className="text-xs font-semibold text-white">Full-Stack / Distributed</div>
+              <div className="text-[10px] uppercase font-mono text-slate-400">Domain</div>
+              <div className="text-xs font-semibold text-white">CSBS Undergraduate</div>
             </div>
           </div>
 
@@ -111,8 +111,8 @@ export function LiquidGlassCard() {
               <ShieldCheck className="w-4 h-4" />
             </div>
             <div>
-              <div className="text-[10px] uppercase font-mono text-slate-400">Code Quality</div>
-              <div className="text-xs font-semibold text-white">Strict TypeScript & CI</div>
+              <div className="text-[10px] uppercase font-mono text-slate-400">Focus</div>
+              <div className="text-xs font-semibold text-white">Software &amp; AI</div>
             </div>
           </div>
         </div>

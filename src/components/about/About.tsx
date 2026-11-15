@@ -11,7 +11,6 @@ import {
   BookOpen,
   Sparkles,
   Layers,
-  HeartHandshake,
   CheckCircle,
 } from "lucide-react";
 
@@ -28,13 +27,14 @@ export function About() {
         <div className="space-y-3 mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono uppercase tracking-wider">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Editorial Dossier</span>
+            <span>Profile &amp; Vision</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            About &amp; Engineering Philosophy
+            About Me &amp; Background
           </h2>
           <p className="text-slate-400 max-w-2xl text-base sm:text-lg font-light">
-            Bridging technical precision, modern full-stack systems, and intuitive motion design.
+            Computer Science and Business Systems undergraduate focused on software engineering,
+            problem-solving, and technology-driven innovation.
           </p>
         </div>
 
@@ -47,20 +47,25 @@ export function About() {
 
               <h3 className="text-xl font-semibold text-white mb-4 flex items-center gap-2">
                 <Compass className="w-5 h-5 text-cyan-400" />
-                <span>Professional Introduction</span>
+                <span>Professional Overview</span>
               </h3>
 
               <div className="space-y-4 text-slate-300 leading-relaxed text-sm sm:text-base font-light">
-                <p>{profileData.about.introduction}</p>
                 <p>
-                  I specialize in breaking down complex distributed application requirements into clean,
-                  modular components. By combining rigorous backend architectural patterns with reactive
-                  frontend ergonomics, I ensure that applications not only scale under traffic but also feel
-                  responsive and delightful in user hands.
+                  I am a Computer Science and Business Systems undergraduate with a strong interest in software engineering, problem-solving and technology-driven innovation.
+                </p>
+                <p>
+                  I enjoy developing practical applications, exploring emerging technologies and transforming ideas into meaningful solutions. Through projects in healthcare and e-governance, technical competitions, and engineering innovation concepts, I continuously work to strengthen my technical abilities and development experience.
+                </p>
+                <p>
+                  My involvement in innovation projects, including FlowVault and RESQTRAK, reflects my interest in exploring practical solutions to real-world challenges.
+                </p>
+                <p className="text-white font-medium">
+                  My goal is to grow as a software developer and contribute to impactful technology solutions.
                 </p>
               </div>
 
-              {/* Quick Pillars */}
+              {/* Quick Focus Pillars */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-6 border-t border-white/10">
                 <div className="flex items-start gap-3">
                   <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 shrink-0">
@@ -68,24 +73,24 @@ export function About() {
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-white uppercase tracking-wider font-mono">
-                      Modular Architecture
+                      Software Engineering
                     </h4>
                     <p className="text-xs text-slate-400 mt-0.5">
-                      Strict typing, decoupled boundaries, and scalable services.
+                      Building practical web applications and core problem-solving solutions.
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-3">
                   <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 shrink-0">
-                    <HeartHandshake className="w-4 h-4" />
+                    <Cpu className="w-4 h-4" />
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-white uppercase tracking-wider font-mono">
-                      Human Empathy
+                      Practical Innovation
                     </h4>
                     <p className="text-xs text-slate-400 mt-0.5">
-                      Intuitive accessibility, fluid physics, and zero lag.
+                      Transforming ideas into meaningful solutions for real-world challenges.
                     </p>
                   </div>
                 </div>
@@ -93,7 +98,7 @@ export function About() {
             </div>
           </div>
 
-          {/* Metrics Matrix */}
+          {/* Metrics Matrix (Real Confirmed Figures Only) */}
           <div className="lg:col-span-5 grid grid-cols-2 gap-4">
             {profileData.metrics.map((metric, idx) => (
               <motion.div
@@ -105,7 +110,7 @@ export function About() {
                 className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-cyan-500/30 transition-all hover:bg-white/[0.04] group flex flex-col justify-between"
               >
                 <div>
-                  <div className="text-3xl sm:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 font-mono tracking-tight group-hover:scale-105 transition-transform origin-left">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 font-mono tracking-tight group-hover:scale-105 transition-transform origin-left">
                     {metric.value}
                   </div>
                   <div className="text-xs font-semibold text-white mt-2 uppercase tracking-wider">
@@ -145,7 +150,7 @@ export function About() {
               }`}
             >
               <BookOpen className="w-4 h-4" />
-              <span>Engineering Philosophy</span>
+              <span>Personal Philosophy</span>
             </button>
 
             <button
@@ -183,7 +188,7 @@ export function About() {
                 <div className="space-y-4">
                   <h4 className="text-sm font-semibold uppercase tracking-wider font-mono text-indigo-400 flex items-center gap-2">
                     <Cpu className="w-4 h-4" />
-                    <span>Technical &amp; Systems Interests</span>
+                    <span>Core Technical Focus</span>
                   </h4>
                   <ul className="space-y-2.5">
                     {profileData.about.technicalInterests.map((item, i) => (
@@ -203,10 +208,8 @@ export function About() {
                   &ldquo;{profileData.about.personalPhilosophy}&rdquo;
                 </blockquote>
                 <p>
-                  Writing clean code is not simply an aesthetic preference; it is a long-term economic
-                  advantage for engineering teams. I favor predictable architectures over clever hacks,
-                  type safety over runtime guessing, and observable micro-interactions that communicate system
-                  state clearly to users.
+                  I believe in learning through continuous hands-on development, rigorous problem-solving,
+                  and applying core computer science fundamentals to create practical, well-engineered solutions.
                 </p>
               </div>
             )}
@@ -217,9 +220,8 @@ export function About() {
                   {profileData.about.careerObjectives}
                 </p>
                 <p>
-                  I thrive in environments where engineering excellence is celebrated, where cross-functional
-                  collaboration is open and transparent, and where developers are given the ownership to explore
-                  novel interaction models and high-throughput architectures.
+                  Eager to gain industry experience, take on challenging software development responsibilities,
+                  and work alongside experienced engineering teams.
                 </p>
               </div>
             )}

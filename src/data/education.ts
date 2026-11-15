@@ -2,51 +2,40 @@ export interface EducationItem {
   id: string;
   institution: string;
   degree: string;
-  department: string;
+  department?: string;
   duration: string;
-  period: {
-    start: string;
-    end: string;
-  };
   location: string;
   academicPerformance: string;
-  honors?: string[];
-  relevantCoursework: string[];
-  highlights: string[];
+  isUndergraduate?: boolean;
 }
 
 export const educationData: EducationItem[] = [
   {
-    id: "edu-bs-cs",
-    institution: "State University of Technology [Placeholder University]",
-    degree: "Bachelor of Science in Computer Science",
-    department: "Department of Computer Science & Engineering",
-    duration: "2018 — 2022",
-    period: {
-      start: "Aug 2018",
-      end: "May 2022",
-    },
-    location: "California, USA",
-    academicPerformance: "GPA: 3.85 / 4.0 (Magna Cum Laude)",
-    honors: [
-      "Dean's Honor List (All Semesters)",
-      "Excellence in Senior Capstone Engineering Award",
-      "ACM Collegiate Programming Chapter Officer",
-    ],
-    relevantCoursework: [
-      "Data Structures & Algorithms",
-      "Distributed Systems Architecture",
-      "Operating Systems & Concurrency",
-      "Database Management Systems",
-      "Computer Networks & Protocols",
-      "Compilers & Formal Languages",
-      "Object-Oriented Software Design",
-      "Computer Graphics & Shaders",
-    ],
-    highlights: [
-      "Led a 4-person team in building a distributed file storage prototype for the senior capstone project.",
-      "Served as an Undergraduate Teaching Assistant for CS 102: Data Structures and Algorithms.",
-      "Organized annual university hackathons with 300+ student participants.",
-    ],
+    id: "edu-btech-csbs",
+    institution: "M. Kumarasamy College of Engineering, Karur",
+    degree: "B.Tech — Computer Science and Business Systems",
+    department: "Department of Computer Science and Business Systems",
+    duration: "2024 – 2028",
+    location: "Karur, Tamil Nadu",
+    academicPerformance: "CGPA: 8.10 / 10 (up to 4th Semester)",
+    isUndergraduate: true,
+  },
+  {
+    id: "edu-hsc",
+    institution: "SBK Higher Secondary School, Aruppukottai",
+    degree: "Higher Secondary Certificate (HSC)",
+    duration: "2024",
+    location: "Aruppukottai, Tamil Nadu",
+    academicPerformance: "Percentage: 81.83%",
+    isUndergraduate: false,
+  },
+  {
+    id: "edu-sslc",
+    institution: "SBK Higher Secondary School, Aruppukottai",
+    degree: "Secondary School Leaving Certificate (SSLC)",
+    duration: "2022",
+    location: "Aruppukottai, Tamil Nadu",
+    academicPerformance: "Percentage: 78.2%",
+    isUndergraduate: false,
   },
 ];

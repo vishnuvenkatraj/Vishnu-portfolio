@@ -1,6 +1,5 @@
 export interface Profile {
   name: string;
-  pronouns?: string;
   initials: string;
   role: string;
   headline: string;
@@ -15,8 +14,6 @@ export interface Profile {
   availability: {
     status: string;
     isOpen: boolean;
-    location: string;
-    timezone: string;
   };
   resume: {
     url: string;
@@ -26,9 +23,9 @@ export interface Profile {
   socials: {
     github: string;
     linkedin: string;
-    twitter: string;
+    hackerrank: string;
     email: string;
-    discord?: string;
+    phone: string;
   };
   metrics: Array<{
     label: string;
@@ -39,91 +36,86 @@ export interface Profile {
 }
 
 export const profileData: Profile = {
-  name: "Alex River",
-  pronouns: "they/them",
-  initials: "AR",
-  role: "Full-Stack Engineer & Creative Technologist",
-  headline: "Architecting resilient distributed systems and crafting immersive, fluid digital experiences.",
+  name: "VISHNU V",
+  initials: "VV",
+  role: "Aspiring Software Developer",
+  headline: "Passionate about software development, problem-solving and building innovative technology solutions.",
   shortBio:
-    "Engineering robust web applications with a focus on modern TypeScript, reactive frontend architectures, and high-performance services. Passionate about developer tooling, interactive physics, and clean system design.",
+    "I am a Computer Science and Business Systems undergraduate with a strong interest in software engineering, problem-solving and technology-driven innovation. Open to internships.",
   about: {
     introduction:
-      "Hello! I am a full-stack developer focused on building scalable, reliable, and delightful software solutions. With an analytical mindset and a strong aesthetic eye, I bridge the gap between rigorous systems programming and expressive interaction design.",
+      "I am a Computer Science and Business Systems undergraduate with a strong interest in software engineering, problem-solving and technology-driven innovation. I enjoy developing practical applications, exploring emerging technologies and transforming ideas into meaningful solutions. Through projects in healthcare and e-governance, technical competitions, and engineering innovation concepts, I continuously work to strengthen my technical abilities and development experience. My involvement in innovation projects, including FlowVault and RESQTRAK, reflects my interest in exploring practical solutions to real-world challenges. My goal is to grow as a software developer and contribute to impactful technology solutions.",
     developmentInterests: [
-      "Modern Web Architecture & Server Components",
-      "Interactive 2D/3D Canvas & Physics Systems",
-      "Resilient Microservices & API Design",
-      "Developer Experience & Tooling Automation",
-      "Accessibility & Cross-Platform Performance",
+      "Software Engineering & Web Application Development",
+      "Problem-Solving & Core Data Structures",
+      "Generative AI Integration into Practical Systems",
+      "Healthcare and E-Governance Platforms",
+      "Technology-Driven Business Solutions",
     ],
     technicalInterests: [
-      "Type-safe End-to-End Applications",
-      "Cloud Infrastructure & Containerization",
-      "Database Optimization & Caching Strategies",
-      "Physics Engines (Matter.js) & Web Animations",
-      "Reactive State Management & Functional Patterns",
+      "Object-Oriented Programming (Java & C)",
+      "Web Technologies (React & Node.js)",
+      "Relational Database Management (MySQL)",
+      "Version Control Workflows (Git & GitHub)",
+      "Engineering Innovation & Embedded Systems",
     ],
     careerObjectives:
-      "To design and deliver world-class digital products within an innovative engineering organization. I aim to take ownership of complex technical challenges, mentor peers, and continually elevate engineering standards.",
+      "My goal is to grow as a software developer, strengthen my engineering and problem-solving abilities, and contribute to impactful technology solutions in forward-thinking teams.",
     personalPhilosophy:
-      "Code is written for humans first and machines second. Every line of code should be intentional, observable, and built to withstand the test of evolving requirements without sacrificing user empathy.",
+      "Transforming ideas into practical solutions by combining rigorous software problem-solving with technology-driven innovation to address real-world challenges.",
   },
   availability: {
-    status: "Available for select opportunities",
+    status: "Open to internships",
     isOpen: true,
-    location: "San Francisco, CA (Open to Remote)",
-    timezone: "PST / UTC-8",
   },
   resume: {
-    url: "#resume",
-    filename: "Alex_River_Software_Engineer_Resume.pdf",
-    updatedDate: "Updated Q1 2026",
+    url: "/resume.pdf",
+    filename: "Vishnu_V_Resume.pdf",
+    updatedDate: "Configurable PDF",
   },
   socials: {
-    github: "https://github.com/placeholder-developer",
-    linkedin: "https://linkedin.com/in/placeholder-developer",
-    twitter: "https://x.com/placeholder_dev",
-    email: "alex.river.dev@example.com",
-    discord: "https://discord.com/users/placeholder",
+    github: "https://github.com/vishnuvenkatraj",
+    linkedin: "https://linkedin.com/in/vishnu-v-5aaa93350",
+    hackerrank: "https://www.hackerrank.com/profile/vishnuvenkatraj",
+    email: "vishnuvenkatraj@gmail.com",
+    phone: "+91 74185 63738",
   },
   metrics: [
     {
-      label: "Years of Experience",
-      value: "4+",
-      description: "Building production web applications",
+      label: "Academic CGPA",
+      value: "8.10 / 10",
+      description: "B.Tech CSBS (up to 4th Semester)",
     },
     {
-      label: "Projects Completed",
-      value: "25+",
-      description: "From architecture to deployment",
+      label: "Projects & Concepts",
+      value: "4 Projects",
+      description: "MediConnect, CivicConnect, FlowVault, RESQTRAK",
     },
     {
-      label: "Code Commits",
-      value: "2,400+",
-      description: "Across public & private repositories",
+      label: "Awards & Honors",
+      value: "3 Awards",
+      description: "Innoverse 1st, Gencraft 3rd, Dr. Kalam Award",
     },
     {
-      label: "Code Quality & Uptime",
-      value: "99.9%",
-      description: "Test-driven development standard",
+      label: "Hackathon Track",
+      value: "3 Hackathons",
+      description: "24-Hour Competitive Development Events",
     },
   ],
   technologiesTicker: [
-    "TypeScript",
-    "Next.js",
-    "React 19",
-    "Tailwind CSS",
+    "Java",
+    "C",
+    "React",
     "Node.js",
-    "Go",
-    "PostgreSQL",
-    "GraphQL",
-    "Redis",
-    "Docker",
-    "Matter.js",
-    "GSAP",
-    "Framer Motion",
-    "Python",
-    "Prisma",
-    "AWS",
+    "MySQL",
+    "Git",
+    "GitHub",
+    "Generative AI",
+    "Object-Oriented Programming",
+    "Data Structures",
+    "HTML",
+    "CSS",
+    "Business Analytics",
+    "Business Systems",
   ],
 };

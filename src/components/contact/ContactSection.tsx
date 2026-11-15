@@ -4,6 +4,7 @@ import { useState } from "react";
 import { profileData } from "@/data/profile";
 import {
   Mail,
+  Phone,
   Send,
   CheckCircle2,
   AlertCircle,
@@ -11,28 +12,33 @@ import {
   Check,
   Github,
   Linkedin,
-  Twitter,
+  Code2,
   FileText,
   Loader2,
-  Sparkles,
 } from "lucide-react";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
     message: "",
   });
 
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  const [copied, setCopied] = useState(false);
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(profileData.socials.email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setCopiedEmail(true);
+    setTimeout(() => setCopiedEmail(false), 2000);
+  };
+
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText(profileData.socials.phone);
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2000);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -54,7 +60,7 @@ export function ContactSection() {
         setErrorMessage(data.error || "Failed to send message. Please try again.");
       } else {
         setStatus("success");
-        setFormData({ name: "", email: "", subject: "", message: "" });
+        setFormData({ name: "", email: "", message: "" });
       }
     } catch {
       setStatus("error");
@@ -72,14 +78,13 @@ export function ContactSection() {
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono uppercase tracking-wider">
             <Mail className="w-3.5 h-3.5" />
-            <span>Initiate Transmission</span>
+            <span>Direct Communication</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Let&apos;s Build Something Resilient
+            Get in Touch
           </h2>
           <p className="text-slate-400 max-w-2xl text-base sm:text-lg font-light">
-            Whether discussing full-stack roles, consulting on architecture, or building creative
-            web applications, my inbox is open.
+            Open to software development opportunities, internship inquiries, and technical collaboration.
           </p>
         </div>
 
@@ -88,15 +93,16 @@ export function ContactSection() {
           {/* Left Column: Direct Info & Social Cards */}
           <div className="lg:col-span-5 space-y-6">
             <div className="p-6 sm:p-8 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md space-y-6">
-              <h3 className="text-lg font-bold text-white">Direct Channels</h3>
+              <h3 className="text-lg font-bold text-white">Contact Information</h3>
 
-              {/* Copy Email Box */}
+              {/* Email Box */}
               <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between gap-3">
                 <div className="min-w-0">
-                  <div className="text-[10px] font-mono text-slate-400 uppercase">
-                    Primary Email
+                  <div className="text-[10px] font-mono text-slate-400 uppercase flex items-center gap-1.5">
+                    <Mail className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Public Email</span>
                   </div>
-                  <div className="text-sm font-semibold text-white truncate font-mono">
+                  <div className="text-sm font-semibold text-white truncate font-mono mt-1">
                     {profileData.socials.email}
                   </div>
                 </div>
@@ -107,7 +113,33 @@ export function ContactSection() {
                   title="Copy email to clipboard"
                   aria-label="Copy email"
                 >
-                  {copied ? (
+                  {copiedEmail ? (
+                    <Check className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <Copy className="w-4 h-4" />
+                  )}
+                </button>
+              </div>
+
+              {/* Phone Box */}
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="text-[10px] font-mono text-slate-400 uppercase flex items-center gap-1.5">
+                    <Phone className="w-3.5 h-3.5 text-cyan-400" />
+                    <span>Public Phone</span>
+                  </div>
+                  <div className="text-sm font-semibold text-white truncate font-mono mt-1">
+                    {profileData.socials.phone}
+                  </div>
+                </div>
+
+                <button
+                  onClick={handleCopyPhone}
+                  className="p-2.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-cyan-400 border border-white/10 transition-colors shrink-0 cursor-pointer"
+                  title="Copy phone number to clipboard"
+                  aria-label="Copy phone number"
+                >
+                  {copiedPhone ? (
                     <Check className="w-4 h-4 text-emerald-400" />
                   ) : (
                     <Copy className="w-4 h-4" />
@@ -118,7 +150,7 @@ export function ContactSection() {
               {/* Social Profiles */}
               <div className="space-y-3 pt-2">
                 <div className="text-xs font-mono text-slate-400 uppercase">
-                  Connected Networks
+                  Confirmed Profiles &amp; Resume
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <a
@@ -142,13 +174,13 @@ export function ContactSection() {
                   </a>
 
                   <a
-                    href={profileData.socials.twitter}
+                    href={profileData.socials.hackerrank}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="p-3 rounded-xl bg-white/[0.02] hover:bg-white/5 border border-white/10 hover:border-cyan-500/30 text-xs font-mono text-slate-300 hover:text-white flex items-center gap-2 transition-all"
                   >
-                    <Twitter className="w-4 h-4 text-sky-400" />
-                    <span>Twitter / X</span>
+                    <Code2 className="w-4 h-4 text-emerald-400" />
+                    <span>HackerRank</span>
                   </a>
 
                   <a
@@ -159,15 +191,9 @@ export function ContactSection() {
                     className="p-3 rounded-xl bg-white/[0.02] hover:bg-white/5 border border-white/10 hover:border-cyan-500/30 text-xs font-mono text-cyan-300 hover:text-cyan-200 flex items-center gap-2 transition-all"
                   >
                     <FileText className="w-4 h-4" />
-                    <span>Resume PDF</span>
+                    <span>Download Resume</span>
                   </a>
                 </div>
-              </div>
-
-              {/* Status Note */}
-              <div className="pt-4 border-t border-white/5 text-xs text-slate-400 leading-relaxed font-light">
-                Typically responds within 24 hours. Confidential inquiries and NDA requests
-                honored.
               </div>
             </div>
           </div>
@@ -181,7 +207,7 @@ export function ContactSection() {
               <div className="flex items-center justify-between pb-2 border-b border-white/5">
                 <span className="text-sm font-semibold text-white">Send Direct Message</span>
                 <span className="text-[11px] font-mono text-cyan-400 bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">
-                  Real API Route
+                  Backend API Connected
                 </span>
               </div>
 
@@ -191,7 +217,7 @@ export function ContactSection() {
                   <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
                   <div>
                     <div className="font-semibold text-white">Message successfully received!</div>
-                    <div>Thank you for reaching out. I will review and reply shortly.</div>
+                    <div>Thank you for reaching out. I will review and reply to your inquiry shortly.</div>
                   </div>
                 </div>
               )}
@@ -207,7 +233,7 @@ export function ContactSection() {
               )}
 
               {/* Input Fields */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="space-y-4">
                 <div className="space-y-1.5">
                   <label className="text-xs font-mono text-slate-300">
                     Your Name <span className="text-cyan-400">*</span>
@@ -217,7 +243,7 @@ export function ContactSection() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Jane Doe"
+                    placeholder="Enter your name"
                     className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 text-sm transition-all"
                   />
                 </div>
@@ -231,38 +257,24 @@ export function ContactSection() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="jane@company.com"
+                    placeholder="Enter your email address"
                     className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 text-sm transition-all"
                   />
                 </div>
-              </div>
 
-              <div className="space-y-1.5">
-                <label className="text-xs font-mono text-slate-300">
-                  Subject <span className="text-cyan-400">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  placeholder="Full-Stack Engineering Opportunity / Project Architecture"
-                  className="w-full px-4 py-2.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 text-sm transition-all"
-                />
-              </div>
-
-              <div className="space-y-1.5">
-                <label className="text-xs font-mono text-slate-300">
-                  Message <span className="text-cyan-400">*</span>
-                </label>
-                <textarea
-                  required
-                  rows={5}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  placeholder="Tell me about your team, system requirements, or upcoming technical milestones..."
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 text-sm transition-all resize-none"
-                />
+                <div className="space-y-1.5">
+                  <label className="text-xs font-mono text-slate-300">
+                    Message <span className="text-cyan-400">*</span>
+                  </label>
+                  <textarea
+                    required
+                    rows={6}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Your message, project inquiry, or internship opportunity..."
+                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 text-sm transition-all resize-none"
+                  />
+                </div>
               </div>
 
               {/* Submit Button */}
@@ -274,7 +286,7 @@ export function ContactSection() {
                 {status === "loading" ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    <span>Transmitting Payload...</span>
+                    <span>Sending Message...</span>
                   </>
                 ) : (
                   <>

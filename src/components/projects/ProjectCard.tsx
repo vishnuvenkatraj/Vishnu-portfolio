@@ -77,17 +77,21 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
           {/* Vignette Overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#060a17] via-transparent to-transparent opacity-90" />
 
-          {/* Category Badge & Featured Pill */}
-          <div className="absolute top-4 left-4 flex items-center gap-2 z-10">
+          {/* Category Badge & Status Pill */}
+          <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2 z-10">
             <span className="px-3 py-1 rounded-full bg-[#060a17]/80 backdrop-blur-md border border-white/10 text-xs font-mono text-cyan-300">
               {project.category}
             </span>
-            {project.featured && (
-              <span className="px-2.5 py-1 rounded-full bg-cyan-500/20 backdrop-blur-md border border-cyan-500/40 text-[10px] font-mono text-cyan-300 flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-cyan-400" />
-                Featured
-              </span>
-            )}
+            <span
+              className={`px-2.5 py-1 rounded-full backdrop-blur-md border text-[10px] font-mono flex items-center gap-1 ${
+                project.status === "Completed and demonstrable"
+                  ? "bg-emerald-500/20 border-emerald-500/30 text-emerald-300"
+                  : "bg-amber-500/20 border-amber-500/30 text-amber-300"
+              }`}
+            >
+              <Sparkles className="w-3 h-3 text-cyan-400" />
+              {project.status}
+            </span>
           </div>
 
           {/* Quick Preview Button on Top-Right */}
@@ -188,6 +192,11 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
             >
               <ArrowUpRight className="w-4 h-4" />
             </a>
+          )}
+          {!project.githubUrl && !project.demoUrl && (
+            <span className="text-[11px] font-mono text-slate-500">
+              Demo available upon request
+            </span>
           )}
         </div>
       </div>

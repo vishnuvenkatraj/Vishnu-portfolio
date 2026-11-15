@@ -8,8 +8,7 @@ import {
   MapPin,
   CheckCircle2,
   Cpu,
-  ChevronRight,
-  ExternalLink,
+  FileCheck,
 } from "lucide-react";
 
 export function ExperienceSection() {
@@ -23,14 +22,14 @@ export function ExperienceSection() {
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono uppercase tracking-wider">
             <Briefcase className="w-3.5 h-3.5" />
-            <span>Career Trajectory</span>
+            <span>Practical Experience</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
-            Professional Experience &amp; Impact
+            Internship &amp; Industry Experience
           </h2>
           <p className="text-slate-400 max-w-2xl text-base sm:text-lg font-light">
-            A chronological timeline of engineering leadership, production software delivery, and
-            distributed systems architecture.
+            Hands-on technical internship experience in embedded systems, microcontroller programming,
+            and circuit simulation.
           </p>
         </div>
 
@@ -91,48 +90,46 @@ export function ExperienceSection() {
                   {exp.summary}
                 </p>
 
-                {/* Technical Contributions */}
+                {/* Tools Used */}
                 <div className="space-y-2">
                   <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
                     <Cpu className="w-3.5 h-3.5" />
-                    <span>Technical Contributions &amp; Architectural Wins</span>
+                    <span>Tools &amp; Development Environments</span>
                   </h4>
-                  <ul className="space-y-2">
-                    {exp.technicalContributions.map((item, i) => (
-                      <li key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                        <span>{item}</span>
-                      </li>
+                  <div className="flex flex-wrap gap-2">
+                    {exp.toolsUsed.map((tool) => (
+                      <span
+                        key={tool}
+                        className="px-3 py-1 rounded-lg bg-cyan-950/40 border border-cyan-500/30 font-mono text-xs text-cyan-300"
+                      >
+                        {tool}
+                      </span>
                     ))}
-                  </ul>
+                  </div>
                 </div>
 
-                {/* Core Responsibilities */}
+                {/* Responsibilities */}
                 <div className="space-y-2 pt-2 border-t border-white/5">
                   <h4 className="text-xs font-mono font-semibold uppercase tracking-wider text-slate-400">
-                    Key Responsibilities
+                    Responsibilities &amp; Tasks
                   </h4>
-                  <ul className="space-y-1.5">
+                  <ul className="space-y-2">
                     {exp.responsibilities.map((r, i) => (
-                      <li key={i} className="text-xs text-slate-400 flex items-start gap-2">
-                        <ChevronRight className="w-3.5 h-3.5 text-slate-500 shrink-0 mt-0.5" />
+                      <li key={i} className="text-xs sm:text-sm text-slate-300 flex items-start gap-2.5">
+                        <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                         <span>{r}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                {/* Skills Gained Tags */}
-                <div className="flex flex-wrap gap-1.5 pt-2">
-                  {exp.skillsGained.map((skill) => (
-                    <span
-                      key={skill}
-                      className="px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 font-mono text-[11px] text-slate-300"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+                {/* Certificate Placeholder */}
+                {exp.certificatePlaceholder && (
+                  <div className="pt-3 border-t border-white/5 flex items-center gap-2 text-xs font-mono text-slate-400">
+                    <FileCheck className="w-4 h-4 text-cyan-400" />
+                    <span>{exp.certificatePlaceholder}</span>
+                  </div>
+                )}
               </div>
             </motion.div>
           ))}

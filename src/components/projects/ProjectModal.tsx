@@ -120,6 +120,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   <span>GitHub Repository</span>
                 </a>
               )}
+              {!project.demoUrl && !project.githubUrl && (
+                <span className="text-xs font-mono text-slate-400 bg-white/5 px-3 py-1.5 rounded-lg border border-white/5">
+                  Demonstration available upon inquiry
+                </span>
+              )}
             </div>
 
             <Link

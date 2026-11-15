@@ -16,7 +16,8 @@ import {
   FileText,
   Github,
   Linkedin,
-  Twitter,
+  Code2,
+  Phone,
   ArrowRight,
   Sparkles,
 } from "lucide-react";
@@ -201,6 +202,18 @@ export function CommandPalette() {
           setIsOpen(false);
         },
       },
+      {
+        id: "act-copy-phone",
+        title: "Copy Phone Number",
+        description: profileData.socials.phone,
+        category: "Actions",
+        icon: <Phone className="w-4 h-4 text-cyan-300" />,
+        action: () => {
+          navigator.clipboard.writeText(profileData.socials.phone);
+          alert(`Copied ${profileData.socials.phone} to clipboard!`);
+          setIsOpen(false);
+        },
+      },
     ];
 
     const socialItems: CommandItem[] = [
@@ -227,13 +240,13 @@ export function CommandPalette() {
         },
       },
       {
-        id: "soc-twitter",
-        title: "X (Twitter) Profile",
-        description: profileData.socials.twitter,
+        id: "soc-hackerrank",
+        title: "HackerRank Profile",
+        description: profileData.socials.hackerrank,
         category: "Socials",
-        icon: <Twitter className="w-4 h-4 text-sky-400" />,
+        icon: <Code2 className="w-4 h-4 text-emerald-400" />,
         action: () => {
-          window.open(profileData.socials.twitter, "_blank");
+          window.open(profileData.socials.hackerrank, "_blank");
           setIsOpen(false);
         },
       },

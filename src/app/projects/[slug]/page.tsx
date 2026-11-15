@@ -123,6 +123,12 @@ export default async function ProjectDetailPage({
                 <span>View Source on GitHub</span>
               </a>
             )}
+
+            {!project.demoUrl && !project.githubUrl && (
+              <span className="text-xs font-mono text-slate-400 bg-white/5 px-3.5 py-2 rounded-xl border border-white/5">
+                Demonstration and details available upon inquiry
+              </span>
+            )}
           </div>
 
           <div className="flex flex-wrap gap-2">

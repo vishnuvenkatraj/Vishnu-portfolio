@@ -4,7 +4,7 @@ import Link from "next/link";
 import { profileData } from "@/data/profile";
 import { NAV_LINKS } from "@/components/navigation/Navbar";
 import { scrollToElement } from "@/lib/utils";
-import { ArrowUp, Github, Linkedin, Twitter, Mail, Heart } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Code2, Mail, Phone, Heart } from "lucide-react";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -30,7 +30,7 @@ export function Footer() {
               </span>
             </div>
             <p className="text-xs text-slate-400 font-mono">
-              Full-Stack Software Engineer &amp; Creative Technologist
+              {profileData.role}
             </p>
           </div>
 
@@ -60,8 +60,7 @@ export function Footer() {
         {/* Bottom Tier: Copyright, Socials, Stack Info */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-400">
           <div>
-            &copy; {new Date().getFullYear()} {profileData.name}. All rights reserved. Clean
-            placeholder configuration.
+            &copy; {new Date().getFullYear()} {profileData.name}. All rights reserved.
           </div>
 
           {/* Social Icons */}
@@ -85,13 +84,13 @@ export function Footer() {
               <Linkedin className="w-4 h-4" />
             </a>
             <a
-              href={profileData.socials.twitter}
+              href={profileData.socials.hackerrank}
               target="_blank"
               rel="noopener noreferrer"
               className="text-slate-400 hover:text-cyan-400 transition-colors"
-              aria-label="Twitter Profile"
+              aria-label="HackerRank Profile"
             >
-              <Twitter className="w-4 h-4" />
+              <Code2 className="w-4 h-4" />
             </a>
             <a
               href={`mailto:${profileData.socials.email}`}

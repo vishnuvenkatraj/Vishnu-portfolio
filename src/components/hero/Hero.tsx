@@ -12,11 +12,9 @@ import {
   Download,
   Github,
   Linkedin,
-  Twitter,
+  Code2,
   Mail,
   Sparkles,
-  MapPin,
-  ExternalLink,
 } from "lucide-react";
 
 export function Hero() {
@@ -61,17 +59,12 @@ export function Hero() {
           >
             {/* Availability Pill */}
             <motion.div variants={itemVariants} className="inline-flex items-center gap-2">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-xs font-mono text-cyan-300 backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-xs font-mono text-cyan-300 backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.15)]">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
                 </span>
                 <span>{profileData.availability.status}</span>
-                <span className="text-slate-500">•</span>
-                <span className="flex items-center gap-1 text-slate-400">
-                  <MapPin className="w-3 h-3 text-cyan-400" />
-                  {profileData.availability.location}
-                </span>
               </div>
             </motion.div>
 
@@ -143,6 +136,7 @@ export function Hero() {
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-cyan-400 hover:border-cyan-400/50 hover:bg-white/10 transition-all"
                   aria-label="GitHub Profile"
+                  title="GitHub Profile"
                 >
                   <Github className="w-4 h-4" />
                 </a>
@@ -152,22 +146,25 @@ export function Hero() {
                   rel="noopener noreferrer"
                   className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-cyan-400 hover:border-cyan-400/50 hover:bg-white/10 transition-all"
                   aria-label="LinkedIn Profile"
+                  title="LinkedIn Profile"
                 >
                   <Linkedin className="w-4 h-4" />
                 </a>
                 <a
-                  href={profileData.socials.twitter}
+                  href={profileData.socials.hackerrank}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-cyan-400 hover:border-cyan-400/50 hover:bg-white/10 transition-all"
-                  aria-label="Twitter Profile"
+                  className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/50 hover:bg-white/10 transition-all"
+                  aria-label="HackerRank Profile"
+                  title="HackerRank Profile"
                 >
-                  <Twitter className="w-4 h-4" />
+                  <Code2 className="w-4 h-4" />
                 </a>
                 <a
                   href={`mailto:${profileData.socials.email}`}
                   className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-cyan-400 hover:border-cyan-400/50 hover:bg-white/10 transition-all"
                   aria-label="Send Email"
+                  title="Send Email"
                 >
                   <Mail className="w-4 h-4" />
                 </a>

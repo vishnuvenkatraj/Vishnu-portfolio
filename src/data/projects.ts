@@ -16,12 +16,12 @@ export interface Project {
   title: string;
   subtitle: string;
   tagline: string;
-  category: "Full Stack" | "Systems & Cloud" | "Creative & Physics" | "Developer Tools";
+  category: "Featured Software" | "Engineering & Innovation";
+  status: "Completed and demonstrable" | "Concept / Design Stage";
   featured: boolean;
   coverImage: string;
-  videoPreviewUrl?: string;
-  demoUrl: string;
-  githubUrl: string;
+  demoUrl?: string;
+  githubUrl?: string;
   techStack: string[];
   timeline: string;
   role: string;
@@ -45,330 +45,325 @@ export interface Project {
 
 export const PROJECT_CATEGORIES = [
   "All",
-  "Full Stack",
-  "Systems & Cloud",
-  "Creative & Physics",
-  "Developer Tools",
+  "Featured Software",
+  "Engineering & Innovation",
 ] as const;
 
 export const projectsData: Project[] = [
   {
-    id: "project-pulse-sync",
-    slug: "pulse-sync-distributed-event-platform",
-    title: "PulseSync Distributed Event Mesh",
-    subtitle: "High-throughput event streaming & analytics pipeline",
-    tagline: "Ultra-low latency real-time telemetry streaming and live telemetry dashboard.",
-    category: "Systems & Cloud",
+    id: "project-mediconnect",
+    slug: "mediconnect-healthcare-management-system",
+    title: "MediConnect",
+    subtitle: "AI-Powered Healthcare Management System",
+    tagline: "An integrated healthcare platform designed to digitize clinical workflows with role-based access for doctors, staff, and patients.",
+    category: "Featured Software",
+    status: "Completed and demonstrable",
     featured: true,
-    coverImage: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
-    demoUrl: "https://example.com/demo/pulse-sync",
-    githubUrl: "https://github.com/placeholder-dev/pulse-sync-mesh",
-    techStack: ["Go", "Next.js 15", "TypeScript", "Redis Pub/Sub", "PostgreSQL", "Tailwind CSS", "Docker"],
-    timeline: "3 Months • Production Ready",
-    role: "Lead Systems Architect & Full-Stack Developer",
+    coverImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
+    demoUrl: "",
+    githubUrl: "",
+    techStack: ["React", "Node.js", "Generative AI", "Role-Based Authentication"],
+    timeline: "Completed and Demonstrable",
+    role: "Frontend Engineer & AI Integration Lead",
     stats: [
-      { label: "Throughput", value: "45k req/s" },
-      { label: "p99 Latency", value: "< 14ms" },
-      { label: "Memory Footprint", value: "~42MB" },
-      { label: "Test Coverage", value: "94%" },
+      { label: "Role Portals", value: "3 Portals" },
+      { label: "Core AI", value: "Generative AI" },
+      { label: "Access Security", value: "Role-Based" },
+      { label: "Status", value: "Demonstrable" },
     ],
     overview:
-      "PulseSync is a high-performance event aggregation and real-time visualization platform built to ingest, validate, and broadcast telemetry data streams across distributed microservices. It bridges lightweight Golang ingestion workers with a dynamic Next.js administrative dashboard.",
+      "MediConnect is an integrated healthcare platform designed to digitize clinical workflows with role-based access for doctors, staff, and patients. It streamlines patient data, scheduling, and assistive medical diagnostics.",
     problemStatement:
-      "Legacy polling architectures incurred unacceptable latency, database write lock contentions, and significant server overhead during peak traffic spikes, preventing operational teams from diagnosing production incidents in real time.",
+      "Traditional healthcare administration often experiences disjointed patient communication, manual record management bottlenecks, and high administrative overhead across different clinic departments.",
     proposedSolution:
-      "Engineered an event-driven pub/sub backbone backed by Redis and Go goroutines that decouples payload ingestion from storage persistence. Client browsers receive push updates over selective WebSocket channels filtered by subscription topics.",
+      "Engineered an integrated web application with dedicated, secure portals for doctors, staff, and patients, incorporating Generative AI to assist with preliminary symptom analysis and medical guidance.",
     keyFeatures: [
       {
-        title: "Sub-millisecond Ingestion",
-        description: "Concurrent HTTP/gRPC ingestion endpoints handling heavy batch payloads with zero-allocation JSON parsing.",
+        title: "Role-Based Portals",
+        description: "Distinct, secure interfaces tailored specifically for doctors, administrative staff, and patients.",
       },
       {
-        title: "Dynamic Topic Filtering",
-        description: "Allows client dashboards to subscribe to granular namespace events without receiving irrelevant channel noise.",
+        title: "Patient & Appointment Management",
+        description: "Structured scheduling, consultation logging, and patient history tracking.",
       },
       {
-        title: "Dead Letter Queue & Auto-Retry",
-        description: "Resilient error boundaries that automatically stash failed packets to persistent disk for audit replay.",
+        title: "AI-Assisted Symptom Analysis",
+        description: "Generative AI integration to evaluate user-described symptoms and suggest preliminary guidance.",
       },
       {
-        title: "Interactive Live Charting",
-        description: "Zero-lag SVG/Canvas telemetry charts that dynamically stream metrics without blocking DOM paint threads.",
+        title: "Medical Assistance",
+        description: "Interactive assistance features to support clinical decision-making and patient queries.",
+      },
+      {
+        title: "Administrative Insights",
+        description: "Data-driven overviews of appointments, workflow bottlenecks, and clinical activity.",
       },
     ],
     architecture: [
       {
-        layer: "Ingestion & Edge Gateway",
-        technologies: ["Go", "Gin Engine", "gRPC", "Docker"],
-        description: "Receives external payloads, handles JWT authorization, and checks rate limits in under 2ms.",
+        layer: "Frontend Interface",
+        technologies: ["React", "HTML/CSS"],
+        description: "Role-based responsive user portals designed for intuitive appointment booking and clinical navigation.",
       },
       {
-        layer: "Messaging & State Buffer",
-        technologies: ["Redis Cluster", "Pub/Sub Queues"],
-        description: "Buffers inbound events and fans out stream chunks to active worker channels.",
+        layer: "Backend Runtime",
+        technologies: ["Node.js"],
+        description: "Server architecture managing authentication, scheduling logic, and role verification.",
       },
       {
-        layer: "Persistence & Analytics",
-        technologies: ["PostgreSQL", "TimescaleDB", "Prisma"],
-        description: "Batched asynchronous writes for aggregated audit trails and long-term analytical queries.",
-      },
-      {
-        layer: "Presentation & Monitoring",
-        technologies: ["Next.js", "React 19", "WebSockets", "Tailwind CSS"],
-        description: "Interactive real-time monitoring console with responsive layout and dark mode.",
+        layer: "AI & Clinical Intelligence",
+        technologies: ["Generative AI"],
+        description: "AI-assisted symptom analysis engine delivering contextual preliminary assistance.",
       },
     ],
     challenges: [
       {
-        title: "Mitigating Memory Leaks under Peak Ingestion",
-        problem: "Early builds accumulated unused buffer slices during sustained 50,000 req/sec stress tests.",
-        resolution: "Adopted sync.Pool memory recycling for temporary byte buffers and tuned the Go garbage collector target percentage.",
+        title: "Role-Based Access Segregation",
+        problem: "Ensuring patient confidentiality and ensuring staff and doctor data boundaries remain strictly compartmentalized.",
+        resolution: "Designed robust role-based authentication rules verifying user permissions on every route.",
       },
       {
-        title: "Browser Frame Drops during Rapid State Updates",
-        problem: "Pushing 100+ events per second over WebSockets degraded frontend rendering to under 25 FPS.",
-        resolution: "Implemented client-side requestAnimationFrame micro-batching and decoupled incoming websocket queues from React component rerenders.",
+        title: "Symptom Analysis Prompt Guidance",
+        problem: "Formatting unstructured patient symptom inputs into coherent prompts for the Generative AI integration.",
+        resolution: "Structured structured intake questionnaires to provide clear, grounded context to the AI assistant.",
       },
     ],
     gallery: [
       {
-        title: "Real-time Telemetry Dashboard",
-        caption: "Dark-themed administrative panel displaying live throughput graphs and active node nodes.",
-        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+        title: "Clinical Portal Overview",
+        caption: "Interface preview for patient scheduling and appointment management.",
+        imageUrl: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80",
       },
       {
-        title: "Cluster Topology Visualizer",
-        caption: "Node health monitoring, latency distribution histogram, and socket connection counters.",
-        imageUrl: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?auto=format&fit=crop&w=1200&q=80",
+        title: "AI Symptom Assistant",
+        caption: "Generative AI interface assisting in preliminary symptom categorization.",
+        imageUrl: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80",
       },
     ],
   },
   {
-    id: "project-nexus-canvas",
-    slug: "nexus-interactive-creative-engine",
-    title: "Nexus Interactive Simulation Engine",
-    subtitle: "2D physics-driven collaborative node workspace",
-    tagline: "Physics-based fluid canvas for visual thinking, draggable component trees, and reactive constraints.",
-    category: "Creative & Physics",
+    id: "project-civicconnect",
+    slug: "civicconnect-e-governance-platform",
+    title: "CivicConnect",
+    subtitle: "AI-Powered E-Governance Platform",
+    tagline: "An AI-powered e-governance platform designed to manage public grievances across multiple districts.",
+    category: "Featured Software",
+    status: "Completed and demonstrable",
     featured: true,
-    coverImage: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=1200&q=80",
-    demoUrl: "https://example.com/demo/nexus-canvas",
-    githubUrl: "https://github.com/placeholder-dev/nexus-physics-engine",
-    techStack: ["TypeScript", "Matter.js", "Canvas API", "Framer Motion", "Next.js", "Tailwind CSS"],
-    timeline: "2 Months • Open Source",
-    role: "Creative Developer & Interaction Designer",
+    coverImage: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+    demoUrl: "",
+    githubUrl: "",
+    techStack: ["React", "Generative AI", "Analytics/ML for Issue Classification"],
+    timeline: "Completed and Demonstrable",
+    role: "AI Integration Engineer",
     stats: [
-      { label: "Frame Rate", value: "60 FPS locked" },
-      { label: "Max Bodies", value: "500+ items" },
-      { label: "Bundle Size", value: "28 kB gzipped" },
-      { label: "Touch Latency", value: "< 8ms" },
+      { label: "Core Module", value: "IssueDNA" },
+      { label: "Workflow", value: "ResolveChain" },
+      { label: "SLA Guard", value: "SLA Guardian" },
+      { label: "Status", value: "Demonstrable" },
     ],
     overview:
-      "Nexus is an experimental visual design sandbox that applies real-world rigid body dynamics to user interface components. Users can toss, connect, drag, and interact with live UI cards with realistic mass, friction, and elastic bounce.",
+      "CivicConnect is an AI-powered e-governance platform designed to manage public grievances across multiple districts, detecting duplicate reports, tracking resolution workflows, and predicting SLA violations.",
     problemStatement:
-      "Traditional web interfaces are static and rigid. Complex hierarchical data diagrams often feel lifeless and difficult to mentally organize without tactile spatial feedback.",
+      "Municipal administrations receive large volumes of redundant grievance reports across districts without unified automated prioritization or transparent resolution timelines.",
     proposedSolution:
-      "Built a custom physics canvas wrapper on top of Matter.js that maps DOM nodes into physical 2D collision geometry with spring constraints, enabling responsive tactile interaction on both mouse and touch displays.",
+      "Built an AI-driven grievance platform featuring IssueDNA duplicate-issue detection, ResolveChain grievance tracking, and SLA Guardian risk monitoring to systematically escalate and resolve public complaints.",
     keyFeatures: [
       {
-        title: "Kinematic Drag & Throw",
-        description: "Mouse and touch pointer velocity tracking with momentum preservation on release.",
+        title: "IssueDNA Duplicate Detection",
+        description: "AI-powered detection to identify and merge duplicate citizen complaints submitted across districts.",
       },
       {
-        title: "Spring Elastic Constraints",
-        description: "Connect multiple data nodes with flexible tension cables that pull and repel dynamically.",
+        title: "ResolveChain Workflow",
+        description: "End-to-end transparent grievance routing, department assignment, and lifecycle resolution.",
       },
       {
-        title: "Adaptive Viewport Boundaries",
-        description: "Physics world boundaries adjust instantaneously to viewport resizes and orientation flips.",
+        title: "SLA Guardian",
+        description: "Predictive monitoring and alerting for municipal SLA risks before deadlines expire.",
       },
       {
-        title: "Spatial Audio Cues",
-        description: "Subtle dynamic audio synthesized via Web Audio API on physical body collisions.",
+        title: "Complaint Submission & Tracking",
+        description: "User-friendly submission flow allowing citizens to log issues and trace real-time status.",
+      },
+      {
+        title: "Analytics for Prioritization",
+        description: "Data-driven ranking and issue classification to surface urgent community issues first.",
       },
     ],
     architecture: [
       {
-        layer: "Simulation Core",
-        technologies: ["Matter.js", "Custom Collision Solvers"],
-        description: "Computes Verlet integration, velocity verlets, and bounding box sweeps.",
+        layer: "Presentation Layer",
+        technologies: ["React", "HTML/CSS"],
+        description: "Citizen grievance submission portal and municipal administrative dashboard.",
       },
       {
-        layer: "Render Bridge",
-        technologies: ["HTML5 Canvas", "WebGL Fallback"],
-        description: "High-frequency render loop synchronized to screen refresh intervals using requestAnimationFrame.",
+        layer: "AI & Classification Core",
+        technologies: ["Generative AI", "Analytics/ML"],
+        description: "Deduplication algorithms (IssueDNA) and SLA breach risk predictors (SLA Guardian).",
       },
       {
-        layer: "Interaction & Gestures",
-        technologies: ["Pointer Events API", "Framer Motion"],
-        description: "Multi-touch gesture unification for drag, pinch-zoom, and boundary repulsion.",
+        layer: "Workflow Engine",
+        technologies: ["ResolveChain Logic"],
+        description: "Multi-district grievance state management and status updating pipeline.",
       },
     ],
     challenges: [
       {
-        title: "High DPI Canvas Blurriness",
-        problem: "Canvas elements appeared blurry on retina screens when drawing at standard pixel densities.",
-        resolution: "Calculated devicePixelRatio scaling factors for canvas buffers while retaining CSS layout dimensions.",
+        title: "Duplicate Grievance Clustering",
+        problem: "Citizens describe the same municipal problem (e.g. pothole or water leak) with completely different wording and photos.",
+        resolution: "Employed Generative AI semantic analysis to detect duplicate complaints based on contextual location and issue description.",
       },
       {
-        title: "Mobile Touch Interception",
-        problem: "Browser default swipe gestures interfered with dragging simulation nodes.",
-        resolution: "Applied touch-action: none styling and implemented explicit pointer capture handlers.",
+        title: "SLA Risk Tracking",
+        problem: "Preventing high-priority public grievances from sitting unresolved in administrative backlogs.",
+        resolution: "Developed the SLA Guardian module to actively monitor resolution speed and notify supervisory staff.",
       },
     ],
     gallery: [
       {
-        title: "Gravity Well & Elastic Links",
-        caption: "Physics nodes linked by elastic spring constraints responding to user cursor gravitational pull.",
-        imageUrl: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=1200&q=80",
+        title: "District Grievance Console",
+        caption: "Municipal dashboard prioritizing complaints with ResolveChain status tracking.",
+        imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
       },
     ],
   },
   {
-    id: "project-orbit-cms",
-    slug: "orbit-headless-developer-cms",
-    title: "Orbit Headless Content Platform",
-    subtitle: "Modular API-first CMS for modern static site generators",
-    tagline: "Developer-centric content pipeline featuring strict TypeScript schema compilation and instant webhooks.",
-    category: "Full Stack",
-    featured: true,
-    coverImage: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-    demoUrl: "https://example.com/demo/orbit-cms",
-    githubUrl: "https://github.com/placeholder-dev/orbit-headless-cms",
-    techStack: ["Next.js", "TypeScript", "PostgreSQL", "Prisma", "GraphQL", "Tailwind CSS", "Zod"],
-    timeline: "4 Months • Full Lifecycle",
-    role: "Full-Stack Software Engineer",
-    stats: [
-      { label: "Build Time", value: "3.2s avg" },
-      { label: "API Response", value: "38ms" },
-      { label: "Schema Validation", value: "100% Type-safe" },
-      { label: "Webhook Success", value: "99.98%" },
-    ],
-    overview:
-      "Orbit CMS is a next-generation content management framework tailored for software engineering teams who want clean markdown authoring, versioned draft workflows, and automatic TypeScript typings generated for every content model.",
-    problemStatement:
-      "Existing enterprise CMS systems are bloated, slow, expensive, and decouple developer codebases from content schemas, forcing tedious manual typing and runtime breakage.",
-    proposedSolution:
-      "Designed an extensible headless architecture where schema definitions are authored in code or visual builders, producing end-to-end type declarations, validated GraphQL queries, and immediate edge caching.",
-    keyFeatures: [
-      {
-        title: "Instant Type Generation",
-        description: "Automatically emits TypeScript interface files whenever schema definitions are modified.",
-      },
-      {
-        title: "Edge-Cached GraphQL Endpoints",
-        description: "Global surrogate-key caching ensures content queries resolve in under 50ms worldwide.",
-      },
-      {
-        title: "Git-Backed Version Control",
-        description: "Every revision is tracked with cryptographic diffs, rollback triggers, and branch previews.",
-      },
-      {
-        title: "Role-Based Access Control",
-        description: "Granular permissions for authors, reviewers, and administrative engineers.",
-      },
-    ],
-    architecture: [
-      {
-        layer: "Schema Engine & API",
-        technologies: ["Node.js", "GraphQL", "Zod", "Prisma"],
-        description: "Compiles content models, validates payloads, and executes nested relation queries.",
-      },
-      {
-        layer: "Database Tier",
-        technologies: ["PostgreSQL", "Supabase", "Redis"],
-        description: "Stores JSON documents, audit histories, and cached query response trees.",
-      },
-      {
-        layer: "Editorial Studio",
-        technologies: ["Next.js 15", "TipTap Editor", "Tailwind CSS"],
-        description: "Rich text markdown workspace with split-screen live preview and asset management.",
-      },
-    ],
-    challenges: [
-      {
-        title: "Concurrent Edit Conflict Resolution",
-        problem: "Simultaneous edits by two team members resulted in overwritten content blocks.",
-        resolution: "Implemented operational transformation semantics and optimistic locking tokens on document saves.",
-      },
-      {
-        title: "Complex Nested Relation Query Performance",
-        problem: "Deeply nested GraphQL field resolvers generated N+1 SQL queries against PostgreSQL.",
-        resolution: "Integrated DataLoader batch caching across relation queries, slashing query volume by 85%.",
-      },
-    ],
-    gallery: [
-      {
-        title: "Editorial Workspace",
-        caption: "Markdown editor featuring split-pane preview, asset dropzone, and SEO metadata inspector.",
-        imageUrl: "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
-      },
-    ],
-  },
-  {
-    id: "project-cli-craft",
-    slug: "craft-cli-scaffolding-automation",
-    title: "Craft Developer CLI Tooling",
-    subtitle: "Command-line toolkit for modern web scaffold generation",
-    tagline: "Blazing-fast terminal CLI for scaffolding microservices, linting pipelines, and docker compose stacks.",
-    category: "Developer Tools",
+    id: "project-flowvault",
+    slug: "flowvault-self-reconfiguring-storm-drain",
+    title: "FlowVault",
+    subtitle: "Self-Reconfiguring Storm Drain",
+    tagline: "A passive hydraulic-mechanical storm-drain concept designed to automatically redirect drainage from a severely clogged section to the next available section.",
+    category: "Engineering & Innovation",
+    status: "Concept / Design Stage",
     featured: false,
-    coverImage: "https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=1200&q=80",
-    demoUrl: "https://example.com/demo/craft-cli",
-    githubUrl: "https://github.com/placeholder-dev/craft-developer-cli",
-    techStack: ["TypeScript", "Node.js", "Commander.js", "Inquirer", "Chalk", "Docker"],
-    timeline: "1 Month • Tooling",
-    role: "Open Source Creator",
+    coverImage: "https://images.unsplash.com/photo-1541888946425-d0fbb1861564?auto=format&fit=crop&w=1200&q=80",
+    demoUrl: "",
+    githubUrl: "",
+    techStack: ["Hydraulic-Mechanical Design", "Passive Systems", "Fluid Dynamics Concept"],
+    timeline: "Concept / Design Stage",
+    role: "Engineering Concept Designer",
     stats: [
-      { label: "Exec Time", value: "< 250ms" },
-      { label: "Templates", value: "12 presets" },
-      { label: "Install Base", value: "5k+ runs" },
-      { label: "Exit Errors", value: "0 reported" },
+      { label: "Compartments", value: "4 Chambers" },
+      { label: "Power Source", value: "Zero Power" },
+      { label: "Mechanism", value: "Passive" },
+      { label: "Status", value: "Concept Stage" },
     ],
     overview:
-      "Craft CLI is a lightweight, interactive developer utility designed to eliminate boilerplate configuration when setting up new microservices, API routes, and containerized local environments.",
+      "FlowVault is an engineering innovation concept for a passive hydraulic-mechanical storm drain. It automatically redirects drainage water from severely clogged sections to neighboring clear sections without requiring any sensors, electrical wiring, or external power sources.",
     problemStatement:
-      "Setting up standard engineering projects with TypeScript, Docker, ESLint, Prettier, and CI/CD pipelines typically wastes 2-4 hours of developer time per repository.",
+      "Urban storm drains frequently clog due to debris, leaves, and trash during severe rainfall. When single chambers clog, water overflows onto city streets because traditional drains cannot dynamically redirect runoff without expensive powered sensors.",
     proposedSolution:
-      "Constructed an interactive terminal CLI with step-by-step prompts, template injection engines, and automatic dependency installation that spins up production-ready repos in under 60 seconds.",
+      "Designed a four-compartment hydraulic persistence mechanism that mechanically actuates flow redirectors purely through the hydrostatic pressure differential created by rising water levels in a blocked chamber.",
     keyFeatures: [
       {
-        title: "Interactive Terminal Wizard",
-        description: "Intuitive multi-select menus with keyboard navigation and instant input validation.",
+        title: "Four Drainage Compartments",
+        description: "Multi-chamber partitioned drainage structure providing redundant overflow pathways.",
       },
       {
-        title: "AST-Based Code Modification",
-        description: "Safely injects configuration entries into existing project files without regex syntax errors.",
+        title: "Automatic Drainage Redirection",
+        description: "Directs water dynamically away from a clogged chamber toward the adjacent open compartment.",
       },
       {
-        title: "Modular Template Registry",
-        description: "Pull updated boilerplate templates from GitHub repositories with offline fallback caching.",
+        title: "Hydraulic Persistence Mechanism",
+        description: "Maintains bypass flow stability using fluid head pressure without oscillations.",
+      },
+      {
+        title: "Passive Mechanical Operation",
+        description: "Operates 100% mechanically with zero electrical power, zero microcontrollers, and zero external wiring.",
       },
     ],
     architecture: [
       {
-        layer: "CLI Runtime",
-        technologies: ["Node.js", "Commander.js", "Execa"],
-        description: "Parses CLI flags, executes shell pipelines, and provides colorized status output.",
+        layer: "Structural Partitioning",
+        technologies: ["Multi-chamber Concrete/Composite Housing"],
+        description: "Four interconnected hydraulic compartments with selective diversion valves.",
       },
       {
-        layer: "Templating Core",
-        technologies: ["EJS", "Prettier API", "Babel AST"],
-        description: "Dynamically renders boilerplate code and formats generated source files to standard style guides.",
+        layer: "Mechanical Actuation Core",
+        technologies: ["Counterbalance Floats", "Mechanical Flap Gates"],
+        description: "Pressure-actuated mechanical redirection levers responding directly to fluid buildup.",
       },
     ],
     challenges: [
       {
-        title: "Cross-Platform Path Inconsistencies",
-        problem: "Backslash vs slash path separators caused file creation failures on Windows machines.",
-        resolution: "Standardized all internal path manipulations with path.posix and normalized file URL resolution.",
+        title: "Zero-Electricity Actuation Reliability",
+        problem: "Achieving reliable valve switching without motors, solenoids, or electrical power in harsh drainage environments.",
+        resolution: "Engineered counterbalanced float mechanisms that utilize hydrostatic buoyancy and gravity for reliable actuation.",
       },
     ],
     gallery: [
       {
-        title: "Terminal Wizard Experience",
-        caption: "Command line user interface showing colored prompt choices and progress indicators.",
-        imageUrl: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=1200&q=80",
+        title: "Hydraulic Redirection Schematic",
+        caption: "Conceptual chamber breakdown demonstrating mechanical passive flow switching.",
+        imageUrl: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
+      },
+    ],
+  },
+  {
+    id: "project-resqtrak",
+    slug: "resqtrak-mechanical-auto-extraction-system",
+    title: "RESQTRAK",
+    subtitle: "Gas-Triggered Mechanical Auto-Extraction System",
+    tagline: "A passive H₂S-triggered rescue concept that converts hazardous gas exposure into mechanical actuation for automatic confined-space worker retrieval.",
+    category: "Engineering & Innovation",
+    status: "Concept / Design Stage",
+    featured: false,
+    coverImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+    demoUrl: "",
+    githubUrl: "",
+    techStack: ["Chemical-Mechanical Actuation", "Passive Safety Concept", "Confined Space Rescue"],
+    timeline: "Concept / Design Stage",
+    role: "Engineering Concept Designer",
+    stats: [
+      { label: "Target Gas", value: "H₂S Gas" },
+      { label: "Trigger Type", value: "Passive Chem-Mech" },
+      { label: "Application", value: "Confined Space" },
+      { label: "Status", value: "Concept Stage" },
+    ],
+    overview:
+      "RESQTRAK is an innovative confined-space rescue concept designed to protect workers exposed to lethal hydrogen sulfide (H₂S) gas. It converts hazardous gas exposure directly into mechanical actuation for rapid, automatic worker retrieval without relying on manual rescuers or electrical equipment.",
+    problemStatement:
+      "In confined spaces such as sewer lines, chemical vaults, and manholes, sudden surges of toxic H₂S gas can cause unconsciousness within seconds. Rescuers who enter manually often succumb to the same gas, resulting in multiple casualties.",
+    proposedSolution:
+      "Conceptualized a gas-triggered auto-extraction mechanism that uses chemical-reactive mechanical actuation to engage retrieval winches the instant hazardous concentrations of H₂S gas are detected.",
+    keyFeatures: [
+      {
+        title: "Gas-Triggered Mechanical Actuation",
+        description: "Direct conversion of chemical gas exposure into mechanical releasing force.",
+      },
+      {
+        title: "Automatic Worker Retrieval",
+        description: "Initiates immediate extraction of unconscious workers to safe surface levels without delay.",
+      },
+      {
+        title: "Passive Mechanical Approach",
+        description: "Avoids spark hazards by functioning without electrical motors or electronic switches in explosive environments.",
+      },
+    ],
+    architecture: [
+      {
+        layer: "Gas Detection & Reaction Core",
+        technologies: ["H₂S Chemical Reactant Capsule"],
+        description: "Reactive chemical matrix that triggers mechanical release upon contact with toxic threshold levels.",
+      },
+      {
+        layer: "Extraction & Winch Mechanism",
+        technologies: ["Pre-Tensioned Mechanical Retrieval Harness"],
+        description: "Spring-loaded or counterweighted mechanical hoist for instantaneous worker elevation.",
+      },
+    ],
+    challenges: [
+      {
+        title: "Explosion-Proof Confined Environments",
+        problem: "Confined sewer spaces often contain volatile methane, meaning electrical rescue gear carries explosion risks.",
+        resolution: "Formulated a 100% non-sparking, passive mechanical actuation concept independent of electrical circuits.",
+      },
+    ],
+    gallery: [
+      {
+        title: "Confined Space Rescue Conceptual Layout",
+        caption: "Mechanical retrieval harness mechanism and gas-triggered actuation trigger.",
+        imageUrl: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80",
       },
     ],
   },

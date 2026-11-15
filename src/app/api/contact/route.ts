@@ -21,28 +21,24 @@ export async function POST(request: Request) {
       );
     }
 
-    if (!subject || typeof subject !== "string" || subject.trim().length < 3) {
-      return NextResponse.json(
-        { success: false, error: "Subject must be at least 3 characters." },
-        { status: 400 }
-      );
-    }
+    const finalSubject =
+      subject && typeof subject === "string" && subject.trim().length >= 2
+        ? subject.trim()
+        : `Portfolio Contact from ${name.trim()}`;
 
-    if (!message || typeof message !== "string" || message.trim().length < 10) {
+    if (!message || typeof message !== "string" || message.trim().length < 5) {
       return NextResponse.json(
-        { success: false, error: "Message must be at least 10 characters." },
+        { success: false, error: "Message must be at least 5 characters." },
         { status: 400 }
       );
     }
 
     // In production, integrate with Resend, SendGrid, or AWS SES
-    // For example:
-    // await resend.emails.send({ from, to: profileData.socials.email, subject, text: message });
     console.log("[Contact API] Received submission:", {
       timestamp: new Date().toISOString(),
       name: name.trim(),
       email: email.trim(),
-      subject: subject.trim(),
+      subject: finalSubject,
       messageLength: message.trim().length,
     });
 

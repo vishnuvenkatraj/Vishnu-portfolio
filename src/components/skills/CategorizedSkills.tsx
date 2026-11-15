@@ -178,12 +178,14 @@ export function CategorizedSkills() {
 
                   {/* Proficiency Tag */}
                   <span
-                    className={`text-[10px] font-mono px-2 py-0.5 rounded-full border ${
-                      skill.level === "Advanced"
+                    className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border whitespace-nowrap ${
+                      skill.level === "Comfortable"
+                        ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/30"
+                        : skill.level === "Familiar"
                         ? "bg-cyan-500/10 text-cyan-300 border-cyan-500/30"
-                        : skill.level === "Proficient"
-                        ? "bg-blue-500/10 text-blue-300 border-blue-500/30"
-                        : "bg-slate-500/10 text-slate-300 border-slate-500/30"
+                        : skill.level === "Currently Learning"
+                        ? "bg-amber-500/10 text-amber-300 border-amber-500/30"
+                        : "bg-purple-500/10 text-purple-300 border-purple-500/30"
                     }`}
                   >
                     {skill.level}
@@ -198,12 +200,12 @@ export function CategorizedSkills() {
 
               {/* Bottom Tag */}
               <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
-                <span className="flex items-center gap-1.5">
+                <span className="flex items-center gap-1.5 text-slate-400">
                   <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
-                  Production Ready
+                  {skill.categoryLabel}
                 </span>
                 {skill.featuredInSandbox && (
-                  <span className="text-cyan-400/80">In Sandbox</span>
+                  <span className="text-cyan-400/80">In Physics Sandbox</span>
                 )}
               </div>
             </div>

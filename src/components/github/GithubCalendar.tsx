@@ -1,173 +1,148 @@
 "use client";
 
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { profileData } from "@/data/profile";
-import { GitBranch, GitCommit, Flame, Star, GitPullRequest, ExternalLink } from "lucide-react";
+import {
+  Github,
+  GitBranch,
+  ExternalLink,
+  Code2,
+  FolderGit2,
+  Loader2,
+} from "lucide-react";
 
-interface DayData {
-  date: string;
-  count: number;
-  level: 0 | 1 | 2 | 3 | 4;
+interface Repository {
+  id: number;
+  name: string;
+  description: string | null;
+  html_url: string;
+  language: string | null;
+  stargazers_count: number;
+  forks_count: number;
 }
 
 export function GithubCalendar() {
-  const [loading, setLoading] = useState(false);
-  const [hoveredDay, setHoveredDay] = useState<DayData | null>(null);
+  const [repos, setRepos] = useState<Repository[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-  // Extract username from profile github URL
-  const username = useMemo(() => {
-    try {
-      const parts = profileData.socials.github.replace(/\/$/, "").split("/");
-      return parts[parts.length - 1] || "developer";
-    } catch {
-      return "developer";
-    }
-  }, []);
+  const username = "vishnuvenkatraj";
 
-  // Generate realistic 52-week contribution heat map (364 days)
-  const calendarDays: DayData[] = useMemo(() => {
-    const days: DayData[] = [];
-    const today = new Date();
-
-    for (let i = 363; i >= 0; i--) {
-      const d = new Date(today);
-      d.setDate(d.getDate() - i);
-      const dateStr = d.toISOString().split("T")[0];
-
-      // Realistic pseudo-activity based on day of week & date seed
-      const dayOfWeek = d.getDay();
-      const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-      const seed = (d.getFullYear() * 372 + (d.getMonth() + 1) * 31 + d.getDate()) % 17;
-
-      let count = 0;
-      let level: 0 | 1 | 2 | 3 | 4 = 0;
-
-      if (!isWeekend && seed > 3) {
-        count = (seed % 9) + 1;
-        if (count > 7) level = 4;
-        else if (count > 4) level = 3;
-        else if (count > 2) level = 2;
-        else level = 1;
-      } else if (isWeekend && seed > 12) {
-        count = (seed % 4) + 1;
-        level = 1;
+  useEffect(() => {
+    async function fetchRepos() {
+      try {
+        const response = await fetch(
+          `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`
+        );
+        if (!response.ok) {
+          throw new Error("Failed to fetch repositories");
+        }
+        const data = await response.json();
+        if (Array.isArray(data)) {
+          setRepos(data);
+        } else {
+          setError(true);
+        }
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
       }
-
-      days.push({
-        date: dateStr,
-        count,
-        level,
-      });
     }
 
-    return days;
+    fetchRepos();
   }, []);
-
-  const totalContributions = useMemo(() => {
-    return calendarDays.reduce((acc, d) => acc + d.count, 0);
-  }, [calendarDays]);
-
-  const maxStreak = 42;
-  const currentStreak = 18;
-
-  // Split into weeks of 7 days
-  const weeks = useMemo(() => {
-    const w: DayData[][] = [];
-    for (let i = 0; i < calendarDays.length; i += 7) {
-      w.push(calendarDays.slice(i, i + 7));
-    }
-    return w;
-  }, [calendarDays]);
 
   return (
     <section className="relative py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="rounded-2xl border border-white/10 bg-[#070b16]/90 backdrop-blur-xl p-6 sm:p-8 space-y-6">
-          {/* Calendar Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-white/10">
+        <div className="rounded-2xl border border-white/10 bg-[#070b16]/90 backdrop-blur-xl p-6 sm:p-8 space-y-8">
+          {/* GitHub Header */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
             <div className="space-y-1">
               <div className="flex items-center gap-2">
-                <GitCommit className="w-4 h-4 text-cyan-400" />
-                <h3 className="text-lg font-bold text-white">
-                  Continuous Code Activity
+                <Github className="w-5 h-5 text-cyan-400" />
+                <h3 className="text-xl font-bold text-white">
+                  GitHub Profile &amp; Open Source Repositories
                 </h3>
               </div>
-              <p className="text-xs text-slate-400 font-mono">
-                Repository commits, pull requests, and code reviews across @{username}
+              <p className="text-xs sm:text-sm text-slate-400 font-mono">
+                Verified public code repositories for @{username}
               </p>
             </div>
 
-            {/* Quick Metrics */}
-            <div className="flex items-center gap-4 text-xs font-mono">
-              <div className="flex items-center gap-1.5 text-cyan-300">
-                <GitCommit className="w-3.5 h-3.5 text-cyan-400" />
-                <span>{totalContributions.toLocaleString()} Contributions</span>
-              </div>
-              <div className="flex items-center gap-1.5 text-amber-300">
-                <Flame className="w-3.5 h-3.5 text-amber-400" />
-                <span>{currentStreak} Day Streak</span>
-              </div>
-            </div>
+            {/* Direct Profile CTA */}
+            <a
+              href={profileData.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 hover:border-cyan-500/40 text-xs font-mono text-cyan-300 transition-all shrink-0"
+            >
+              <span>VISIT GITHUB PROFILE</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
           </div>
 
-          {/* Interactive Heat Map Container */}
-          <div className="overflow-x-auto pb-2">
-            <div className="min-w-[720px] flex gap-[3px]">
-              {weeks.map((week, wIdx) => (
-                <div key={wIdx} className="flex flex-col gap-[3px]">
-                  {week.map((day) => {
-                    const levelColors = [
-                      "bg-white/[0.04] border-white/5",
-                      "bg-cyan-950 border-cyan-800/40 text-cyan-200",
-                      "bg-cyan-700/60 border-cyan-600/50 text-cyan-100",
-                      "bg-cyan-500 border-cyan-400 text-black",
-                      "bg-cyan-400 border-white shadow-[0_0_8px_rgba(6,182,212,0.6)] text-black",
-                    ];
+          {/* Repository Showcase */}
+          {loading ? (
+            <div className="py-12 flex flex-col items-center justify-center gap-3 text-slate-400 text-xs font-mono">
+              <Loader2 className="w-6 h-6 animate-spin text-cyan-400" />
+              <span>Fetching verified repositories from GitHub API...</span>
+            </div>
+          ) : error || repos.length === 0 ? (
+            <div className="p-8 text-center rounded-xl bg-white/[0.02] border border-white/5 space-y-3">
+              <p className="text-sm text-slate-300">
+                Explore confirmed repositories directly on GitHub:
+              </p>
+              <a
+                href={profileData.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 hover:text-cyan-300 underline underline-offset-4"
+              >
+                <span>https://github.com/{username}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {repos.map((repo) => (
+                <a
+                  key={repo.id}
+                  href={repo.html_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-5 rounded-xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 hover:border-cyan-500/30 transition-all flex flex-col justify-between group space-y-4"
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="font-semibold text-white text-sm group-hover:text-cyan-300 transition-colors flex items-center gap-2">
+                        <FolderGit2 className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span className="truncate">{repo.name}</span>
+                      </div>
+                      <ExternalLink className="w-3.5 h-3.5 text-slate-500 group-hover:text-cyan-400 shrink-0 transition-colors" />
+                    </div>
 
-                    return (
-                      <div
-                        key={day.date}
-                        onMouseEnter={() => setHoveredDay(day)}
-                        onMouseLeave={() => setHoveredDay(null)}
-                        className={`w-3 h-3 rounded-[3px] border transition-all duration-150 cursor-pointer hover:scale-125 ${
-                          levelColors[day.level]
-                        }`}
-                      />
-                    );
-                  })}
-                </div>
+                    <p className="text-xs text-slate-400 leading-relaxed font-light line-clamp-3">
+                      {repo.description || "Public repository on GitHub."}
+                    </p>
+                  </div>
+
+                  <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                    {repo.language ? (
+                      <span className="flex items-center gap-1.5 text-cyan-300">
+                        <span className="w-2 h-2 rounded-full bg-cyan-400" />
+                        {repo.language}
+                      </span>
+                    ) : (
+                      <span>Code</span>
+                    )}
+                    <span className="text-slate-500">Public Repo</span>
+                  </div>
+                </a>
               ))}
             </div>
-          </div>
-
-          {/* Legend and Tooltip Status */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-mono text-slate-400 pt-2 border-t border-white/5">
-            <div className="min-h-[20px] text-cyan-300">
-              {hoveredDay ? (
-                <span>
-                  {hoveredDay.count} contribution{hoveredDay.count === 1 ? "" : "s"} on{" "}
-                  {new Date(hoveredDay.date).toLocaleDateString("en-US", {
-                    month: "short",
-                    day: "numeric",
-                    year: "numeric",
-                  })}
-                </span>
-              ) : (
-                <span className="text-slate-400">Hover over any square for daily details</span>
-              )}
-            </div>
-
-            {/* Heat Map Legend */}
-            <div className="flex items-center gap-2">
-              <span>Less</span>
-              <span className="w-2.5 h-2.5 rounded-[2px] bg-white/[0.04] border border-white/5" />
-              <span className="w-2.5 h-2.5 rounded-[2px] bg-cyan-950 border border-cyan-800/40" />
-              <span className="w-2.5 h-2.5 rounded-[2px] bg-cyan-700/60 border border-cyan-600/50" />
-              <span className="w-2.5 h-2.5 rounded-[2px] bg-cyan-500 border border-cyan-400" />
-              <span className="w-2.5 h-2.5 rounded-[2px] bg-cyan-400 border border-white shadow-[0_0_6px_rgba(6,182,212,0.6)]" />
-              <span>More</span>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
