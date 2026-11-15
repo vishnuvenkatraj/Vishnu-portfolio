@@ -155,25 +155,33 @@ body {
 .text-gradient-cyan {
   background: linear-gradient(135deg, #ffffff 0%, #a5f3fc 50%, #38bdf8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .light .text-gradient-cyan {
   background: linear-gradient(135deg, #0f172a 0%, #0369a1 60%, #0284c7 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .text-gradient-subtle {
   background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.7) 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .light .text-gradient-subtle {
   background: linear-gradient(180deg, #0f172a 0%, #334155 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 /* Ambient Radial Glow */
