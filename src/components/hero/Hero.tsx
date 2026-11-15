@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { motion, type Variants } from "framer-motion";
 import { profileData } from "@/data/profile";
 import { BackgroundParticles } from "./BackgroundParticles";
@@ -10,6 +11,7 @@ import { scrollToElement } from "@/lib/utils";
 import {
   ArrowRight,
   Download,
+  FileText,
   Github,
   Linkedin,
   Code2,
@@ -100,7 +102,7 @@ export function Hero() {
             {/* Action Buttons: Magnetic Explore & Resume */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-wrap items-center gap-4 pt-2"
+              className="flex flex-wrap items-center gap-3 pt-2"
             >
               <MagneticButton
                 onClick={() => scrollToElement("projects")}
@@ -119,11 +121,20 @@ export function Hero() {
                 rel="noopener noreferrer"
                 className="cursor-pointer"
               >
-                <div className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 hover:border-cyan-500/40 text-sm font-medium transition-all duration-300 backdrop-blur-md group">
+                <div className="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 hover:border-cyan-500/40 text-sm font-medium transition-all duration-300 backdrop-blur-md group">
                   <Download className="w-4 h-4 text-cyan-400 transition-transform group-hover:-translate-y-0.5" />
                   <span>Download Resume</span>
                 </div>
               </MagneticButton>
+
+              <Link
+                href="/resume"
+                className="flex items-center gap-1.5 px-4 py-3.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] text-slate-300 hover:text-white border border-white/10 hover:border-cyan-500/30 text-xs font-mono transition-all duration-300"
+                title="View formatted web resume"
+              >
+                <FileText className="w-3.5 h-3.5 text-cyan-400" />
+                <span>View Online</span>
+              </Link>
             </motion.div>
 
             {/* Social Media Links */}

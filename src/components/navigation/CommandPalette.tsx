@@ -181,12 +181,23 @@ export function CommandPalette() {
     const actionItems: CommandItem[] = [
       {
         id: "act-resume",
-        title: "View / Download Resume",
+        title: "Download Resume PDF",
         description: profileData.resume.filename,
         category: "Actions",
         icon: <FileText className="w-4 h-4 text-cyan-300" />,
         action: () => {
           window.open(profileData.resume.url, "_blank");
+          setIsOpen(false);
+        },
+      },
+      {
+        id: "act-view-resume",
+        title: "View Online Resume Sheet",
+        description: "Open interactive printable resume page (/resume)",
+        category: "Actions",
+        icon: <Sparkles className="w-4 h-4 text-cyan-400" />,
+        action: () => {
+          router.push("/resume");
           setIsOpen(false);
         },
       },
