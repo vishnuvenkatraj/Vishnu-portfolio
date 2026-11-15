@@ -21,36 +21,87 @@ interface Repository {
   forks_count: number;
 }
 
+const VERIFIED_REPOSITORIES: Repository[] = [
+  {
+    id: 101,
+    name: "AI-Threat-Analysis",
+    description: "AI-driven threat intelligence and automated security analysis pipeline.",
+    html_url: "https://github.com/vishnuvenkatraj/AI-Threat-Analysis",
+    language: "Python",
+    stargazers_count: 0,
+    forks_count: 0,
+  },
+  {
+    id: 102,
+    name: "MEDCONNECT",
+    description: "Healthcare workflow digitization platform with role-based access control and AI symptom analysis.",
+    html_url: "https://github.com/vishnuvenkatraj/MEDCONNECT",
+    language: "JavaScript",
+    stargazers_count: 0,
+    forks_count: 0,
+  },
+  {
+    id: 103,
+    name: "Legal-Metrology-Compliance-Checker",
+    description: "Automated regulatory compliance verification tool for e-commerce legal metrology norms.",
+    html_url: "https://github.com/vishnuvenkatraj/Legal-Metrology-Compliance-Checker",
+    language: "JavaScript",
+    stargazers_count: 0,
+    forks_count: 0,
+  },
+  {
+    id: 104,
+    name: "C-Programming-Quiz",
+    description: "Interactive C programming application assessing memory structures, pointers, and data types.",
+    html_url: "https://github.com/vishnuvenkatraj/C-Programming-Quiz",
+    language: "C",
+    stargazers_count: 0,
+    forks_count: 0,
+  },
+  {
+    id: 105,
+    name: "mediconnect",
+    description: "End-to-end full-stack healthcare portal integrating GenAI medical insights and appointment management.",
+    html_url: "https://github.com/vishnuvenkatraj/mediconnect",
+    language: "JavaScript",
+    stargazers_count: 0,
+    forks_count: 0,
+  },
+];
+
 export function GithubCalendar() {
-  const [repos, setRepos] = useState<Repository[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [repos, setRepos] = useState<Repository[]>(VERIFIED_REPOSITORIES);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
   const username = "vishnuvenkatraj";
 
   useEffect(() => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+
     async function fetchRepos() {
       try {
         const response = await fetch(
-          `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`
+          `https://api.github.com/users/${username}/repos?sort=updated&per_page=6`,
+          { signal: controller.signal }
         );
-        if (!response.ok) {
-          throw new Error("Failed to fetch repositories");
-        }
+        clearTimeout(timeoutId);
+        if (!response.ok) return;
         const data = await response.json();
-        if (Array.isArray(data)) {
+        if (Array.isArray(data) && data.length > 0) {
           setRepos(data);
-        } else {
-          setError(true);
         }
       } catch {
-        setError(true);
-      } finally {
-        setLoading(false);
+        // Silently preserve verified pre-rendered repositories without blocking
       }
     }
 
     fetchRepos();
+    return () => {
+      clearTimeout(timeoutId);
+      controller.abort();
+    };
   }, []);
 
   return (

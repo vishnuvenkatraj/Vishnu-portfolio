@@ -58,7 +58,23 @@ export function BackgroundParticles() {
 
     window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            cancelAnimationFrame(animationFrameId);
+            render();
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+    if (canvas) observer.observe(canvas);
+
     const render = () => {
+      if (!isVisible) return;
       ctx.clearRect(0, 0, width, height);
 
       // Render & update particles
@@ -115,6 +131,7 @@ export function BackgroundParticles() {
     render();
 
     return () => {
+      observer.disconnect();
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
       cancelAnimationFrame(animationFrameId);

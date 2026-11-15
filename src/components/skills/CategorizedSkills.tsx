@@ -31,7 +31,43 @@ import {
   Workflow,
   Binary,
   ShieldCheck,
+  Github,
 } from "lucide-react";
+import {
+  JavaIcon,
+  CIcon,
+  ReactIcon,
+  NodeIcon,
+  Html5Icon,
+  Css3Icon,
+  MySqlIcon,
+  GitIcon,
+  GenAiIcon,
+  DsaIcon,
+  OopIcon,
+  BusinessAnalyticsIcon,
+  BusinessSystemsIcon,
+  TechSolutionsIcon,
+} from "@/components/ui/BrandIcons";
+
+// Direct authentic brand icon mapping by skill ID
+const SKILL_BRAND_ICONS: Record<string, React.ReactNode> = {
+  java: <JavaIcon className="w-5 h-5" />,
+  "c-lang": <CIcon className="w-5 h-5" />,
+  dsa: <DsaIcon className="w-5 h-5" />,
+  oop: <OopIcon className="w-5 h-5" />,
+  html: <Html5Icon className="w-5 h-5" />,
+  css: <Css3Icon className="w-5 h-5" />,
+  react: <ReactIcon className="w-5 h-5" />,
+  nodejs: <NodeIcon className="w-5 h-5" />,
+  mysql: <MySqlIcon className="w-5 h-5" />,
+  git: <GitIcon className="w-5 h-5" />,
+  github: <Github className="w-5 h-5" />,
+  genai: <GenAiIcon className="w-5 h-5" />,
+  "biz-analytics": <BusinessAnalyticsIcon className="w-5 h-5" />,
+  "biz-systems": <BusinessSystemsIcon className="w-5 h-5" />,
+  "tech-biz-solutions": <TechSolutionsIcon className="w-5 h-5" />,
+};
 
 // Icon mapping helper
 const ICON_MAP: Record<string, React.ReactNode> = {
@@ -164,7 +200,7 @@ export function CategorizedSkills() {
                       className="p-2.5 rounded-xl bg-white/5 border border-white/10 group-hover:scale-105 transition-transform"
                       style={{ color: skill.color || "#38bdf8" }}
                     >
-                      {ICON_MAP[skill.iconName] || <Code2 className="w-5 h-5" />}
+                      {SKILL_BRAND_ICONS[skill.id] || ICON_MAP[skill.iconName] || <Code2 className="w-5 h-5" />}
                     </div>
                     <div>
                       <h4 className="font-semibold text-white text-sm group-hover:text-cyan-300 transition-colors">

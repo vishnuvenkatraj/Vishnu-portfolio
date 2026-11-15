@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { HackerRankIcon } from "@/components/ui/BrandIcons";
 import {
   Search,
   FolderGit2,
@@ -255,7 +256,7 @@ export function CommandPalette() {
         title: "HackerRank Profile",
         description: profileData.socials.hackerrank,
         category: "Socials",
-        icon: <Code2 className="w-4 h-4 text-emerald-400" />,
+        icon: <HackerRankIcon className="w-4 h-4 text-emerald-400" />,
         action: () => {
           window.open(profileData.socials.hackerrank, "_blank");
           setIsOpen(false);

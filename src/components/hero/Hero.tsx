@@ -8,13 +8,13 @@ import { LiquidGlassCard } from "./LiquidGlassCard";
 import { TechMarquee } from "./TechMarquee";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { scrollToElement } from "@/lib/utils";
+import { HackerRankIcon } from "@/components/ui/BrandIcons";
 import {
   ArrowRight,
   Download,
   FileText,
   Github,
   Linkedin,
-  Code2,
   Mail,
   Sparkles,
 } from "lucide-react";
@@ -169,7 +169,7 @@ export function Hero() {
                   aria-label="HackerRank Profile"
                   title="HackerRank Profile"
                 >
-                  <Code2 className="w-4 h-4" />
+                  <HackerRankIcon className="w-4 h-4" />
                 </a>
                 <a
                   href={`mailto:${profileData.socials.email}`}

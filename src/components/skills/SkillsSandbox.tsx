@@ -150,10 +150,12 @@ export function SkillsSandbox() {
       setActiveItem(null);
     });
 
-    // Custom Canvas Render Loop
+    // Custom Canvas Render Loop with Visibility Optimization
     let animationFrameId: number;
+    let isVisible = true;
 
     const render = () => {
+      if (!isVisible) return;
       ctx.clearRect(0, 0, width, height);
 
       // Draw subtle background grid lines
@@ -233,6 +235,24 @@ export function SkillsSandbox() {
     const runner = Runner.create();
     runnerRef.current = runner;
     Runner.run(runner, engine);
+
+    // Pause physics & rendering when off-screen to prevent CPU lag
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            cancelAnimationFrame(animationFrameId);
+            render();
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
     render();
 
     // Window resize handler
@@ -251,6 +271,7 @@ export function SkillsSandbox() {
     window.addEventListener("resize", handleResize);
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener("resize", handleResize);
       Runner.stop(runner);

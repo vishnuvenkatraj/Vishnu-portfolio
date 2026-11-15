@@ -42,9 +42,6 @@ export async function POST(request: Request) {
       messageLength: message.trim().length,
     });
 
-    // Simulate realistic processing delay
-    await new Promise((resolve) => setTimeout(resolve, 600));
-
     return NextResponse.json(
       {
         success: true,

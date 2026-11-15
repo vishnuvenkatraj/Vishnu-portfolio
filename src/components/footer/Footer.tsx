@@ -4,7 +4,8 @@ import Link from "next/link";
 import { profileData } from "@/data/profile";
 import { NAV_LINKS } from "@/components/navigation/Navbar";
 import { scrollToElement } from "@/lib/utils";
-import { ArrowUp, Github, Linkedin, Code2, Mail, Phone, Heart } from "lucide-react";
+import { ArrowUp, Github, Linkedin, Mail, Phone, Heart } from "lucide-react";
+import { HackerRankIcon } from "@/components/ui/BrandIcons";
 
 export function Footer() {
   const scrollToTop = () => {
@@ -90,7 +91,7 @@ export function Footer() {
               className="text-slate-400 hover:text-cyan-400 transition-colors"
               aria-label="HackerRank Profile"
             >
-              <Code2 className="w-4 h-4" />
+              <HackerRankIcon className="w-4 h-4" />
             </a>
             <a
               href={`mailto:${profileData.socials.email}`}

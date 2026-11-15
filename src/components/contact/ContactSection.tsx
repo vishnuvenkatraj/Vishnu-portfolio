@@ -12,10 +12,10 @@ import {
   Check,
   Github,
   Linkedin,
-  Code2,
   FileText,
   Loader2,
 } from "lucide-react";
+import { HackerRankIcon } from "@/components/ui/BrandIcons";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -179,7 +179,7 @@ export function ContactSection() {
                     rel="noopener noreferrer"
                     className="p-3 rounded-xl bg-white/[0.02] hover:bg-white/5 border border-white/10 hover:border-cyan-500/30 text-xs font-mono text-slate-300 hover:text-white flex items-center gap-2 transition-all"
                   >
-                    <Code2 className="w-4 h-4 text-emerald-400" />
+                    <HackerRankIcon className="w-4 h-4 text-emerald-400" />
                     <span>HackerRank</span>
                   </a>
 
