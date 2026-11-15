@@ -123,6 +123,7 @@ export function CategorizedSkills() {
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setSelectedCategory("All")}
+            suppressHydrationWarning
             className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
               selectedCategory === "All"
                 ? "bg-cyan-500 text-black font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"
@@ -139,6 +140,7 @@ export function CategorizedSkills() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
+                suppressHydrationWarning
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                   isSelected
                     ? "bg-cyan-500 text-black font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"
@@ -158,12 +160,14 @@ export function CategorizedSkills() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            suppressHydrationWarning
             placeholder="Search technologies..."
             className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
+              suppressHydrationWarning
               className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-white cursor-pointer"
             >
               Clear

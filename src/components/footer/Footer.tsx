@@ -41,6 +41,7 @@ export function Footer() {
               <button
                 key={link.id}
                 onClick={() => scrollToElement(link.id)}
+                suppressHydrationWarning
                 className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer"
               >
                 {link.label}
@@ -51,6 +52,7 @@ export function Footer() {
           {/* Back to Top Action */}
           <button
             onClick={scrollToTop}
+            suppressHydrationWarning
             className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-colors text-xs font-mono cursor-pointer shrink-0"
           >
             <span>TOP OF PAGE</span>

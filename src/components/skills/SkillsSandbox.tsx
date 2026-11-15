@@ -340,6 +340,7 @@ export function SkillsSandbox() {
         <div className="flex items-center gap-2">
           <button
             onClick={toggleGravity}
+            suppressHydrationWarning
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer"
             title="Cycle Gravity (Normal / Zero-G / Inverted)"
           >
@@ -356,6 +357,7 @@ export function SkillsSandbox() {
 
           <button
             onClick={handleScatter}
+            suppressHydrationWarning
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer"
             title="Scatter physics bodies"
           >
@@ -365,6 +367,7 @@ export function SkillsSandbox() {
 
           <button
             onClick={handleReset}
+            suppressHydrationWarning
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer"
             title="Reset simulation"
           >

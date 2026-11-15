@@ -58,6 +58,7 @@ export function AchievementsSection() {
                 <button
                   key={filter}
                   onClick={() => setSelectedFilter(filter)}
+                  suppressHydrationWarning
                   className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                     isSelected
                       ? "bg-cyan-500 text-black font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"

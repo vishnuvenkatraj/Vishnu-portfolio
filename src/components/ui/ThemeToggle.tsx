@@ -30,23 +30,18 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     }
   };
 
-  if (!mounted) {
-    return (
-      <div className={`w-9 h-9 rounded-lg border border-white/10 bg-white/5 ${className}`} />
-    );
-  }
-
   return (
     <button
       onClick={toggleTheme}
-      aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+      suppressHydrationWarning
+      aria-label="Toggle visual theme"
       className={`relative inline-flex items-center justify-center w-9 h-9 rounded-lg transition-colors border border-white/10 dark:border-white/10 light:border-black/10 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-cyan-400 focus:outline-none focus:ring-2 focus:ring-cyan-400/50 ${className}`}
-      title={`Switch to ${theme === "dark" ? "light" : "dark"} theme`}
+      title="Toggle visual theme"
     >
-      {theme === "dark" ? (
-        <Sun className="w-4 h-4 text-amber-300 transition-transform hover:rotate-45" />
-      ) : (
+      {mounted && theme === "light" ? (
         <Moon className="w-4 h-4 text-cyan-600 transition-transform hover:-rotate-12" />
+      ) : (
+        <Sun className="w-4 h-4 text-amber-300 transition-transform hover:rotate-45" />
       )}
     </button>
   );

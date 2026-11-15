@@ -97,6 +97,7 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
           {/* Quick Preview Button on Top-Right */}
           <button
             onClick={() => onOpenModal(project)}
+            suppressHydrationWarning
             aria-label={`Quick view ${project.title}`}
             className="absolute top-4 right-4 p-2.5 rounded-full bg-[#060a17]/80 backdrop-blur-md border border-white/10 text-slate-300 hover:text-white hover:bg-cyan-500/20 hover:border-cyan-400/50 transition-all cursor-pointer opacity-0 group-hover:opacity-100 focus:opacity-100 z-10"
             title="Open Quick Case Study Modal"
@@ -163,6 +164,7 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
 
           <button
             onClick={() => onOpenModal(project)}
+            suppressHydrationWarning
             className="text-xs text-slate-400 hover:text-white transition-colors cursor-pointer"
           >
             Quick View

@@ -60,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         {/* Pre-script to avoid theme flicker */}
         <script
@@ -80,7 +80,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="min-h-screen bg-[#060913] text-slate-100 flex flex-col font-sans antialiased overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-200">
+      <body
+        suppressHydrationWarning
+        className="min-h-screen bg-[#060913] text-slate-100 flex flex-col font-sans antialiased overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-200"
+      >
         <LenisProvider>
           {/* Top Scroll Progress Indicator */}
           <ScrollProgress />

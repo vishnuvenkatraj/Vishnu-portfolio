@@ -104,6 +104,7 @@ export function Navbar() {
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link.id)}
+                suppressHydrationWarning
                 className={`px-3 py-1 text-xs font-medium rounded-full transition-all duration-200 cursor-pointer ${
                   isActive
                     ? "bg-cyan-500/20 text-cyan-300 font-semibold shadow-[0_0_12px_rgba(6,182,212,0.3)]"
@@ -121,6 +122,7 @@ export function Navbar() {
           {/* Command Palette Trigger */}
           <button
             onClick={openPalette}
+            suppressHydrationWarning
             className="flex items-center gap-2 px-2.5 sm:px-3 py-1.5 text-xs text-slate-300 bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg transition-colors group cursor-pointer focus:outline-none focus:ring-2 focus:ring-cyan-400/50"
             title="Open Command Palette (Ctrl+K)"
           >
@@ -136,6 +138,7 @@ export function Navbar() {
           {/* Mobile Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen((prev) => !prev)}
+            suppressHydrationWarning
             aria-label="Toggle navigation menu"
             className="lg:hidden p-2 text-slate-300 hover:text-white bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400/50 cursor-pointer"
           >
