@@ -19,7 +19,7 @@
     "lucide-react": "^0.475.0",
     "matter-js": "^0.20.0",
     "mongoose": "^9.12.1",
-    "next": "15.1.7",
+    "next": "15.1.11",
     "pdf-lib": "^1.17.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
