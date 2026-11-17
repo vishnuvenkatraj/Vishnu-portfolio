@@ -24,14 +24,14 @@ export function ProjectsSection() {
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-mono uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 light:bg-cyan-50 border border-cyan-500/20 light:border-cyan-200 text-cyan-400 light:text-cyan-700 text-xs font-mono uppercase tracking-wider font-semibold">
               <FolderGit2 className="w-3.5 h-3.5" />
               <span>Engineered Systems</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">
+            <h2 className="text-3xl sm:text-5xl font-extrabold text-white light:text-slate-900 tracking-tight">
               Featured Architecture &amp; Projects
             </h2>
-            <p className="text-slate-400 max-w-2xl text-base sm:text-lg font-light">
+            <p className="text-slate-400 light:text-slate-600 max-w-2xl text-base sm:text-lg font-light">
               High-throughput microservices, interactive physics simulations, and developer tooling.
             </p>
           </div>
@@ -51,8 +51,8 @@ export function ProjectsSection() {
                   onClick={() => setSelectedCategory(category)}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                     isSelected
-                      ? "bg-cyan-500 text-black font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"
-                      : "bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 border border-white/10"
+                      ? "bg-cyan-500 light:bg-cyan-600 text-black light:text-white font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+                      : "bg-white/5 light:bg-slate-100 text-slate-300 light:text-slate-700 hover:text-white light:hover:text-black hover:bg-white/10 light:hover:bg-slate-200 border border-white/10 light:border-slate-300"
                   }`}
                 >
                   {category} ({count})

@@ -4,18 +4,18 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { profileData } from "@/data/profile";
 
+const STAGES = [
+  "INITIALIZING CORE SYSTEM...",
+  "LOADING PHYSICS ENGINE (MATTER.JS)...",
+  "COMPILING DESIGN TOKENS...",
+  "PREPARING INTERACTIVE PORTFOLIO...",
+  "SYSTEM READY",
+];
+
 export function Preloader({ onComplete }: { onComplete?: () => void }) {
   const [progress, setProgress] = useState(0);
   const [stageIndex, setStageIndex] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-
-  const stages = [
-    "INITIALIZING CORE SYSTEM...",
-    "LOADING PHYSICS ENGINE (MATTER.JS)...",
-    "COMPILING DESIGN TOKENS...",
-    "PREPARING INTERACTIVE PORTFOLIO...",
-    "SYSTEM READY",
-  ];
 
   useEffect(() => {
     // Check reduced motion
@@ -38,7 +38,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
         }
         const diff = Math.floor(Math.random() * 12) + 6;
         const next = Math.min(100, prev + diff);
-        const nextStage = Math.floor((next / 100) * (stages.length - 1));
+        const nextStage = Math.floor((next / 100) * (STAGES.length - 1));
         setStageIndex(nextStage);
         return next;
       });
@@ -79,7 +79,7 @@ export function Preloader({ onComplete }: { onComplete?: () => void }) {
           {/* Diagnostics Stage */}
           <div className="w-full max-w-xs text-center space-y-3">
             <div className="flex items-center justify-between text-xs font-mono text-cyan-400/80 tracking-wider">
-              <span>{stages[stageIndex]}</span>
+              <span>{STAGES[stageIndex]}</span>
               <span>{progress}%</span>
             </div>
 

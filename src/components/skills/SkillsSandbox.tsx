@@ -10,18 +10,9 @@ export function SkillsSandbox() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const engineRef = useRef<Matter.Engine | null>(null);
   const runnerRef = useRef<Matter.Runner | null>(null);
+  const activeItemRef = useRef<string | null>(null);
   const [gravityMode, setGravityMode] = useState<"earth" | "zero" | "inverted">("earth");
   const [activeItem, setActiveItem] = useState<string | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   useEffect(() => {
     if (!containerRef.current || !canvasRef.current) return;
@@ -139,14 +130,13 @@ export function SkillsSandbox() {
 
     // Track active hovered or dragged item
     Events.on(mouseConstraint, "startdrag", (event: any) => {
-      if (event?.body) {
-        setActiveItem(event.body.label);
-      } else if (mouseConstraint.body) {
-        setActiveItem(mouseConstraint.body.label);
-      }
+      const label = event?.body?.label || mouseConstraint.body?.label || null;
+      activeItemRef.current = label;
+      setActiveItem(label);
     });
 
     Events.on(mouseConstraint, "enddrag", () => {
+      activeItemRef.current = null;
       setActiveItem(null);
     });
 
@@ -185,7 +175,7 @@ export function SkillsSandbox() {
         ctx.translate(x, y);
         ctx.rotate(angle);
 
-        const isHovered = activeItem === name;
+        const isHovered = activeItemRef.current === name;
         const radius = bHeight / 2;
 
         // Draw pill background
@@ -340,7 +330,6 @@ export function SkillsSandbox() {
         <div className="flex items-center gap-2">
           <button
             onClick={toggleGravity}
-            suppressHydrationWarning
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer"
             title="Cycle Gravity (Normal / Zero-G / Inverted)"
           >
@@ -357,7 +346,6 @@ export function SkillsSandbox() {
 
           <button
             onClick={handleScatter}
-            suppressHydrationWarning
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer"
             title="Scatter physics bodies"
           >
@@ -367,7 +355,6 @@ export function SkillsSandbox() {
 
           <button
             onClick={handleReset}
-            suppressHydrationWarning
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-mono text-slate-300 hover:text-cyan-400 transition-colors cursor-pointer"
             title="Reset simulation"
           >
@@ -384,7 +371,10 @@ export function SkillsSandbox() {
         {/* Ambient bottom instructions */}
         <div className="absolute bottom-3 left-6 right-6 flex items-center justify-between text-[11px] font-mono text-slate-400 pointer-events-none">
           <span>RIGID-BODY DYNAMICS ENABLED</span>
-          <span>{isMobile ? "DRAG WITH TOUCH" : "DRAG & THROW WITH CURSOR"}</span>
+          <span>
+            <span className="hidden sm:inline">DRAG &amp; THROW WITH CURSOR</span>
+            <span className="sm:hidden inline">DRAG WITH TOUCH</span>
+          </span>
         </div>
       </div>
     </div>

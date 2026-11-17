@@ -428,9 +428,13 @@ async function generateResume() {
   y -= 6;
 
   // --- CERTIFICATIONS ---
-  drawSectionHeader('Certifications');
+  drawSectionHeader('Academic & Professional Certifications');
   drawBullet('NPTEL — Human Computer Interaction (12 Weeks) — 95% (Elite + Gold Score)', fontRegular, 9, cBody);
   drawBullet('NPTEL — Software Testing (12 Weeks) — Elite Certification', fontRegular, 9, cBody);
+  drawBullet('IBM — Full-Stack Software Engineering & DevOps (IBM Developer Skills Network)', fontRegular, 9, cBody);
+  drawBullet('Google Cloud — Cloud Computing & Architecture Foundations (Google Cloud Skills Boost)', fontRegular, 9, cBody);
+  drawBullet('Hedera — Distributed Ledger & Smart Contracts (Hedera Developer Network)', fontRegular, 9, cBody);
+  drawBullet('Coursera — Advanced Full-Stack Web Development Specialization', fontRegular, 9, cBody);
   y -= 6;
 
   // --- ACHIEVEMENTS & RECOGNITION ---

@@ -299,7 +299,7 @@ export function CommandPalette() {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 sm:px-6">
+        <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 px-4 sm:px-6 print:hidden">
           {/* Backdrop Blur */}
           <motion.div
             initial={{ opacity: 0 }}

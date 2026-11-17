@@ -6,6 +6,12 @@ export function BackgroundParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
+    // Respect user motion preferences before allocating resources or listeners
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      return;
+    }
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -23,11 +29,6 @@ export function BackgroundParticles() {
     };
 
     window.addEventListener("resize", handleResize);
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) {
-      return;
-    }
 
     // Generate subtle particles
     const particleCount = Math.min(50, Math.floor(window.innerWidth / 28));

@@ -4,6 +4,13 @@ export interface ProjectChallenge {
   resolution: string;
 }
 
+import {
+  mediConnectImages,
+  civicConnectImages,
+  flowVaultImages,
+  resqTrakImages,
+} from "./project-images";
+
 export interface ProjectArchitectureLayer {
   layer: string;
   technologies: string[];
@@ -59,7 +66,7 @@ export const projectsData: Project[] = [
     category: "Featured Software",
     status: "Completed and demonstrable",
     featured: true,
-    coverImage: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1200&q=80",
+    coverImage: mediConnectImages.coverImage,
     demoUrl: "",
     githubUrl: "",
     techStack: ["React", "Node.js", "Generative AI", "Role-Based Authentication"],
@@ -132,17 +139,17 @@ export const projectsData: Project[] = [
       {
         title: "Clinical Portal & Patient Dashboard",
         caption: "Multi-role scheduling and consultation interface for doctors, administrative staff, and patients.",
-        imageUrl: "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: mediConnectImages.gallery1,
       },
       {
         title: "AI-Assisted Symptom Analysis Module",
         caption: "Generative AI diagnostic assistance interface guiding preliminary clinical categorization.",
-        imageUrl: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: mediConnectImages.gallery2,
       },
       {
         title: "Administrative Insights & Clinical Throughput",
         caption: "Administrative analytics console monitoring appointment queues, patient throughput, and department efficiency.",
-        imageUrl: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: mediConnectImages.gallery3,
       },
     ],
   },
@@ -155,7 +162,7 @@ export const projectsData: Project[] = [
     category: "Featured Software",
     status: "Completed and demonstrable",
     featured: true,
-    coverImage: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+    coverImage: civicConnectImages.coverImage,
     demoUrl: "",
     githubUrl: "",
     techStack: ["React", "Generative AI", "Analytics/ML for Issue Classification"],
@@ -228,17 +235,17 @@ export const projectsData: Project[] = [
       {
         title: "Citizen Grievance Submission Interface",
         caption: "Intuitive mobile-responsive citizen reporting interface for lodging municipal complaints across districts.",
-        imageUrl: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: civicConnectImages.gallery1,
       },
       {
         title: "District Grievance Command Console",
         caption: "Municipal dashboard prioritizing complaints with ResolveChain lifecycle and status tracking.",
-        imageUrl: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: civicConnectImages.gallery2,
       },
       {
-        title: "IssueDNA Deduplication & SLA Guardian",
-        caption: "Automated duplicate-issue detection analytics and SLA breach risk forecasting dashboard.",
-        imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+        title: "Smart Issue Categorization",
+        caption: "Intelligent complaint classification and category-based issue management dashboard.",
+        imageUrl: civicConnectImages.gallery3,
       },
     ],
   },
@@ -251,7 +258,7 @@ export const projectsData: Project[] = [
     category: "Engineering & Innovation",
     status: "Concept / Design Stage",
     featured: false,
-    coverImage: "https://images.unsplash.com/photo-1541888946425-d0fbb1861564?auto=format&fit=crop&w=1200&q=80",
+    coverImage: flowVaultImages.coverImage,
     demoUrl: "",
     githubUrl: "",
     techStack: ["Hydraulic-Mechanical Design", "Passive Systems", "Fluid Dynamics Concept"],
@@ -310,17 +317,17 @@ export const projectsData: Project[] = [
       {
         title: "Storm Inflow & Surface Runoff Catchment",
         caption: "Municipal street runoff intake point capturing stormwater before entering hydraulic diversion chambers.",
-        imageUrl: "https://images.unsplash.com/photo-1541888946425-d0fbb1861564?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: flowVaultImages.gallery1,
       },
       {
         title: "Hydraulic Redirection & Pressure Schematic",
         caption: "Mechanical bypass mechanism responding passively to fluid head pressure differentials without electrical power.",
-        imageUrl: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: flowVaultImages.gallery2,
       },
       {
         title: "Four-Compartment Redirection Vault Assembly",
         caption: "Multi-chamber partitioned drainage structure providing automatic passive bypass into adjacent clear chambers.",
-        imageUrl: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: flowVaultImages.gallery3,
       },
     ],
   },
@@ -333,7 +340,7 @@ export const projectsData: Project[] = [
     category: "Engineering & Innovation",
     status: "Concept / Design Stage",
     featured: false,
-    coverImage: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+    coverImage: resqTrakImages.coverImage,
     demoUrl: "",
     githubUrl: "",
     techStack: ["Chemical-Mechanical Actuation", "Passive Safety Concept", "Confined Space Rescue"],
@@ -388,17 +395,17 @@ export const projectsData: Project[] = [
       {
         title: "Confined Space Entry & Hazard Zone",
         caption: "Underground manhole and sewer vault setup where hazardous H2S gas surges incapacitate personnel.",
-        imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: resqTrakImages.gallery1,
       },
       {
         title: "Mechanical Auto-Extraction Layout",
         caption: "Non-electrical worker retrieval harness and rapid mechanical hoist mechanism for explosive environments.",
-        imageUrl: "https://images.unsplash.com/photo-1581092335397-9583fe92d232?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: resqTrakImages.gallery2,
       },
       {
         title: "Gas-Triggered Passive Extraction Hoist",
         caption: "Spark-proof chemical reactant trigger converting toxic threshold concentration into immediate mechanical worker ascent.",
-        imageUrl: "https://images.unsplash.com/photo-1516937941344-00b4e0337589?auto=format&fit=crop&w=1200&q=80",
+        imageUrl: resqTrakImages.gallery3,
       },
     ],
   },

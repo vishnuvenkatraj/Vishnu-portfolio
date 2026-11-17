@@ -1,9 +1,13 @@
+import { profilePhotoConfig, type ProfilePhotoConfig } from "./profile-image";
+
 export interface Profile {
   name: string;
   initials: string;
   role: string;
   headline: string;
+  location: string;
   shortBio: string;
+  photo: ProfilePhotoConfig;
   about: {
     introduction: string;
     developmentInterests: string[];
@@ -40,8 +44,10 @@ export const profileData: Profile = {
   initials: "VV",
   role: "Aspiring Software Developer",
   headline: "Passionate about software development, problem-solving and building innovative technology solutions.",
+  location: "Virudhunagar, Tamil Nadu",
   shortBio:
     "I am a Computer Science and Business Systems undergraduate with a strong interest in software engineering, problem-solving and technology-driven innovation. Open to internships.",
+  photo: profilePhotoConfig,
   about: {
     introduction:
       "I am a Computer Science and Business Systems undergraduate with a strong interest in software engineering, problem-solving and technology-driven innovation. I enjoy developing practical applications, exploring emerging technologies and transforming ideas into meaningful solutions. Through projects in healthcare and e-governance, technical competitions, and engineering innovation concepts, I continuously work to strengthen my technical abilities and development experience. My involvement in innovation projects, including FlowVault and RESQTRAK, reflects my interest in exploring practical solutions to real-world challenges. My goal is to grow as a software developer and contribute to impactful technology solutions.",

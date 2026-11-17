@@ -81,8 +81,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        suppressHydrationWarning
-        className="min-h-screen bg-[#060913] text-slate-100 flex flex-col font-sans antialiased overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-200"
+        className="min-h-screen bg-background text-foreground flex flex-col font-sans antialiased overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-200 transition-colors duration-300"
       >
         <LenisProvider>
           {/* Top Scroll Progress Indicator */}

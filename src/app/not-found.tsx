@@ -3,7 +3,7 @@ import { ArrowLeft, Terminal } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center bg-[#060913] text-white px-6 text-center select-none">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-[#060913] light:bg-slate-50 text-white light:text-slate-900 px-6 text-center select-none transition-colors duration-300">
       <div className="w-16 h-16 rounded-2xl bg-cyan-950/40 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mb-6 shadow-[0_0_25px_rgba(6,182,212,0.3)]">
         <Terminal className="w-8 h-8" />
       </div>

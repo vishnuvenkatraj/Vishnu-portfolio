@@ -123,11 +123,10 @@ export function CategorizedSkills() {
         <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={() => setSelectedCategory("All")}
-            suppressHydrationWarning
             className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
               selectedCategory === "All"
-                ? "bg-cyan-500 text-black font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"
-                : "bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 border border-white/10"
+                ? "bg-cyan-500 light:bg-cyan-600 text-black light:text-white font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+                : "bg-white/5 light:bg-slate-100 text-slate-300 light:text-slate-700 hover:text-white light:hover:text-black hover:bg-white/10 light:hover:bg-slate-200 border border-white/10 light:border-slate-300"
             }`}
           >
             All Disciplines ({skillsData.length})
@@ -140,11 +139,10 @@ export function CategorizedSkills() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                suppressHydrationWarning
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                   isSelected
-                    ? "bg-cyan-500 text-black font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"
-                    : "bg-white/5 text-slate-300 hover:text-white hover:bg-white/10 border border-white/10"
+                    ? "bg-cyan-500 light:bg-cyan-600 text-black light:text-white font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"
+                    : "bg-white/5 light:bg-slate-100 text-slate-300 light:text-slate-700 hover:text-white light:hover:text-black hover:bg-white/10 light:hover:bg-slate-200 border border-white/10 light:border-slate-300"
                 }`}
               >
                 {cat.label} ({count})
@@ -155,20 +153,18 @@ export function CategorizedSkills() {
 
         {/* Live Search Input */}
         <div className="relative w-full md:w-72 shrink-0">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 light:text-slate-500" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            suppressHydrationWarning
             placeholder="Search technologies..."
-            className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 transition-all"
+            className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-xl bg-white/5 light:bg-white border border-white/10 light:border-slate-300 text-white light:text-slate-900 placeholder-slate-400 light:placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 light:shadow-sm transition-all"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              suppressHydrationWarning
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 hover:text-white cursor-pointer"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 light:text-slate-600 hover:text-white light:hover:text-black cursor-pointer"
             >
               Clear
             </button>
@@ -188,7 +184,7 @@ export function CategorizedSkills() {
           {filteredSkills.map((skill) => (
             <div
               key={skill.id}
-              className="p-5 rounded-2xl bg-white/[0.02] hover:bg-white/[0.05] border border-white/10 hover:border-cyan-500/40 transition-all duration-300 group flex flex-col justify-between relative overflow-hidden"
+              className="p-5 rounded-2xl bg-white/[0.02] light:bg-white hover:bg-white/[0.05] light:hover:bg-slate-50 border border-white/10 light:border-slate-200 hover:border-cyan-500/40 light:hover:border-cyan-500/50 light:shadow-sm hover:light:shadow-md transition-all duration-300 group flex flex-col justify-between relative overflow-hidden"
             >
               {/* Subtle accent border glow on top */}
               <div
@@ -201,16 +197,16 @@ export function CategorizedSkills() {
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex items-center gap-3">
                     <div
-                      className="p-2.5 rounded-xl bg-white/5 border border-white/10 group-hover:scale-105 transition-transform"
+                      className="p-2.5 rounded-xl bg-white/5 light:bg-slate-100 border border-white/10 light:border-slate-200 group-hover:scale-105 transition-transform"
                       style={{ color: skill.color || "#38bdf8" }}
                     >
                       {SKILL_BRAND_ICONS[skill.id] || ICON_MAP[skill.iconName] || <Code2 className="w-5 h-5" />}
                     </div>
                     <div>
-                      <h4 className="font-semibold text-white text-sm group-hover:text-cyan-300 transition-colors">
+                      <h4 className="font-semibold text-white light:text-slate-900 text-sm group-hover:text-cyan-300 light:group-hover:text-cyan-700 transition-colors">
                         {skill.name}
                       </h4>
-                      <span className="text-[11px] font-mono text-slate-400">
+                      <span className="text-[11px] font-mono text-slate-400 light:text-slate-500">
                         {skill.categoryLabel}
                       </span>
                     </div>
@@ -220,12 +216,12 @@ export function CategorizedSkills() {
                   <span
                     className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border whitespace-nowrap ${
                       skill.level === "Comfortable"
-                        ? "bg-emerald-500/10 text-emerald-300 border-emerald-500/30"
+                        ? "bg-emerald-500/10 text-emerald-300 light:text-emerald-800 border-emerald-500/30 light:border-emerald-300"
                         : skill.level === "Familiar"
-                        ? "bg-cyan-500/10 text-cyan-300 border-cyan-500/30"
+                        ? "bg-cyan-500/10 text-cyan-300 light:text-cyan-800 border-cyan-500/30 light:border-cyan-300"
                         : skill.level === "Currently Learning"
-                        ? "bg-amber-500/10 text-amber-300 border-amber-500/30"
-                        : "bg-purple-500/10 text-purple-300 border-purple-500/30"
+                        ? "bg-amber-500/10 text-amber-300 light:text-amber-800 border-amber-500/30 light:border-amber-300"
+                        : "bg-purple-500/10 text-purple-300 light:text-purple-800 border-purple-500/30 light:border-purple-300"
                     }`}
                   >
                     {skill.level}
@@ -233,19 +229,19 @@ export function CategorizedSkills() {
                 </div>
 
                 {/* Description */}
-                <p className="text-xs text-slate-400 leading-relaxed font-light">
+                <p className="text-xs text-slate-400 light:text-slate-600 leading-relaxed font-light">
                   {skill.description}
                 </p>
               </div>
 
               {/* Bottom Tag */}
-              <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-500">
-                <span className="flex items-center gap-1.5 text-slate-400">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+              <div className="mt-4 pt-3 border-t border-white/5 light:border-slate-200 flex items-center justify-between text-[11px] font-mono text-slate-500 light:text-slate-600">
+                <span className="flex items-center gap-1.5 text-slate-400 light:text-slate-600">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 light:text-cyan-600" />
                   {skill.categoryLabel}
                 </span>
                 {skill.featuredInSandbox && (
-                  <span className="text-cyan-400/80">In Physics Sandbox</span>
+                  <span className="text-cyan-400/80 light:text-cyan-700 font-medium">In Physics Sandbox</span>
                 )}
               </div>
             </div>

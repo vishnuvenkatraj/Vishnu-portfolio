@@ -61,7 +61,7 @@ export function Hero() {
           >
             {/* Availability Pill */}
             <motion.div variants={itemVariants} className="inline-flex items-center gap-2">
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 border border-cyan-500/30 text-xs font-mono text-cyan-300 backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.15)]">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 light:bg-cyan-50 border border-cyan-500/30 light:border-cyan-300 text-xs font-mono text-cyan-300 light:text-cyan-800 backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.15)] font-semibold">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
@@ -72,11 +72,11 @@ export function Hero() {
 
             {/* Editable Name & Role Placeholder */}
             <motion.div variants={itemVariants} className="space-y-2">
-              <div className="text-sm uppercase tracking-widest text-cyan-400 font-mono font-medium flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-cyan-400" />
+              <div className="text-sm uppercase tracking-widest text-cyan-400 light:text-cyan-700 font-mono font-semibold flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-cyan-400 light:text-cyan-600" />
                 <span>{profileData.role}</span>
               </div>
-              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white leading-[1.08]">
+              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white light:text-slate-900 leading-[1.08]">
                 Hi, I&apos;m{" "}
                 <span className="text-gradient-cyan drop-shadow-[0_0_35px_rgba(56,189,248,0.25)]">
                   {profileData.name}
@@ -121,31 +121,31 @@ export function Hero() {
                 rel="noopener noreferrer"
                 className="cursor-pointer"
               >
-                <div className="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] text-white border border-white/10 hover:border-cyan-500/40 text-sm font-medium transition-all duration-300 backdrop-blur-md group">
-                  <Download className="w-4 h-4 text-cyan-400 transition-transform group-hover:-translate-y-0.5" />
+                <div className="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.04] light:bg-white hover:bg-white/[0.08] light:hover:bg-slate-50 text-white light:text-slate-800 border border-white/10 light:border-slate-300 hover:border-cyan-500/40 text-sm font-medium transition-all duration-300 backdrop-blur-md light:shadow-sm group">
+                  <Download className="w-4 h-4 text-cyan-400 light:text-cyan-600 transition-transform group-hover:-translate-y-0.5" />
                   <span>Download Resume</span>
                 </div>
               </MagneticButton>
 
               <Link
                 href="/resume"
-                className="flex items-center gap-1.5 px-4 py-3.5 rounded-xl bg-white/[0.03] hover:bg-white/[0.08] text-slate-300 hover:text-white border border-white/10 hover:border-cyan-500/30 text-xs font-mono transition-all duration-300"
+                className="flex items-center gap-1.5 px-4 py-3.5 rounded-xl bg-white/[0.03] light:bg-white hover:bg-white/[0.08] light:hover:bg-slate-50 text-slate-300 light:text-slate-700 hover:text-white light:hover:text-black border border-white/10 light:border-slate-300 hover:border-cyan-500/30 text-xs font-mono transition-all duration-300 light:shadow-sm"
                 title="View formatted web resume"
               >
-                <FileText className="w-3.5 h-3.5 text-cyan-400" />
+                <FileText className="w-3.5 h-3.5 text-cyan-400 light:text-cyan-600" />
                 <span>View Online</span>
               </Link>
             </motion.div>
 
             {/* Social Media Links */}
             <motion.div variants={itemVariants} className="flex items-center gap-4 pt-4">
-              <span className="text-xs font-mono text-slate-400">CONNECT:</span>
+              <span className="text-xs font-mono text-slate-400 light:text-slate-600">CONNECT:</span>
               <div className="flex items-center gap-2">
                 <a
                   href={profileData.socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-cyan-400 hover:border-cyan-400/50 hover:bg-white/10 transition-all"
+                  className="p-2.5 rounded-lg bg-white/5 light:bg-white border border-white/10 light:border-slate-300 text-slate-300 light:text-slate-700 hover:text-cyan-400 light:hover:text-cyan-600 hover:border-cyan-400/50 hover:bg-white/10 light:hover:bg-slate-100 light:shadow-sm transition-all"
                   aria-label="GitHub Profile"
                   title="GitHub Profile"
                 >
@@ -155,7 +155,7 @@ export function Hero() {
                   href={profileData.socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-cyan-400 hover:border-cyan-400/50 hover:bg-white/10 transition-all"
+                  className="p-2.5 rounded-lg bg-white/5 light:bg-white border border-white/10 light:border-slate-300 text-slate-300 light:text-slate-700 hover:text-cyan-400 light:hover:text-cyan-600 hover:border-cyan-400/50 hover:bg-white/10 light:hover:bg-slate-100 light:shadow-sm transition-all"
                   aria-label="LinkedIn Profile"
                   title="LinkedIn Profile"
                 >
@@ -165,7 +165,7 @@ export function Hero() {
                   href={profileData.socials.hackerrank}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-emerald-400 hover:border-emerald-400/50 hover:bg-white/10 transition-all"
+                  className="p-2.5 rounded-lg bg-white/5 light:bg-white border border-white/10 light:border-slate-300 text-slate-300 light:text-slate-700 hover:text-emerald-400 light:hover:text-emerald-600 hover:border-emerald-400/50 hover:bg-white/10 light:hover:bg-slate-100 light:shadow-sm transition-all"
                   aria-label="HackerRank Profile"
                   title="HackerRank Profile"
                 >
@@ -173,7 +173,7 @@ export function Hero() {
                 </a>
                 <a
                   href={`mailto:${profileData.socials.email}`}
-                  className="p-2.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 hover:text-cyan-400 hover:border-cyan-400/50 hover:bg-white/10 transition-all"
+                  className="p-2.5 rounded-lg bg-white/5 light:bg-white border border-white/10 light:border-slate-300 text-slate-300 light:text-slate-700 hover:text-cyan-400 light:hover:text-cyan-600 hover:border-cyan-400/50 hover:bg-white/10 light:hover:bg-slate-100 light:shadow-sm transition-all"
                   aria-label="Send Email"
                   title="Send Email"
                 >

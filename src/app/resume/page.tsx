@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowLeft,
   Download,
@@ -19,6 +20,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { profileData } from "@/data/profile";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function ResumePage() {
   const handlePrint = () => {
@@ -26,21 +28,24 @@ export default function ResumePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030712] text-slate-200 py-10 px-4 sm:px-6 lg:px-8 selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="min-h-screen bg-[#030712] light:bg-slate-50 text-slate-200 light:text-slate-800 py-6 sm:py-8 px-4 sm:px-6 lg:px-8 selection:bg-cyan-500/30 selection:text-cyan-200 print:bg-white print:text-black print:p-0 print:m-0 transition-colors duration-300">
       {/* Top Floating Control Bar (Hidden during print) */}
-      <div className="max-w-4xl mx-auto mb-8 flex flex-wrap items-center justify-between gap-4 print:hidden">
+      <div className="sticky top-4 z-40 max-w-4xl mx-auto mb-8 flex flex-wrap items-center justify-between gap-4 p-3 rounded-2xl bg-[#0a0f1d]/90 light:bg-white/90 backdrop-blur-md border border-white/10 light:border-slate-200 shadow-2xl print:hidden">
         <Link
           href="/"
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-medium text-slate-300 hover:text-white transition-all cursor-pointer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 light:bg-slate-100 light:hover:bg-slate-200 border border-white/10 light:border-slate-300 hover:border-cyan-500/40 text-sm font-medium text-slate-200 light:text-slate-700 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95"
         >
           <ArrowLeft className="w-4 h-4 text-cyan-400" />
           <span>Back to Portfolio</span>
         </Link>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
+
           <button
+            type="button"
             onClick={handlePrint}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-sm font-medium text-slate-300 hover:text-white transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 light:bg-slate-100 light:hover:bg-slate-200 border border-white/10 light:border-slate-300 hover:border-cyan-500/40 text-sm font-medium text-slate-200 light:text-slate-700 hover:text-white transition-all cursor-pointer shadow-sm active:scale-95"
             title="Print or Save as PDF"
           >
             <Printer className="w-4 h-4 text-cyan-400" />
@@ -50,7 +55,9 @@ export default function ResumePage() {
           <a
             href={profileData.resume.url}
             download={profileData.resume.filename}
-            className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black text-sm font-semibold shadow-[0_0_20px_rgba(6,182,212,0.3)] transition-all cursor-pointer"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black text-sm font-semibold shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.5)] transition-all cursor-pointer active:scale-95"
           >
             <Download className="w-4 h-4" />
             <span>Download PDF</span>
@@ -59,63 +66,85 @@ export default function ResumePage() {
       </div>
 
       {/* Main Resume Sheet */}
-      <main className="max-w-4xl mx-auto bg-[#0a0f1d] border border-white/10 rounded-2xl shadow-2xl p-6 sm:p-10 md:p-12 print:bg-white print:text-black print:border-none print:shadow-none print:p-0 print:rounded-none">
+      <main className="max-w-4xl mx-auto bg-[#0a0f1d] light:bg-white border border-white/10 light:border-slate-200 rounded-2xl shadow-2xl p-6 sm:p-10 md:p-12 print:bg-white print:text-black print:border-none print:shadow-none print:p-0 print:rounded-none">
         {/* Header */}
-        <header className="border-b border-white/10 pb-6 print:border-slate-800 print:pb-4">
-          <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
-            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white print:text-black">
-              {profileData.name}
-            </h1>
-            <span className="text-xs font-mono text-cyan-400 print:text-slate-700">
-              {profileData.role}
-            </span>
-          </div>
+        <header className="border-b border-white/10 light:border-slate-200 pb-6 print:border-slate-800 print:pb-4">
+          <div className="flex items-start justify-between gap-4">
+            <div className="flex-1">
+              <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-2">
+                <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-white light:text-slate-900 print:text-black">
+                  {profileData.name}
+                </h1>
+                <span className="text-xs font-mono text-cyan-400 print:text-slate-700">
+                  {profileData.role}
+                </span>
+              </div>
 
-          <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-400 print:text-slate-700 font-mono">
-            <div className="flex items-center gap-1.5">
-              <Phone className="w-3.5 h-3.5 text-cyan-400 print:text-black" />
-              <span>{profileData.socials.phone}</span>
-            </div>
-            <span>•</span>
-            <div className="flex items-center gap-1.5">
-              <Mail className="w-3.5 h-3.5 text-cyan-400 print:text-black" />
-              <a
-                href={`mailto:${profileData.socials.email}`}
-                className="hover:text-cyan-300 print:text-black"
-              >
-                {profileData.socials.email}
-              </a>
-            </div>
-            <span>•</span>
-            <div className="flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-cyan-400 print:text-black" />
-              <span>Virudhunagar, Tamil Nadu</span>
-            </div>
-          </div>
+              <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-slate-400 print:text-slate-700 font-mono">
+                <div className="flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-cyan-400 print:text-black" />
+                  <span>{profileData.socials.phone}</span>
+                </div>
+                <span>•</span>
+                <div className="flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-cyan-400 print:text-black" />
+                  <a
+                    href={`mailto:${profileData.socials.email}`}
+                    className="hover:text-cyan-300 print:text-black"
+                  >
+                    {profileData.socials.email}
+                  </a>
+                </div>
+                <span>•</span>
+                <div className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-cyan-400 print:text-black" />
+                  <span>{profileData.location}</span>
+                </div>
+              </div>
 
-          <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-cyan-400 print:text-blue-700 font-mono">
-            <div className="flex items-center gap-1">
-              <Linkedin className="w-3.5 h-3.5" />
-              <a
-                href={profileData.socials.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
-              >
-                linkedin.com/in/vishnu-v-5aaa93350
-              </a>
+              <div className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-cyan-400 print:text-blue-700 font-mono">
+                <div className="flex items-center gap-1">
+                  <Linkedin className="w-3.5 h-3.5" />
+                  <a
+                    href={profileData.socials.linkedin}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    linkedin.com/in/vishnu-v-5aaa93350
+                  </a>
+                </div>
+                <span>•</span>
+                <div className="flex items-center gap-1">
+                  <Github className="w-3.5 h-3.5" />
+                  <a
+                    href={profileData.socials.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
+                    github.com/vishnuvenkatraj
+                  </a>
+                </div>
+              </div>
             </div>
-            <span>•</span>
-            <div className="flex items-center gap-1">
-              <Github className="w-3.5 h-3.5" />
-              <a
-                href={profileData.socials.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:underline"
+
+            {/* Passport Photo */}
+            <div className="shrink-0">
+              <div
+                className="w-20 sm:w-24 rounded-xl overflow-hidden border-2 border-white/20 light:border-slate-300 shadow-md bg-slate-900 print:border-slate-400"
+                style={{ aspectRatio: "803 / 1024" }}
+                title="Passport Photo"
               >
-                github.com/vishnuvenkatraj
-              </a>
+                <Image
+                  src={profileData.photo.url}
+                  alt={profileData.photo.alt}
+                  width={803}
+                  height={1024}
+                  className="w-full h-full object-cover object-top"
+                  quality={90}
+                />
+              </div>
             </div>
           </div>
         </header>
@@ -344,17 +373,38 @@ export default function ResumePage() {
             </div>
           </section>
 
-          {/* CERTIFICATIONS */}
+          {/* ACADEMIC CERTIFICATIONS (NPTEL) */}
           <section>
             <h2 className="text-xs font-bold uppercase tracking-wider text-cyan-400 print:text-slate-900 border-b border-cyan-500/20 print:border-slate-300 pb-1 mb-2 font-mono">
-              Certifications
+              Academic Certifications (NPTEL)
             </h2>
             <ul className="list-disc list-inside space-y-1 text-xs text-slate-300 print:text-slate-800">
               <li>
-                <span className="font-semibold text-white print:text-black">NPTEL</span> — Human Computer Interaction (12 Weeks) — <span className="text-cyan-300 print:text-blue-800 font-semibold">95% (Elite + Gold)</span>
+                <span className="font-semibold text-white print:text-black">NPTEL</span> — Human Computer Interaction (12 Weeks) — <span className="text-cyan-300 print:text-blue-800 font-semibold">Score: 95% (Elite + Gold Medal)</span>
               </li>
               <li>
                 <span className="font-semibold text-white print:text-black">NPTEL</span> — Software Testing (12 Weeks) — Elite Certification
+              </li>
+            </ul>
+          </section>
+
+          {/* PROFESSIONAL CERTIFICATIONS */}
+          <section>
+            <h2 className="text-xs font-bold uppercase tracking-wider text-cyan-400 print:text-slate-900 border-b border-cyan-500/20 print:border-slate-300 pb-1 mb-2 font-mono">
+              Professional Certifications
+            </h2>
+            <ul className="list-disc list-inside space-y-1 text-xs text-slate-300 print:text-slate-800">
+              <li>
+                <span className="font-semibold text-white print:text-black">IBM</span> — Full-Stack Software Engineering &amp; DevOps
+              </li>
+              <li>
+                <span className="font-semibold text-white print:text-black">Google Cloud</span> — Cloud Computing &amp; Architecture Foundations
+              </li>
+              <li>
+                <span className="font-semibold text-white print:text-black">Hedera</span> — Distributed Ledger &amp; Smart Contract Foundations
+              </li>
+              <li>
+                <span className="font-semibold text-white print:text-black">Coursera</span> — Advanced Full-Stack Web Development
               </li>
             </ul>
           </section>
