@@ -16,6 +16,8 @@ import {
   ArrowRight,
   Sparkles,
   Maximize2,
+  Award,
+  BookOpen,
 } from "lucide-react";
 
 interface ProjectModalProps {
@@ -79,12 +81,12 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ type: "spring", duration: 0.3 }}
-            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 light:border-slate-200 bg-[#070b16] light:bg-white text-white light:text-slate-900 shadow-2xl z-10 p-6 sm:p-8 space-y-8"
+            className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl border border-white/10 dark:border-white/10 light:border-[#89958B]/35 bg-[#070b16] dark:bg-[#070b16] light:bg-[#FAF7F2] text-white dark:text-white light:text-[#252B29] shadow-2xl z-10 p-6 sm:p-8 space-y-8"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute top-6 right-6 p-2 rounded-full bg-white/5 light:bg-slate-100 hover:bg-white/10 light:hover:bg-slate-200 text-slate-400 light:text-slate-600 hover:text-white light:hover:text-black border border-white/10 light:border-slate-200 transition-colors cursor-pointer"
+              className="absolute top-6 right-6 p-2 rounded-full bg-white/5 light:bg-[#F5F0E6] hover:bg-white/10 light:hover:bg-[#FAF7F2] text-slate-400 light:text-[#252B29] hover:text-white light:hover:text-[#702B40] border border-white/10 light:border-[#89958B]/35 transition-colors cursor-pointer"
               aria-label="Close project modal"
             >
               <X className="w-5 h-5" />
@@ -93,17 +95,17 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             {/* Header */}
             <div className="space-y-3 pr-10">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="px-3 py-1 rounded-full bg-cyan-500/10 light:bg-cyan-50 border border-cyan-500/30 light:border-cyan-200 text-xs font-mono text-cyan-300 light:text-cyan-700 font-semibold">
+                <span className="px-3 py-1 rounded-full bg-cyan-500/10 light:bg-[#702B40]/10 border border-cyan-500/30 light:border-[#702B40]/30 text-xs font-mono text-cyan-300 light:text-[#702B40] font-semibold">
                   {project.category}
                 </span>
-                <span className="text-xs font-mono text-slate-400 light:text-slate-500">
+                <span className="text-xs font-mono text-slate-400 light:text-[#5E6A66]">
                   {project.timeline}
                 </span>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-extrabold text-white light:text-slate-900 tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-white light:text-[#252B29] tracking-tight">
                 {project.title}
               </h2>
-              <p className="text-sm sm:text-base text-slate-300 light:text-slate-700 font-light">
+              <p className="text-sm sm:text-base text-slate-300 light:text-[#4A5551] font-normal">
                 {project.subtitle}
               </p>
             </div>
@@ -111,7 +113,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             {/* Cover Image Preview (Clickable to zoom) */}
             <div
               onClick={() => setLightboxIndex(0)}
-              className="relative w-full h-64 sm:h-80 rounded-xl overflow-hidden border border-white/10 light:border-slate-200 bg-[#02050e] light:bg-slate-100 flex items-center justify-center p-2 cursor-pointer group/cover"
+              className="relative w-full h-64 sm:h-80 rounded-xl overflow-hidden border border-white/10 light:border-[#89958B]/35 bg-[#02050e] light:bg-[#F5F0E6] flex items-center justify-center p-2 cursor-pointer group/cover"
               title="Click to zoom in full-screen"
             >
               <SafeProjectImage
@@ -122,7 +124,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 sizes="(max-width: 768px) 100vw, 800px"
               />
               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/cover:opacity-100 transition-opacity flex items-center justify-center">
-                <span className="px-3.5 py-1.5 rounded-full bg-cyan-500 text-black font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                <span className="px-3.5 py-1.5 rounded-full bg-cyan-500 light:bg-[#702B40] text-black light:text-[#FAF7F2] font-semibold text-xs flex items-center gap-1.5 shadow-lg">
                   <Maximize2 className="w-3.5 h-3.5" />
                   <span>Zoom Full-Screen</span>
                 </span>
@@ -130,16 +132,16 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-b border-white/10 light:border-slate-200 pb-6">
+            <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-b border-white/10 light:border-[#89958B]/25 pb-6">
               <div className="flex flex-wrap items-center gap-3">
                 {project.demoUrl && (
                   <a
                     href={project.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-semibold text-xs sm:text-sm transition-all"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 light:bg-[#702B40] light:hover:bg-[#582031] text-black light:text-[#FAF7F2] font-semibold text-xs sm:text-sm transition-all shadow-sm"
                   >
-                    <span>Launch Live Demo</span>
+                    <span>{project.patentDetails ? "Verify on IPO Portal" : "Launch Live Demo"}</span>
                     <ExternalLink className="w-4 h-4" />
                   </a>
                 )}
@@ -148,14 +150,14 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 light:bg-slate-100 hover:bg-white/10 light:hover:bg-slate-200 text-white light:text-slate-800 border border-white/10 light:border-slate-200 font-medium text-xs sm:text-sm transition-all"
+                    className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 light:bg-[#F5F0E6] hover:bg-white/10 light:hover:bg-[#FAF7F2] text-white light:text-[#252B29] hover:text-white light:hover:text-[#702B40] border border-white/10 light:border-[#89958B]/35 font-medium text-xs sm:text-sm transition-all"
                   >
                     <Github className="w-4 h-4" />
                     <span>GitHub Repository</span>
                   </a>
                 )}
                 {!project.demoUrl && !project.githubUrl && (
-                  <span className="text-xs font-mono text-slate-400 light:text-slate-600 bg-white/5 light:bg-slate-100 px-3 py-1.5 rounded-lg border border-white/5 light:border-slate-200">
+                  <span className="text-xs font-mono text-slate-400 light:text-[#4A5551] bg-white/5 light:bg-[#F5F0E6] px-3 py-1.5 rounded-lg border border-white/5 light:border-[#89958B]/30">
                     Demonstration available upon inquiry
                   </span>
                 )}
@@ -164,39 +166,57 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               <Link
                 href={`/projects/${project.slug}`}
                 onClick={onClose}
-                className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 light:text-cyan-700 hover:text-cyan-300 light:hover:text-cyan-600 hover:underline"
+                className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 light:text-[#702B40] hover:text-cyan-300 light:hover:text-[#582031] hover:underline font-semibold"
               >
                 <span>Open Dedicated Page</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
 
+            {/* Official Patent Verification Banner (When Applicable) */}
+            {project.patentDetails && (
+              <div className="p-4 sm:p-5 rounded-xl bg-gradient-to-r from-amber-500/10 via-yellow-500/5 to-cyan-500/10 light:from-[#702B40]/10 light:to-[#89958B]/15 border border-amber-500/30 light:border-[#702B40]/30 space-y-2">
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5 text-amber-300 light:text-[#702B40] font-mono text-xs font-bold uppercase">
+                    <Award className="w-4 h-4" />
+                    <span>Published Patent — Indian Patent Office</span>
+                  </div>
+                  <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 light:bg-[#702B40]/20 text-amber-300 light:text-[#702B40] border border-amber-500/30 light:border-[#702B40]/30 font-mono text-xs font-bold">
+                    App #{project.patentDetails.applicationNumber}
+                  </span>
+                </div>
+                <p className="text-xs text-slate-300 light:text-[#252B29] leading-relaxed">
+                  Published in the Indian Patent Office publication search system. Search records can be validated on the official portal with Application Number {project.patentDetails.applicationNumber}.
+                </p>
+              </div>
+            )}
+
             {/* Overview, Problem & Solution */}
-            <div className="space-y-6 text-sm sm:text-base text-slate-300 light:text-slate-700 leading-relaxed font-light">
+            <div className="space-y-6 text-sm sm:text-base text-slate-300 light:text-[#3C4743] leading-relaxed font-normal">
               <div>
-                <h3 className="text-base font-semibold text-white light:text-slate-900 mb-2 uppercase font-mono tracking-wider text-cyan-400 light:text-cyan-700">
+                <h3 className="text-base font-semibold text-white light:text-[#252B29] mb-2 uppercase font-mono tracking-wider text-cyan-400 light:text-[#702B40]">
                   1. Project Overview
                 </h3>
                 <p>{project.overview}</p>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-xl bg-white/[0.02] light:bg-slate-50 border border-white/5 light:border-slate-200">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 rounded-xl bg-white/[0.02] light:bg-[#F5F0E6] border border-white/5 light:border-[#89958B]/30">
                 <div>
-                  <h4 className="text-xs uppercase font-mono text-amber-400 light:text-amber-600 mb-2 flex items-center gap-1.5 font-semibold">
+                  <h4 className="text-xs uppercase font-mono text-amber-400 light:text-[#702B40] mb-2 flex items-center gap-1.5 font-semibold">
                     <AlertTriangle className="w-4 h-4" />
                     Problem Statement
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 light:text-slate-700">
+                  <p className="text-xs sm:text-sm text-slate-300 light:text-[#4A5551]">
                     {project.problemStatement}
                   </p>
                 </div>
 
                 <div>
-                  <h4 className="text-xs uppercase font-mono text-emerald-400 light:text-emerald-600 mb-2 flex items-center gap-1.5 font-semibold">
+                  <h4 className="text-xs uppercase font-mono text-emerald-400 light:text-[#2E5E44] mb-2 flex items-center gap-1.5 font-semibold">
                     <CheckCircle2 className="w-4 h-4" />
                     Proposed Solution
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 light:text-slate-700">
+                  <p className="text-xs sm:text-sm text-slate-300 light:text-[#4A5551]">
                     {project.proposedSolution}
                   </p>
                 </div>
@@ -205,28 +225,65 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* Key Features */}
             <div className="space-y-4">
-              <h3 className="text-base font-semibold text-white light:text-slate-900 uppercase font-mono tracking-wider text-cyan-400 light:text-cyan-700">
+              <h3 className="text-base font-semibold text-white light:text-[#252B29] uppercase font-mono tracking-wider text-cyan-400 light:text-[#702B40]">
                 Key Features
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {project.keyFeatures.map((feat, i) => (
                   <div
                     key={i}
-                    className="p-4 rounded-xl bg-white/[0.02] light:bg-slate-50 border border-white/5 light:border-slate-200 space-y-1"
+                    className="p-4 rounded-xl bg-white/[0.02] light:bg-[#F5F0E6] border border-white/5 light:border-[#89958B]/30 space-y-1"
                   >
-                    <div className="font-semibold text-sm text-white light:text-slate-900 flex items-center gap-2">
-                      <Sparkles className="w-3.5 h-3.5 text-cyan-400 light:text-cyan-600" />
+                    <div className="font-semibold text-sm text-white light:text-[#252B29] flex items-center gap-2">
+                      <Sparkles className="w-3.5 h-3.5 text-cyan-400 light:text-[#702B40]" />
                       <span>{feat.title}</span>
                     </div>
-                    <div className="text-xs text-slate-400 light:text-slate-600">{feat.description}</div>
+                    <div className="text-xs text-slate-400 light:text-[#4A5551]">{feat.description}</div>
                   </div>
                 ))}
               </div>
             </div>
 
+            {/* Personal Contributions (When Available) */}
+            {project.myContributions && project.myContributions.length > 0 && (
+              <div className="space-y-3">
+                <h3 className="text-base font-semibold text-white light:text-[#252B29] uppercase font-mono tracking-wider text-cyan-400 light:text-[#702B40]">
+                  My Technical Contributions
+                </h3>
+                <div className="p-4 rounded-xl bg-white/[0.02] light:bg-[#F5F0E6] border border-white/5 light:border-[#89958B]/30 space-y-2">
+                  {project.myContributions.map((contrib, i) => (
+                    <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-300 light:text-[#252B29]">
+                      <CheckCircle2 className="w-4 h-4 text-cyan-400 light:text-[#702B40] shrink-0 mt-0.5" />
+                      <span>{contrib}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Key Learnings (When Available) */}
+            {project.learnings && project.learnings.length > 0 && (
+              <div className="space-y-3">
+                <h3 className="text-base font-semibold text-white light:text-[#252B29] uppercase font-mono tracking-wider text-cyan-400 light:text-[#702B40] flex items-center gap-2">
+                  <BookOpen className="w-4 h-4" />
+                  <span>Key Engineering Learnings</span>
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  {project.learnings.map((learning, i) => (
+                    <div
+                      key={i}
+                      className="p-3.5 rounded-xl bg-white/[0.02] light:bg-[#F5F0E6] border border-white/5 light:border-[#89958B]/30 text-xs text-slate-300 light:text-[#4A5551]"
+                    >
+                      {learning}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Architecture Layers */}
             <div className="space-y-4">
-              <h3 className="text-base font-semibold text-white light:text-slate-900 uppercase font-mono tracking-wider text-cyan-400 light:text-cyan-700 flex items-center gap-2">
+              <h3 className="text-base font-semibold text-white light:text-[#252B29] uppercase font-mono tracking-wider text-cyan-400 light:text-[#702B40] flex items-center gap-2">
                 <Layers className="w-4 h-4" />
                 <span>Technical Architecture</span>
               </h3>
@@ -234,13 +291,13 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {project.architecture.map((layer, i) => (
                   <div
                     key={i}
-                    className="p-4 rounded-xl bg-white/[0.02] light:bg-slate-50 border border-white/5 light:border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                    className="p-4 rounded-xl bg-white/[0.02] light:bg-[#F5F0E6] border border-white/5 light:border-[#89958B]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3"
                   >
                     <div>
-                      <div className="text-sm font-semibold text-white light:text-slate-900">
+                      <div className="text-sm font-semibold text-white light:text-[#252B29]">
                         {layer.layer}
                       </div>
-                      <div className="text-xs text-slate-400 light:text-slate-600 mt-0.5">
+                      <div className="text-xs text-slate-400 light:text-[#4A5551] mt-0.5">
                         {layer.description}
                       </div>
                     </div>
@@ -248,7 +305,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                       {layer.technologies.map((t) => (
                         <span
                           key={t}
-                          className="px-2 py-0.5 rounded bg-white/5 light:bg-slate-200 border border-white/10 light:border-slate-300 text-[10px] font-mono text-cyan-300 light:text-cyan-800"
+                          className="px-2 py-0.5 rounded bg-white/5 light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/35 text-[10px] font-mono text-cyan-300 light:text-[#702B40]"
                         >
                           {t}
                         </span>
@@ -261,24 +318,24 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* Development Challenges */}
             <div className="space-y-4">
-              <h3 className="text-base font-semibold text-white light:text-slate-900 uppercase font-mono tracking-wider text-cyan-400 light:text-cyan-700">
+              <h3 className="text-base font-semibold text-white light:text-[#252B29] uppercase font-mono tracking-wider text-cyan-400 light:text-[#702B40]">
                 Engineering Challenges &amp; Resolution
               </h3>
               <div className="space-y-3">
                 {project.challenges.map((c, i) => (
                   <div
                     key={i}
-                    className="p-4 rounded-xl bg-white/[0.02] light:bg-slate-50 border border-white/5 light:border-slate-200 space-y-2"
+                    className="p-4 rounded-xl bg-white/[0.02] light:bg-[#F5F0E6] border border-white/5 light:border-[#89958B]/30 space-y-2"
                   >
-                    <div className="text-sm font-semibold text-white light:text-slate-900">{c.title}</div>
-                    <div className="text-xs text-rose-300/90 light:text-rose-700">
-                      <span className="font-mono font-bold uppercase text-[10px] text-rose-400 light:text-rose-600 mr-2">
+                    <div className="text-sm font-semibold text-white light:text-[#252B29]">{c.title}</div>
+                    <div className="text-xs text-rose-300/90 light:text-[#702B40]">
+                      <span className="font-mono font-bold uppercase text-[10px] text-rose-400 light:text-[#702B40] mr-2">
                         Challenge:
                       </span>
                       {c.problem}
                     </div>
-                    <div className="text-xs text-emerald-300/90 light:text-emerald-700">
-                      <span className="font-mono font-bold uppercase text-[10px] text-emerald-400 light:text-emerald-600 mr-2">
+                    <div className="text-xs text-emerald-300/90 light:text-[#2E5E44]">
+                      <span className="font-mono font-bold uppercase text-[10px] text-emerald-400 light:text-[#2E5E44] mr-2">
                         Resolution:
                       </span>
                       {c.resolution}
@@ -290,12 +347,12 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             {/* Project Image Gallery (All Multiple Images with Lightbox Zoom) */}
             {project.gallery && project.gallery.length > 0 && (
-              <div className="space-y-4 pt-4 border-t border-white/10 light:border-slate-200">
+              <div className="space-y-4 pt-4 border-t border-white/10 light:border-[#89958B]/25">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-base font-semibold text-white light:text-slate-900 uppercase font-mono tracking-wider text-cyan-400 light:text-cyan-700">
+                  <h3 className="text-base font-semibold text-white light:text-[#252B29] uppercase font-mono tracking-wider text-cyan-400 light:text-[#702B40]">
                     Interface Gallery &amp; Screenshots ({project.gallery.length} Images)
                   </h3>
-                  <span className="text-xs font-mono text-slate-400 light:text-slate-500">
+                  <span className="text-xs font-mono text-slate-400 light:text-[#5E6A66]">
                     Click any screenshot to zoom
                   </span>
                 </div>
@@ -304,10 +361,10 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                     <div
                       key={i}
                       onClick={() => setLightboxIndex(i + 1)} // offset by 1 because index 0 is cover
-                      className="rounded-xl overflow-hidden border border-white/10 light:border-slate-200 bg-[#050811] light:bg-slate-50 p-3 space-y-2 flex flex-col justify-between cursor-pointer group/card hover:border-cyan-500/40 transition-all shadow-sm hover:shadow-md"
+                      className="rounded-xl overflow-hidden border border-white/10 light:border-[#89958B]/35 bg-[#050811] light:bg-[#F5F0E6] p-3 space-y-2 flex flex-col justify-between cursor-pointer group/card hover:border-cyan-500/40 light:hover:border-[#702B40]/40 transition-all shadow-sm hover:shadow-md"
                       title="Click to view full-size in Lightbox"
                     >
-                      <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-[#02050e] light:bg-slate-100 border border-white/5 light:border-slate-200 flex items-center justify-center p-1.5">
+                      <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-[#02050e] light:bg-[#FAF7F2] border border-white/5 light:border-[#89958B]/30 flex items-center justify-center p-1.5">
                         <SafeProjectImage
                           src={item.imageUrl}
                           alt={item.title}
@@ -316,16 +373,16 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                           sizes="(max-width: 640px) 100vw, 33vw"
                         />
                         <div className="absolute inset-0 bg-black/50 opacity-0 group-hover/card:opacity-100 transition-opacity flex items-center justify-center">
-                          <span className="p-2 rounded-full bg-cyan-500 text-black shadow-lg">
+                          <span className="p-2 rounded-full bg-cyan-500 light:bg-[#702B40] text-black light:text-[#FAF7F2] shadow-lg">
                             <Maximize2 className="w-4 h-4" />
                           </span>
                         </div>
                       </div>
                       <div>
-                        <div className="font-semibold text-xs text-white light:text-slate-900 line-clamp-1 group-hover/card:text-cyan-400 light:group-hover/card:text-cyan-600 transition-colors">
+                        <div className="font-semibold text-xs text-white light:text-[#252B29] line-clamp-1 group-hover/card:text-cyan-400 light:group-hover/card:text-[#702B40] transition-colors">
                           {item.title}
                         </div>
-                        <div className="text-[11px] text-slate-400 light:text-slate-600 mt-1 line-clamp-2 font-light leading-relaxed">
+                        <div className="text-[11px] text-slate-400 light:text-[#4A5551] mt-1 line-clamp-2 font-normal leading-relaxed">
                           {item.caption}
                         </div>
                       </div>

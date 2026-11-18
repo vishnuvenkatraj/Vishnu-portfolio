@@ -17,40 +17,76 @@ async function generateResume() {
   let page = doc.addPage([pageWidth, pageHeight]);
   let y = pageHeight - margin;
 
-  // Colors
-  const cBlack = rgb(0.08, 0.1, 0.15); // #141a26
-  const cDark = rgb(0.15, 0.2, 0.28);  // #263347
-  const cBody = rgb(0.2, 0.25, 0.35);  // #334059
-  const cBlue = rgb(0.01, 0.45, 0.75); // #0373bf
-  const cLightGray = rgb(0.85, 0.88, 0.92);
+  // Executive Color Palette
+  const cBlack = rgb(0.08, 0.1, 0.15); // #141a26 Charcoal black
+  const cDark = rgb(0.15, 0.2, 0.28);  // #263347 Deep slate
+  const cBody = rgb(0.25, 0.3, 0.38);  // #404d61 Readable body text
+  const cAccent = rgb(0.44, 0.17, 0.25); // #702B40 Deep Burgundy accent
+  const cRule = rgb(0.75, 0.8, 0.82);  // Muted Sage rule line
+
+  // Load passport photo if available
+  let profileImage = null;
+  const photoPath = path.resolve('public/images/profile/profile-photo.jpg');
+  if (fs.existsSync(photoPath)) {
+    try {
+      const imageBytes = fs.readFileSync(photoPath);
+      profileImage = await doc.embedJpg(imageBytes);
+    } catch (e) {
+      console.warn('Could not embed profile photo:', e.message);
+    }
+  }
 
   function checkPageBreak(requiredHeight) {
-    if (y - requiredHeight < margin) {
+    if (y - requiredHeight < margin + 20) {
       page = doc.addPage([pageWidth, pageHeight]);
       y = pageHeight - margin;
+
+      // Header on Page 2
+      page.drawText('VISHNU V — CURRICULUM VITAE', {
+        x: margin,
+        y: y,
+        size: 8.5,
+        font: fontBold,
+        color: cAccent,
+      });
+      page.drawText('+91 74185 63738 | vishnuvenkatraj@gmail.com', {
+        x: pageWidth - margin - fontRegular.widthOfTextAtSize('+91 74185 63738 | vishnuvenkatraj@gmail.com', 8.5),
+        y: y,
+        size: 8.5,
+        font: fontRegular,
+        color: cBody,
+      });
+      y -= 6;
+      page.drawLine({
+        start: { x: margin, y: y },
+        end: { x: pageWidth - margin, y: y },
+        thickness: 0.75,
+        color: cRule,
+      });
+      y -= 16;
       return true;
     }
     return false;
   }
 
   function drawSectionHeader(title) {
-    checkPageBreak(30);
-    y -= 10;
+    checkPageBreak(32);
+    y -= 6;
     page.drawText(title.toUpperCase(), {
       x: margin,
       y: y,
-      size: 11,
+      size: 10.5,
       font: fontBold,
-      color: cBlue,
+      color: cAccent,
     });
     y -= 4;
     page.drawLine({
       start: { x: margin, y: y },
       end: { x: pageWidth - margin, y: y },
       thickness: 1,
-      color: cBlue,
+      color: cAccent,
     });
-    y -= 12;
+    y -= 11;
   }
 
   function wrapText(text, maxWidth, font, size) {
@@ -95,7 +131,7 @@ async function generateResume() {
       y: y,
       size: size + 2,
       font: fontBold,
-      color: cBlue,
+      color: cAccent,
     });
     for (let i = 0; i < lines.length; i++) {
       if (i > 0) checkPageBreak(size + 4);
@@ -106,11 +142,40 @@ async function generateResume() {
         font,
         color,
       });
-      y -= size + 3;
+      y -= size + 2.5;
     }
   }
 
-  // --- HEADER ---
+  // ==========================================
+  // PAGE 1: HEADER & CANDIDATE DETAILS
+  // ==========================================
+  const headerTopY = y;
+  const photoW = 54;
+  const photoH = 68;
+
+  // Draw Passport Photo on Top Right if present
+  if (profileImage) {
+    const photoX = pageWidth - margin - photoW;
+    const photoY = headerTopY - photoH + 8;
+    // Draw photo border
+    page.drawRectangle({
+      x: photoX - 1.5,
+      y: photoY - 1.5,
+      width: photoW + 3,
+      height: photoH + 3,
+      borderColor: cAccent,
+      borderWidth: 1,
+      color: rgb(0.96, 0.96, 0.97),
+    });
+    page.drawImage(profileImage, {
+      x: photoX,
+      y: photoY,
+      width: photoW,
+      height: photoH,
+    });
+  }
+
+  // Name
   page.drawText('VISHNU V', {
     x: margin,
     y: y,
@@ -120,8 +185,8 @@ async function generateResume() {
   });
   y -= 18;
 
-  const contactLine1 = '+91 74185 63738   |   vishnuvenkatraj@gmail.com   |   Virudhunagar, Tamil Nadu';
-  page.drawText(contactLine1, {
+  // Contact line 1
+  page.drawText('+91 74185 63738   |   vishnuvenkatraj@gmail.com   |   Virudhunagar, Tamil Nadu', {
     x: margin,
     y: y,
     size: 9.5,
@@ -130,26 +195,28 @@ async function generateResume() {
   });
   y -= 13;
 
-  const contactLine2 = 'linkedin.com/in/vishnu-v-5aaa93350   |   github.com/vishnuvenkatraj';
-  page.drawText(contactLine2, {
+  // Contact line 2 (LinkedIn & GitHub)
+  page.drawText('linkedin.com/in/vishnu-v-5aaa93350   |   github.com/vishnuvenkatraj', {
     x: margin,
     y: y,
     size: 9.5,
     font: fontRegular,
-    color: cBlue,
+    color: cAccent,
   });
-  y -= 8;
+  y -= 10;
 
-  // Thin separator under header
+  // Separator
   page.drawLine({
     start: { x: margin, y: y },
     end: { x: pageWidth - margin, y: y },
     thickness: 1.5,
     color: cBlack,
   });
-  y -= 6;
+  y -= 8;
 
-  // --- CAREER SUMMARY ---
+  // ==========================================
+  // CAREER SUMMARY
+  // ==========================================
   drawSectionHeader('Career Summary');
   drawParagraph(
     'B.Tech Computer Science and Business Systems student with experience in developing software projects across healthcare, e-governance, and agriculture. Skilled in Java, C, Data Structures & Algorithms, and Object-Oriented Programming, with exposure to AI-integrated applications and web technologies. Completed an embedded systems internship and actively participated in hackathons and innovation events.',
@@ -157,13 +224,15 @@ async function generateResume() {
     9.5,
     cBody
   );
-  y -= 4;
+  y -= 3;
 
-  // --- EDUCATION ---
+  // ==========================================
+  // EDUCATION
+  // ==========================================
   drawSectionHeader('Education');
 
   // B.Tech
-  checkPageBreak(38);
+  checkPageBreak(36);
   page.drawText('B.Tech — Computer Science and Business Systems', {
     x: margin,
     y: y,
@@ -178,11 +247,11 @@ async function generateResume() {
     font: fontRegular,
     color: cBody,
   });
-  y -= 13;
+  y -= 12;
   page.drawText('M. Kumarasamy College of Engineering', {
     x: margin,
     y: y,
-    size: 9.5,
+    size: 9,
     font: fontRegular,
     color: cBody,
   });
@@ -193,18 +262,18 @@ async function generateResume() {
     font: fontRegular,
     color: cBody,
   });
-  y -= 12;
+  y -= 11;
   page.drawText('CGPA: 8.10 / 10 (up to 4th Semester)', {
     x: margin,
     y: y,
     size: 9,
     font: fontBold,
-    color: cBlue,
+    color: cAccent,
   });
-  y -= 15;
+  y -= 14;
 
   // HSC
-  checkPageBreak(32);
+  checkPageBreak(30);
   page.drawText('Higher Secondary Certificate (HSC)', {
     x: margin,
     y: y,
@@ -219,7 +288,7 @@ async function generateResume() {
     font: fontRegular,
     color: cBody,
   });
-  y -= 12;
+  y -= 11;
   page.drawText('SBK Higher Secondary School   |   2024', {
     x: margin,
     y: y,
@@ -234,10 +303,10 @@ async function generateResume() {
     font: fontBold,
     color: cDark,
   });
-  y -= 14;
+  y -= 13;
 
   // SSLC
-  checkPageBreak(32);
+  checkPageBreak(30);
   page.drawText('Secondary School Leaving Certificate (SSLC)', {
     x: margin,
     y: y,
@@ -252,7 +321,7 @@ async function generateResume() {
     font: fontRegular,
     color: cBody,
   });
-  y -= 12;
+  y -= 11;
   page.drawText('SBK Higher Secondary School   |   2022', {
     x: margin,
     y: y,
@@ -267,10 +336,12 @@ async function generateResume() {
     font: fontBold,
     color: cDark,
   });
-  y -= 8;
+  y -= 6;
 
-  // --- SKILLS & COMPETENCIES ---
-  drawSectionHeader('Technical Skills & Competencies');
+  // ==========================================
+  // SKILLS & AREAS OF INTEREST
+  // ==========================================
+  drawSectionHeader('Skills & Areas of Competency');
 
   function drawSkillRow(label, items) {
     checkPageBreak(16);
@@ -289,7 +360,7 @@ async function generateResume() {
       font: fontRegular,
       color: cBody,
     });
-    y -= 13;
+    y -= 12.5;
   }
 
   drawSkillRow('Technical Skills', 'Java, Data Structures & Algorithms, Object-Oriented Programming, C');
@@ -298,15 +369,17 @@ async function generateResume() {
   drawSkillRow('Soft Skills', 'Adaptability, Teamwork & Collaboration, Time Management, Critical Thinking');
   y -= 4;
 
-  // --- PROJECTS ---
+  // ==========================================
+  // PROJECTS
+  // ==========================================
   drawSectionHeader('Projects');
 
-  // Project 1
+  // Project 1: MediConnect
   checkPageBreak(65);
   page.drawText('AI-Powered Healthcare Management System (MediConnect)', {
     x: margin,
     y: y,
-    size: 10,
+    size: 9.5,
     font: fontBold,
     color: cDark,
   });
@@ -315,28 +388,28 @@ async function generateResume() {
     y: y,
     size: 8.5,
     font: fontOblique,
-    color: cBlue,
+    color: cAccent,
   });
-  y -= 12;
-  page.drawText('Tech Stack: React, Node.js, Generative AI (Gemini API), Role-Based Authentication', {
+  y -= 11;
+  page.drawText('Tech: React, Node.js, Generative AI (Gemini API), role-based authentication', {
     x: margin,
     y: y,
     size: 8.5,
     font: fontOblique,
     color: cBody,
   });
-  y -= 11;
-  drawBullet('Designed and built frontend for healthcare platform that digitizes clinical workflows with role-based access for doctors, staff, and patients.', fontRegular, 9, cBody);
-  drawBullet('Integrated Generative AI features for symptom analysis, medical assistance, and administrative insights, reducing manual triage effort.', fontRegular, 9, cBody);
-  drawBullet('Collaborated across frontend and AI-integration workstreams to ship a working end-to-end demonstrable application.', fontRegular, 9, cBody);
+  y -= 10;
+  drawBullet('Designed and built the frontend for a healthcare platform that digitizes clinical workflows with secure role-based access for doctors, staff, and patients.', fontRegular, 8.8, cBody);
+  drawBullet('Integrated Generative AI features for symptom analysis, medical assistance, and administrative insights, reducing manual triage effort.', fontRegular, 8.8, cBody);
+  drawBullet('Collaborated across frontend and AI-integration workstreams to ship a working end-to-end demo.', fontRegular, 8.8, cBody);
   y -= 6;
 
-  // Project 2
+  // Project 2: CivicConnect
   checkPageBreak(65);
   page.drawText('CivicConnect — AI-Powered E-Governance Platform', {
     x: margin,
     y: y,
-    size: 10,
+    size: 9.5,
     font: fontBold,
     color: cDark,
   });
@@ -345,27 +418,29 @@ async function generateResume() {
     y: y,
     size: 8.5,
     font: fontOblique,
-    color: cBlue,
+    color: cAccent,
   });
-  y -= 12;
-  page.drawText('Tech Stack: React, Google Gemini API, Analytics / ML for Issue Classification', {
+  y -= 11;
+  page.drawText('Tech: React, Google Gemini API, analytics/ML for issue classification', {
     x: margin,
     y: y,
     size: 8.5,
     font: fontOblique,
     color: cBody,
   });
-  y -= 11;
-  drawBullet('Built an AI-powered e-governance platform to manage public grievances across multiple administrative districts.', fontRegular, 9, cBody);
-  drawBullet('Implemented analytics for duplicate-issue detection (IssueDNA) and SLA-risk prediction, helping prioritize urgent complaints.', fontRegular, 9, cBody);
-  drawBullet('Designed intuitive UI/UX flow to make grievance submission, ResolveChain tracking, and SLA monitoring transparent for citizens.', fontRegular, 9, cBody);
+  y -= 10;
+  drawBullet('Built an AI-powered e-governance platform to manage public grievances across multiple districts.', fontRegular, 8.8, cBody);
+  drawBullet('Implemented analytics for duplicate-issue detection and SLA-risk prediction, helping prioritize urgent complaints.', fontRegular, 8.8, cBody);
+  drawBullet('Designed the UI/UX flow to make grievance submission and tracking simple for end users.', fontRegular, 8.8, cBody);
   y -= 6;
 
-  // --- PATENT PUBLICATION ---
-  drawSectionHeader('Patent Publication / Engineering Concepts');
+  // ==========================================
+  // PATENT PUBLICATION
+  // ==========================================
+  drawSectionHeader('Patent Publication');
 
   // FlowVault
-  checkPageBreak(40);
+  checkPageBreak(36);
   page.drawText('FlowVault — Self-Reconfiguring Storm Drain', {
     x: margin,
     y: y,
@@ -373,38 +448,40 @@ async function generateResume() {
     font: fontBold,
     color: cDark,
   });
-  y -= 12;
+  y -= 11;
   drawParagraph(
     'Designed a passive hydraulic-mechanical storm-drain system that automatically redirects drainage from a severely clogged section to the next available section without electronics or external power.',
     fontRegular,
-    9,
+    8.8,
     cBody,
     contentWidth,
-    10
+    8
   );
   y -= 5;
 
   // RESQTRAK
-  checkPageBreak(40);
-  page.drawText('RESQTRAK — Gas-Triggered Mechanical Auto-Extraction System', {
+  checkPageBreak(42);
+  page.drawText('RESQTRAK — Gas-Triggered Auto-Extraction (Published Patent #202641130488)', {
     x: margin,
     y: y,
     size: 9.5,
     font: fontBold,
     color: cDark,
   });
-  y -= 12;
+  y -= 11;
   drawParagraph(
-    'Designed a passive H2S-triggered rescue system that converts hazardous gas exposure into mechanical actuation for automatic confined-space worker retrieval without relying on electrical triggers.',
+    'Published Patent under Indian Patent Office (App No: 202641130488). Designed a passive H2S-triggered rescue system converting toxic gas exposure into mechanical actuation for automatic confined-space worker retrieval without electrical ignition risk.',
     fontRegular,
-    9,
+    8.8,
     cBody,
     contentWidth,
-    10
+    8
   );
   y -= 6;
 
-  // --- INTERNSHIP ---
+  // ==========================================
+  // INTERNSHIP
+  // ==========================================
   drawSectionHeader('Internship');
   checkPageBreak(50);
   page.drawText('Embedded Systems Intern — Crapersoft, Coimbatore', {
@@ -421,33 +498,35 @@ async function generateResume() {
     font: fontRegular,
     color: cBody,
   });
-  y -= 12;
-  drawBullet('Worked hands-on with MPLAB IDE, PICkit3 Debugger, and Proteus for embedded systems development and testing.', fontRegular, 9, cBody);
-  drawBullet('Gained practical experience in microcontroller programming, debugging, and circuit simulation.', fontRegular, 9, cBody);
-  drawBullet('Assisted in testing and validating embedded circuit designs before hardware deployment.', fontRegular, 9, cBody);
+  y -= 11;
+  drawBullet('Worked hands-on with MPLAB IDE, PICkit3 Debugger, and Proteus for embedded systems development.', fontRegular, 8.8, cBody);
+  drawBullet('Gained practical experience in microcontroller programming, debugging, and circuit simulation.', fontRegular, 8.8, cBody);
+  drawBullet('Assisted in testing and validating embedded circuit designs before deployment.', fontRegular, 8.8, cBody);
   y -= 6;
 
-  // --- CERTIFICATIONS ---
-  drawSectionHeader('Academic & Professional Certifications');
-  drawBullet('NPTEL — Human Computer Interaction (12 Weeks) — 95% (Elite + Gold Score)', fontRegular, 9, cBody);
-  drawBullet('NPTEL — Software Testing (12 Weeks) — Elite Certification', fontRegular, 9, cBody);
-  drawBullet('IBM — Full-Stack Software Engineering & DevOps (IBM Developer Skills Network)', fontRegular, 9, cBody);
-  drawBullet('Google Cloud — Cloud Computing & Architecture Foundations (Google Cloud Skills Boost)', fontRegular, 9, cBody);
-  drawBullet('Hedera — Distributed Ledger & Smart Contracts (Hedera Developer Network)', fontRegular, 9, cBody);
-  drawBullet('Coursera — Advanced Full-Stack Web Development Specialization', fontRegular, 9, cBody);
+  // ==========================================
+  // CERTIFICATIONS
+  // ==========================================
+  drawSectionHeader('Certifications');
+  drawBullet('NPTEL — Human Computer Interaction (12 Weeks) — 95%', fontRegular, 9, cBody);
+  drawBullet('NPTEL — Software Testing (12 Weeks)', fontRegular, 9, cBody);
   y -= 6;
 
-  // --- ACHIEVEMENTS & RECOGNITION ---
+  // ==========================================
+  // ACHIEVEMENTS & RECOGNITION
+  // ==========================================
   drawSectionHeader('Achievements & Recognition');
-  drawBullet('1st Prize Winner — Innoverse 2026 (National-level Project Competition)', fontRegular, 9, cBody);
-  drawBullet('3rd Prize Winner — Gencraft Appathon 2025 (Application Development Competition)', fontRegular, 9, cBody);
+  drawBullet('3rd Prize Winner — Gencraft Appathon 2025', fontRegular, 9, cBody);
+  drawBullet('1st Prize Winner – Innoverse 2026', fontRegular, 9, cBody);
   drawBullet('Dr. Kalam Young Achiever Awards 2026 — World Youth Federation', fontRegular, 9, cBody);
   drawBullet('Hackathon Participant (24 Hours) — Innovation Unbound (2026), MobilityX 2.0 (2025), Hackmatrix (2026)', fontRegular, 9, cBody);
   y -= 6;
 
-  // --- LANGUAGES & HOBBIES ---
-  drawSectionHeader('Languages & Additional Information');
-  checkPageBreak(30);
+  // ==========================================
+  // LANGUAGES & HOBBIES
+  // ==========================================
+  drawSectionHeader('Languages & Hobbies');
+  checkPageBreak(28);
   page.drawText('Languages:', {
     x: margin,
     y: y,

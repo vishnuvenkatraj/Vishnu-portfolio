@@ -76,28 +76,28 @@ export function AchievementsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 space-y-12">
         {/* Section Header */}
         <div className="space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 dark:bg-cyan-500/10 light:bg-cyan-50 border border-cyan-500/20 light:border-cyan-200 text-cyan-400 light:text-cyan-800 text-xs font-mono uppercase tracking-wider font-semibold shadow-sm">
-            <Trophy className="w-3.5 h-3.5 text-cyan-400 light:text-cyan-700" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 dark:bg-cyan-500/10 light:bg-[#702B40]/10 border border-cyan-500/20 light:border-[#702B40]/25 text-cyan-400 light:text-[#702B40] text-xs font-mono uppercase tracking-wider font-semibold shadow-sm">
+            <Trophy className="w-3.5 h-3.5 text-cyan-400 light:text-[#702B40]" />
             <span>Verified Credentials &amp; Recognition</span>
           </div>
 
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
-              <h2 className="text-3xl sm:text-5xl font-extrabold text-white light:text-slate-900 tracking-tight">
+              <h2 className="text-3xl sm:text-5xl font-extrabold text-white light:text-[#252B29] tracking-tight">
                 Certificates &amp; Achievements
               </h2>
-              <p className="text-slate-400 light:text-slate-600 max-w-2xl text-base sm:text-lg font-light mt-2">
+              <p className="text-slate-400 light:text-[#4A5551] max-w-2xl text-base sm:text-lg font-light mt-2">
                 Organized into three distinct disciplines: competitive hackathons and awards, academic NPTEL certifications, and professional enterprise credentials.
               </p>
             </div>
 
             {/* Quick Stat Counter Badge */}
             <div className="flex items-center gap-3 shrink-0">
-              <div className="px-4 py-2 rounded-xl bg-white/[0.03] light:bg-white border border-white/10 light:border-slate-200 shadow-sm text-center">
-                <span className="block text-2xl font-mono font-extrabold text-cyan-400 light:text-cyan-700">
+              <div className="px-4 py-2 rounded-xl bg-white/[0.03] light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/30 shadow-sm text-center">
+                <span className="block text-2xl font-mono font-extrabold text-cyan-400 light:text-[#702B40]">
                   {counts.all}
                 </span>
-                <span className="text-[10px] uppercase font-mono text-slate-400 light:text-slate-500 tracking-wider">
+                <span className="text-[10px] uppercase font-mono text-slate-400 light:text-[#5C6764] tracking-wider">
                   Total Credentials
                 </span>
               </div>
@@ -112,16 +112,16 @@ export function AchievementsSection() {
             onClick={() => setActiveTab("competitions")}
             className={`p-4 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden cursor-pointer group flex flex-col justify-between ${
               activeTab === "competitions"
-                ? "bg-gradient-to-br from-cyan-950/40 via-[#070e1c] to-[#040812] light:from-cyan-50 light:via-white light:to-white border-cyan-400 light:border-cyan-500 shadow-[0_0_25px_rgba(6,182,212,0.25)] light:shadow-md"
-                : "bg-white/[0.02] light:bg-white border-white/10 light:border-slate-200 hover:border-cyan-500/30 light:hover:border-cyan-300 light:shadow-sm"
+                ? "bg-gradient-to-br from-cyan-950/40 via-[#070e1c] to-[#040812] light:from-[#702B40]/10 light:via-[#FAF7F2] light:to-[#FAF7F2] border-cyan-400 light:border-[#702B40] shadow-[0_0_25px_rgba(6,182,212,0.25)] light:shadow-md"
+                : "bg-white/[0.02] light:bg-[#FAF7F2] border-white/10 light:border-[#89958B]/30 hover:border-cyan-500/30 light:hover:border-[#702B40]/40 light:shadow-sm"
             }`}
           >
             <div className="flex items-center justify-between gap-2">
               <div
                 className={`p-2.5 rounded-xl transition-colors ${
                   activeTab === "competitions"
-                    ? "bg-cyan-500/20 light:bg-cyan-100 text-cyan-300 light:text-cyan-800"
-                    : "bg-white/5 light:bg-slate-100 text-slate-400 light:text-slate-600 group-hover:text-cyan-400"
+                    ? "bg-cyan-500/20 light:bg-[#702B40]/15 text-cyan-300 light:text-[#702B40]"
+                    : "bg-white/5 light:bg-[#F5F0E6] text-slate-400 light:text-[#5C6764] group-hover:text-cyan-400 light:group-hover:text-[#702B40]"
                 }`}
               >
                 <Trophy className="w-5 h-5" />
@@ -129,23 +129,23 @@ export function AchievementsSection() {
               <span
                 className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold transition-all ${
                   activeTab === "competitions"
-                    ? "bg-cyan-500 light:bg-cyan-600 text-black light:text-white shadow-sm"
-                    : "bg-white/5 light:bg-slate-100 text-slate-400 light:text-slate-600"
+                    ? "bg-cyan-500 light:bg-[#702B40] text-black light:text-[#FAF7F2] shadow-sm"
+                    : "bg-white/5 light:bg-[#F5F0E6] text-slate-400 light:text-[#5C6764]"
                 }`}
               >
                 {counts.competitions}
               </span>
             </div>
             <div className="mt-3">
-              <h3 className="font-bold text-sm text-white light:text-slate-900 leading-snug">
+              <h3 className="font-bold text-sm text-white light:text-[#252B29] leading-snug">
                 1. Competitions &amp; Achievements
               </h3>
-              <p className="text-xs text-slate-400 light:text-slate-600 font-light mt-0.5">
+              <p className="text-xs text-slate-400 light:text-[#5C6764] font-light mt-0.5">
                 Hackathons, Ideathons &amp; Awards
               </p>
             </div>
             {activeTab === "competitions" && (
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-sky-400 to-blue-500" />
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-500 via-sky-400 to-blue-500 light:from-[#702B40] light:to-[#89958B]" />
             )}
           </button>
 
@@ -154,16 +154,16 @@ export function AchievementsSection() {
             onClick={() => setActiveTab("academic")}
             className={`p-4 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden cursor-pointer group flex flex-col justify-between ${
               activeTab === "academic"
-                ? "bg-gradient-to-br from-amber-950/40 via-[#100d07] to-[#080603] light:from-amber-50 light:via-white light:to-white border-amber-400 light:border-amber-500 shadow-[0_0_25px_rgba(245,158,11,0.25)] light:shadow-md"
-                : "bg-white/[0.02] light:bg-white border-white/10 light:border-slate-200 hover:border-amber-500/30 light:hover:border-amber-300 light:shadow-sm"
+                ? "bg-gradient-to-br from-amber-950/40 via-[#100d07] to-[#080603] light:from-[#702B40]/10 light:via-[#FAF7F2] light:to-[#FAF7F2] border-amber-400 light:border-[#702B40] shadow-[0_0_25px_rgba(245,158,11,0.25)] light:shadow-md"
+                : "bg-white/[0.02] light:bg-[#FAF7F2] border-white/10 light:border-[#89958B]/30 hover:border-amber-500/30 light:hover:border-[#702B40]/40 light:shadow-sm"
             }`}
           >
             <div className="flex items-center justify-between gap-2">
               <div
                 className={`p-2.5 rounded-xl transition-colors ${
                   activeTab === "academic"
-                    ? "bg-amber-500/20 light:bg-amber-100 text-amber-300 light:text-amber-800"
-                    : "bg-white/5 light:bg-slate-100 text-slate-400 light:text-slate-600 group-hover:text-amber-400"
+                    ? "bg-amber-500/20 light:bg-[#702B40]/15 text-amber-300 light:text-[#702B40]"
+                    : "bg-white/5 light:bg-[#F5F0E6] text-slate-400 light:text-[#5C6764] group-hover:text-amber-400 light:group-hover:text-[#702B40]"
                 }`}
               >
                 <GraduationCap className="w-5 h-5" />
@@ -171,23 +171,23 @@ export function AchievementsSection() {
               <span
                 className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold transition-all ${
                   activeTab === "academic"
-                    ? "bg-amber-500 light:bg-amber-600 text-black light:text-white shadow-sm"
-                    : "bg-white/5 light:bg-slate-100 text-slate-400 light:text-slate-600"
+                    ? "bg-amber-500 light:bg-[#702B40] text-black light:text-[#FAF7F2] shadow-sm"
+                    : "bg-white/5 light:bg-[#F5F0E6] text-slate-400 light:text-[#5C6764]"
                 }`}
               >
                 {counts.academic}
               </span>
             </div>
             <div className="mt-3">
-              <h3 className="font-bold text-sm text-white light:text-slate-900 leading-snug">
+              <h3 className="font-bold text-sm text-white light:text-[#252B29] leading-snug">
                 2. Academic Certifications
               </h3>
-              <p className="text-xs text-slate-400 light:text-slate-600 font-light mt-0.5">
+              <p className="text-xs text-slate-400 light:text-[#5C6764] font-light mt-0.5">
                 NPTEL &amp; Ministry of Education
               </p>
             </div>
             {activeTab === "academic" && (
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600" />
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-600 light:from-[#702B40] light:to-[#89958B]" />
             )}
           </button>
 
@@ -196,16 +196,16 @@ export function AchievementsSection() {
             onClick={() => setActiveTab("professional")}
             className={`p-4 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden cursor-pointer group flex flex-col justify-between ${
               activeTab === "professional"
-                ? "bg-gradient-to-br from-blue-950/40 via-[#070b1c] to-[#040612] light:from-blue-50 light:via-white light:to-white border-blue-400 light:border-blue-500 shadow-[0_0_25px_rgba(59,130,246,0.25)] light:shadow-md"
-                : "bg-white/[0.02] light:bg-white border-white/10 light:border-slate-200 hover:border-blue-500/30 light:hover:border-blue-300 light:shadow-sm"
+                ? "bg-gradient-to-br from-blue-950/40 via-[#070b1c] to-[#040612] light:from-[#702B40]/10 light:via-[#FAF7F2] light:to-[#FAF7F2] border-blue-400 light:border-[#702B40] shadow-[0_0_25px_rgba(59,130,246,0.25)] light:shadow-md"
+                : "bg-white/[0.02] light:bg-[#FAF7F2] border-white/10 light:border-[#89958B]/30 hover:border-blue-500/30 light:hover:border-[#702B40]/40 light:shadow-sm"
             }`}
           >
             <div className="flex items-center justify-between gap-2">
               <div
                 className={`p-2.5 rounded-xl transition-colors ${
                   activeTab === "professional"
-                    ? "bg-blue-500/20 light:bg-blue-100 text-blue-300 light:text-blue-800"
-                    : "bg-white/5 light:bg-slate-100 text-slate-400 light:text-slate-600 group-hover:text-blue-400"
+                    ? "bg-blue-500/20 light:bg-[#702B40]/15 text-blue-300 light:text-[#702B40]"
+                    : "bg-white/5 light:bg-[#F5F0E6] text-slate-400 light:text-[#5C6764] group-hover:text-blue-400 light:group-hover:text-[#702B40]"
                 }`}
               >
                 <ShieldCheck className="w-5 h-5" />
@@ -213,23 +213,23 @@ export function AchievementsSection() {
               <span
                 className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold transition-all ${
                   activeTab === "professional"
-                    ? "bg-blue-500 light:bg-blue-600 text-white shadow-sm"
-                    : "bg-white/5 light:bg-slate-100 text-slate-400 light:text-slate-600"
+                    ? "bg-blue-500 light:bg-[#702B40] text-white light:text-[#FAF7F2] shadow-sm"
+                    : "bg-white/5 light:bg-[#F5F0E6] text-slate-400 light:text-[#5C6764]"
                 }`}
               >
                 {counts.professional}
               </span>
             </div>
             <div className="mt-3">
-              <h3 className="font-bold text-sm text-white light:text-slate-900 leading-snug">
+              <h3 className="font-bold text-sm text-white light:text-[#252B29] leading-snug">
                 3. Professional Certifications
               </h3>
-              <p className="text-xs text-slate-400 light:text-slate-600 font-light mt-0.5">
+              <p className="text-xs text-slate-400 light:text-[#5C6764] font-light mt-0.5">
                 IBM, Google Cloud, Hedera &amp; Coursera
               </p>
             </div>
             {activeTab === "professional" && (
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500" />
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-indigo-500 to-cyan-500 light:from-[#702B40] light:to-[#89958B]" />
             )}
           </button>
 
@@ -238,16 +238,16 @@ export function AchievementsSection() {
             onClick={() => setActiveTab("all")}
             className={`p-4 rounded-2xl border text-left transition-all duration-300 relative overflow-hidden cursor-pointer group flex flex-col justify-between ${
               activeTab === "all"
-                ? "bg-gradient-to-br from-purple-950/40 via-[#0d071c] to-[#060412] light:from-purple-50 light:via-white light:to-white border-purple-400 light:border-purple-500 shadow-[0_0_25px_rgba(168,85,247,0.25)] light:shadow-md"
-                : "bg-white/[0.02] light:bg-white border-white/10 light:border-slate-200 hover:border-purple-500/30 light:hover:border-purple-300 light:shadow-sm"
+                ? "bg-gradient-to-br from-purple-950/40 via-[#0d071c] to-[#060412] light:from-[#702B40]/10 light:via-[#FAF7F2] light:to-[#FAF7F2] border-purple-400 light:border-[#702B40] shadow-[0_0_25px_rgba(168,85,247,0.25)] light:shadow-md"
+                : "bg-white/[0.02] light:bg-[#FAF7F2] border-white/10 light:border-[#89958B]/30 hover:border-purple-500/30 light:hover:border-[#702B40]/40 light:shadow-sm"
             }`}
           >
             <div className="flex items-center justify-between gap-2">
               <div
                 className={`p-2.5 rounded-xl transition-colors ${
                   activeTab === "all"
-                    ? "bg-purple-500/20 light:bg-purple-100 text-purple-300 light:text-purple-800"
-                    : "bg-white/5 light:bg-slate-100 text-slate-400 light:text-slate-600 group-hover:text-purple-400"
+                    ? "bg-purple-500/20 light:bg-[#702B40]/15 text-purple-300 light:text-[#702B40]"
+                    : "bg-white/5 light:bg-[#F5F0E6] text-slate-400 light:text-[#5C6764] group-hover:text-purple-400 light:group-hover:text-[#702B40]"
                 }`}
               >
                 <Layers className="w-5 h-5" />
@@ -255,39 +255,39 @@ export function AchievementsSection() {
               <span
                 className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold transition-all ${
                   activeTab === "all"
-                    ? "bg-purple-500 light:bg-purple-600 text-white shadow-sm"
-                    : "bg-white/5 light:bg-slate-100 text-slate-400 light:text-slate-600"
+                    ? "bg-purple-500 light:bg-[#702B40] text-white light:text-[#FAF7F2] shadow-sm"
+                    : "bg-white/5 light:bg-[#F5F0E6] text-slate-400 light:text-[#5C6764]"
                 }`}
               >
                 {counts.all}
               </span>
             </div>
             <div className="mt-3">
-              <h3 className="font-bold text-sm text-white light:text-slate-900 leading-snug">
+              <h3 className="font-bold text-sm text-white light:text-[#252B29] leading-snug">
                 All Verified Credentials
               </h3>
-              <p className="text-xs text-slate-400 light:text-slate-600 font-light mt-0.5">
+              <p className="text-xs text-slate-400 light:text-[#5C6764] font-light mt-0.5">
                 Complete Inventory ({counts.all} items)
               </p>
             </div>
             {activeTab === "all" && (
-              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500" />
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 via-pink-500 to-indigo-500 light:from-[#702B40] light:to-[#89958B]" />
             )}
           </button>
         </div>
 
         {/* Category Description Banner */}
-        <div className="p-4 rounded-xl bg-white/[0.02] light:bg-slate-100 border border-white/10 light:border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
-          <div className="flex items-center gap-2 text-slate-300 light:text-slate-700">
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-            <span className="font-semibold uppercase tracking-wider text-cyan-400 light:text-cyan-800">
+        <div className="p-4 rounded-xl bg-white/[0.02] light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
+          <div className="flex items-center gap-2 text-slate-300 light:text-[#252B29]">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 light:bg-[#702B40] animate-pulse" />
+            <span className="font-semibold uppercase tracking-wider text-cyan-400 light:text-[#702B40]">
               {activeTab === "competitions" && "Category 1 of 3: Competitions & Achievements"}
               {activeTab === "academic" && "Category 2 of 3: Academic Certifications (NPTEL)"}
               {activeTab === "professional" && "Category 3 of 3: Professional Certifications"}
               {activeTab === "all" && "Complete Portfolio Repository"}
             </span>
-            <span className="hidden sm:inline text-slate-500">•</span>
-            <span className="hidden sm:inline text-slate-400 light:text-slate-600">
+            <span className="hidden sm:inline text-slate-500 light:text-[#89958B]">•</span>
+            <span className="hidden sm:inline text-slate-400 light:text-[#4A5551]">
               {activeTab === "competitions" && "Competitive hackathons, appathons, national innovation summits and honors."}
               {activeTab === "academic" && "NPTEL engineering courses verified by Ministry of Education, Govt. of India & IIT."}
               {activeTab === "professional" && "Enterprise-grade technical certifications from IBM, Google Cloud, Hedera & Coursera."}
@@ -295,7 +295,7 @@ export function AchievementsSection() {
             </span>
           </div>
 
-          <span className="text-slate-400 light:text-slate-600 shrink-0">
+          <span className="text-slate-400 light:text-[#5C6764] shrink-0">
             Showing {filteredItems.length} of {counts.all} credentials
           </span>
         </div>
@@ -315,18 +315,18 @@ export function AchievementsSection() {
                 key={item.id}
                 className={`group relative rounded-2xl transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-lg ${
                   isWinner1st
-                    ? "bg-gradient-to-b from-amber-500/15 via-[#070b16] to-[#04060d] light:from-amber-50 light:via-white light:to-white border-2 border-amber-400/70 light:border-amber-400 shadow-[0_0_35px_rgba(251,191,36,0.18)] hover:shadow-[0_0_45px_rgba(251,191,36,0.28)]"
+                    ? "bg-gradient-to-b from-amber-500/15 via-[#070b16] to-[#04060d] light:from-[#702B40]/15 light:via-[#FAF7F2] light:to-[#FAF7F2] border-2 border-amber-400/70 light:border-[#702B40] shadow-[0_0_35px_rgba(251,191,36,0.18)] light:shadow-md hover:shadow-[0_0_45px_rgba(251,191,36,0.28)]"
                     : isWinner3rd
-                    ? "bg-gradient-to-b from-cyan-500/10 via-[#070b16] to-[#04060d] light:from-sky-50 light:via-white light:to-white border border-cyan-400/40 light:border-sky-300 shadow-[0_0_20px_rgba(6,182,212,0.12)] hover:border-cyan-400"
+                    ? "bg-gradient-to-b from-cyan-500/10 via-[#070b16] to-[#04060d] light:from-[#702B40]/10 light:via-[#FAF7F2] light:to-[#FAF7F2] border border-cyan-400/40 light:border-[#89958B]/40 light:shadow-sm hover:border-cyan-400"
                     : isHonor
-                    ? "bg-gradient-to-b from-emerald-500/10 via-[#070b16] to-[#04060d] light:from-emerald-50 light:via-white light:to-white border border-emerald-400/40 light:border-emerald-300 shadow-[0_0_20px_rgba(16,185,129,0.12)] hover:border-emerald-400"
+                    ? "bg-gradient-to-b from-emerald-500/10 via-[#070b16] to-[#04060d] light:from-[#89958B]/15 light:via-[#FAF7F2] light:to-[#FAF7F2] border border-emerald-400/40 light:border-[#89958B]/40 light:shadow-sm hover:border-emerald-400"
                     : isHackathon
-                    ? "bg-gradient-to-b from-purple-950/25 via-[#080718] to-[#04040c] light:from-purple-50/70 light:via-white light:to-white border border-purple-500/30 light:border-purple-200 hover:border-purple-400"
+                    ? "bg-gradient-to-b from-purple-950/25 via-[#080718] to-[#04040c] light:from-[#702B40]/10 light:via-[#FAF7F2] light:to-[#FAF7F2] border border-purple-500/30 light:border-[#89958B]/40 light:shadow-sm hover:border-purple-400"
                     : isAcademic
-                    ? "bg-gradient-to-b from-amber-950/20 via-[#080b14] to-[#04060d] light:from-amber-50/50 light:via-white light:to-white border border-amber-500/30 light:border-amber-200 hover:border-amber-400"
+                    ? "bg-gradient-to-b from-amber-950/20 via-[#080b14] to-[#04060d] light:from-[#89958B]/10 light:via-[#FAF7F2] light:to-[#FAF7F2] border border-amber-500/30 light:border-[#89958B]/40 light:shadow-sm hover:border-amber-400"
                     : isProfessional
-                    ? "bg-gradient-to-b from-blue-950/20 via-[#070b16] to-[#04060d] light:from-blue-50/50 light:via-white light:to-white border border-blue-500/30 light:border-blue-200 hover:border-blue-400"
-                    : "bg-[#060a17]/90 light:bg-white border border-white/10 light:border-slate-200 hover:border-cyan-500/30"
+                    ? "bg-gradient-to-b from-blue-950/20 via-[#070b16] to-[#04060d] light:from-[#702B40]/10 light:via-[#FAF7F2] light:to-[#FAF7F2] border border-blue-500/30 light:border-[#89958B]/40 light:shadow-sm hover:border-blue-400"
+                    : "bg-[#060a17]/90 light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/30 hover:border-cyan-500/30 light:hover:border-[#702B40]/50"
                 }`}
               >
                 {/* 1st Prize Gold Champion Accent Banner */}
@@ -344,7 +344,7 @@ export function AchievementsSection() {
 
                 {/* 24-Hour Hackathon Accent Banner */}
                 {isHackathon && (
-                  <div className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 px-4 py-1.5 flex items-center justify-between text-[11px] font-mono font-bold text-white tracking-wider shadow-md">
+                  <div className="w-full bg-gradient-to-r from-purple-600 via-indigo-600 to-cyan-500 light:from-[#702B40] light:to-[#89958B] px-4 py-1.5 flex items-center justify-between text-[11px] font-mono font-bold text-white tracking-wider shadow-md">
                     <span className="flex items-center gap-1.5">
                       <Clock className="w-3.5 h-3.5 animate-pulse" />
                       24-HOUR NON-STOP SPRINT
@@ -370,7 +370,7 @@ export function AchievementsSection() {
 
                 {/* Professional Corporate Banner */}
                 {isProfessional && (
-                  <div className="w-full bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 px-4 py-1.5 flex items-center justify-between text-[11px] font-mono font-bold text-white tracking-wider shadow-md">
+                  <div className="w-full bg-gradient-to-r from-blue-700 via-indigo-600 to-cyan-600 light:from-[#702B40] light:to-[#252B29] px-4 py-1.5 flex items-center justify-between text-[11px] font-mono font-bold text-white tracking-wider shadow-md">
                     <span className="flex items-center gap-1.5">
                       <ShieldCheck className="w-3.5 h-3.5" />
                       PROFESSIONAL CERTIFIED
@@ -388,39 +388,39 @@ export function AchievementsSection() {
                     <div className="flex items-center justify-between gap-2 flex-wrap">
                       <div className="flex items-center gap-2">
                         {isWinner1st ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/20 text-amber-300 light:text-amber-800 border border-amber-500/40 light:border-amber-300">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/20 text-amber-300 light:bg-[#702B40]/15 light:text-[#702B40] border border-amber-500/40 light:border-[#702B40]/30">
                             <Trophy className="w-3.5 h-3.5" />
                             {item.statusBadge}
                           </span>
                         ) : isWinner3rd ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-sky-500/20 text-sky-300 light:text-sky-800 border border-sky-500/40 light:border-sky-300">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-sky-500/20 text-sky-300 light:bg-[#89958B]/15 light:text-[#252B29] border border-sky-500/40 light:border-[#89958B]/30">
                             <Medal className="w-3.5 h-3.5" />
                             {item.statusBadge}
                           </span>
                         ) : isHonor ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 light:text-emerald-800 border border-emerald-500/40 light:border-emerald-300">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 light:bg-[#89958B]/15 light:text-[#252B29] border border-emerald-500/40 light:border-[#89958B]/30">
                             <Sparkles className="w-3.5 h-3.5" />
                             {item.statusBadge}
                           </span>
                         ) : isHackathon ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/20 text-purple-300 light:text-purple-800 border border-purple-500/40 light:border-purple-300">
-                            <Zap className="w-3.5 h-3.5 text-cyan-400" />
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-purple-500/20 text-purple-300 light:bg-[#702B40]/15 light:text-[#702B40] border border-purple-500/40 light:border-[#702B40]/30">
+                            <Zap className="w-3.5 h-3.5 text-cyan-400 light:text-[#702B40]" />
                             {item.statusBadge}
                           </span>
                         ) : isAcademic ? (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/20 text-amber-300 light:text-amber-800 border border-amber-500/40 light:border-amber-300">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/20 text-amber-300 light:bg-[#89958B]/15 light:text-[#252B29] border border-amber-500/40 light:border-[#89958B]/30">
                             <GraduationCap className="w-3.5 h-3.5" />
                             {item.statusBadge}
                           </span>
                         ) : (
-                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-blue-500/20 text-blue-300 light:text-blue-800 border border-blue-500/40 light:border-blue-300">
+                          <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-blue-500/20 text-blue-300 light:bg-[#702B40]/15 light:text-[#702B40] border border-blue-500/40 light:border-[#702B40]/30">
                             <ShieldCheck className="w-3.5 h-3.5" />
                             {item.statusBadge}
                           </span>
                         )}
                       </div>
 
-                      <span className="text-xs font-mono text-cyan-400 light:text-cyan-700 flex items-center gap-1">
+                      <span className="text-xs font-mono text-cyan-400 light:text-[#5C6764] flex items-center gap-1">
                         <Calendar className="w-3.5 h-3.5" />
                         {item.date}
                       </span>
@@ -429,7 +429,7 @@ export function AchievementsSection() {
                     {/* Certificate Preview Image Frame (Clickable for zoom lightbox) */}
                     <div
                       onClick={() => handleOpenCertificate(index)}
-                      className="relative w-full aspect-[16/11] rounded-xl overflow-hidden bg-slate-950/80 light:bg-slate-100 border border-white/10 light:border-slate-300 group/img cursor-pointer transition-transform duration-300 hover:scale-[1.01]"
+                      className="relative w-full aspect-[16/11] rounded-xl overflow-hidden bg-slate-950/80 light:bg-[#F5F0E6] border border-white/10 light:border-[#89958B]/30 group/img cursor-pointer transition-transform duration-300 hover:scale-[1.01]"
                       title="Click to zoom certificate full-size"
                     >
                       <Image
@@ -442,8 +442,8 @@ export function AchievementsSection() {
                       />
 
                       {/* Hover Overlay with Zoom Icon */}
-                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white">
-                        <div className="px-3.5 py-1.5 rounded-full bg-cyan-500 text-black font-semibold text-xs flex items-center gap-1.5 shadow-lg">
+                      <div className="absolute inset-0 bg-black/60 light:bg-[#702B40]/30 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white">
+                        <div className="px-3.5 py-1.5 rounded-full bg-cyan-500 light:bg-[#FAF7F2] text-black light:text-[#252B29] font-semibold text-xs flex items-center gap-1.5 shadow-lg border light:border-[#702B40]/40">
                           <Maximize2 className="w-3.5 h-3.5" />
                           <span>View Full-Size</span>
                         </div>
@@ -452,23 +452,23 @@ export function AchievementsSection() {
 
                     {/* Title & Organization */}
                     <div>
-                      <h3 className="font-bold text-white light:text-slate-900 text-base group-hover:text-cyan-300 light:group-hover:text-cyan-700 transition-colors leading-snug">
+                      <h3 className="font-bold text-white light:text-[#252B29] text-base group-hover:text-cyan-300 light:group-hover:text-[#702B40] transition-colors leading-snug">
                         {item.title}
                       </h3>
-                      <div className="text-xs text-slate-400 light:text-slate-600 font-mono mt-1">
+                      <div className="text-xs text-slate-400 light:text-[#702B40] font-mono mt-1 font-medium">
                         {item.issuerOrEvent}
                       </div>
                     </div>
 
                     {/* Score / Status Highlight if present */}
                     {item.score && (
-                      <div className="inline-block px-3 py-1 rounded-lg bg-emerald-950/40 light:bg-emerald-50 border border-emerald-500/40 light:border-emerald-300 text-emerald-300 light:text-emerald-800 font-mono text-xs font-bold">
+                      <div className="inline-block px-3 py-1 rounded-lg bg-emerald-950/40 light:bg-[#702B40]/10 border border-emerald-500/40 light:border-[#702B40]/30 text-emerald-300 light:text-[#702B40] font-mono text-xs font-bold">
                         {item.score}
                       </div>
                     )}
 
                     {/* Description */}
-                    <p className="text-xs sm:text-sm text-slate-300 light:text-slate-700 leading-relaxed font-light">
+                    <p className="text-xs sm:text-sm text-slate-300 light:text-[#4A5551] leading-relaxed font-light">
                       {item.description}
                     </p>
 
@@ -478,7 +478,7 @@ export function AchievementsSection() {
                         {item.highlights.map((h, i) => (
                           <span
                             key={i}
-                            className="px-2 py-0.5 rounded-md bg-white/5 light:bg-slate-100 border border-white/10 light:border-slate-200 text-[10px] font-mono text-slate-300 light:text-slate-700"
+                            className="px-2 py-0.5 rounded-md bg-white/5 light:bg-[#F5F0E6] border border-white/10 light:border-[#89958B]/30 text-[10px] font-mono text-slate-300 light:text-[#252B29]"
                           >
                             {h}
                           </span>
@@ -488,8 +488,8 @@ export function AchievementsSection() {
                   </div>
 
                   {/* Card Bottom / Action Footer */}
-                  <div className="pt-4 mt-2 border-t border-white/10 light:border-slate-200 flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-1.5 text-[11px] font-mono text-cyan-400 light:text-cyan-700">
+                  <div className="pt-4 mt-2 border-t border-white/10 light:border-[#89958B]/25 flex items-center justify-between gap-2">
+                    <div className="flex items-center gap-1.5 text-[11px] font-mono text-cyan-400 light:text-[#5C6764]">
                       <FileCheck className="w-3.5 h-3.5 shrink-0" />
                       <span className="truncate max-w-[160px] sm:max-w-[190px]">
                         {item.credentialId || "Verified Credential"}
@@ -498,7 +498,7 @@ export function AchievementsSection() {
 
                     <button
                       onClick={() => handleOpenCertificate(index)}
-                      className="px-3 py-1 rounded-lg bg-white/5 light:bg-slate-100 hover:bg-cyan-500/20 light:hover:bg-cyan-100 text-cyan-300 light:text-cyan-800 border border-white/10 light:border-slate-300 hover:border-cyan-400/40 text-xs font-mono transition-all flex items-center gap-1 cursor-pointer shrink-0 font-medium"
+                      className="px-3 py-1 rounded-lg bg-white/5 light:bg-[#FAF7F2] hover:bg-cyan-500/20 light:hover:bg-[#702B40] text-cyan-300 light:text-[#702B40] light:hover:text-[#FAF7F2] border border-white/10 light:border-[#89958B]/40 light:hover:border-[#702B40] text-xs font-mono transition-all flex items-center gap-1 cursor-pointer shrink-0 font-medium"
                     >
                       <span>Preview</span>
                       <Maximize2 className="w-3 h-3" />

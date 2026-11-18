@@ -315,20 +315,20 @@ export function CommandPalette() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -10 }}
             transition={{ type: "spring", duration: 0.25 }}
-            className="relative w-full max-w-xl rounded-2xl border border-white/10 bg-[#0a0f1e]/95 text-slate-100 shadow-2xl overflow-hidden backdrop-blur-xl z-10"
+            className="relative w-full max-w-xl rounded-2xl border border-white/10 light:border-[#89958B]/35 bg-[#0a0f1e]/95 light:bg-[#FAF7F2] text-slate-100 light:text-[#252B29] shadow-2xl overflow-hidden backdrop-blur-xl z-10"
           >
             {/* Search Input Bar */}
-            <div className="flex items-center px-4 py-3.5 border-b border-white/10 gap-3">
-              <Search className="w-5 h-5 text-cyan-400 shrink-0" />
+            <div className="flex items-center px-4 py-3.5 border-b border-white/10 light:border-[#89958B]/25 gap-3">
+              <Search className="w-5 h-5 text-cyan-400 light:text-[#702B40] shrink-0" />
               <input
                 ref={inputRef}
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="Type a command, project, or section..."
-                className="w-full bg-transparent text-sm sm:text-base text-white placeholder-slate-400 focus:outline-none"
+                className="w-full bg-transparent text-sm sm:text-base text-white light:text-[#252B29] placeholder-slate-400 light:placeholder-[#89958B] focus:outline-none"
               />
-              <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-mono font-medium text-slate-400 bg-white/5 border border-white/10 rounded">
+              <kbd className="hidden sm:inline-flex items-center gap-1 px-2 py-0.5 text-[11px] font-mono font-medium text-slate-400 light:text-[#5C6764] bg-white/5 light:bg-[#F5F0E6] border border-white/10 light:border-[#89958B]/30 rounded">
                 ESC
               </kbd>
             </div>
@@ -336,7 +336,7 @@ export function CommandPalette() {
             {/* List Results */}
             <div className="max-h-[380px] overflow-y-auto p-2 space-y-1">
               {filteredItems.length === 0 ? (
-                <div className="p-8 text-center text-sm text-slate-400">
+                <div className="p-8 text-center text-sm text-slate-400 light:text-[#5C6764]">
                   No matching results found for &ldquo;{query}&rdquo;
                 </div>
               ) : (
@@ -347,33 +347,33 @@ export function CommandPalette() {
                       key={item.id}
                       onClick={item.action}
                       onMouseEnter={() => setSelectedIndex(idx)}
-                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-sm transition-colors ${
+                      className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-left text-sm transition-colors cursor-pointer ${
                         isSelected
-                          ? "bg-cyan-500/15 text-white border border-cyan-500/30"
-                          : "text-slate-300 hover:bg-white/5 border border-transparent"
+                          ? "bg-cyan-500/15 light:bg-[#702B40]/15 text-white light:text-[#252B29] border border-cyan-500/30 light:border-[#702B40]/30"
+                          : "text-slate-300 light:text-[#4A5551] hover:bg-white/5 light:hover:bg-[#F5F0E6] border border-transparent"
                       }`}
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <div
                           className={`p-2 rounded-lg ${
-                            isSelected ? "bg-cyan-500/20 text-cyan-300" : "bg-white/5 text-slate-400"
+                            isSelected ? "bg-cyan-500/20 light:bg-[#702B40]/20 text-cyan-300 light:text-[#702B40]" : "bg-white/5 light:bg-[#F5F0E6] text-slate-400 light:text-[#5C6764]"
                           }`}
                         >
                           {item.icon}
                         </div>
                         <div className="truncate">
-                          <div className="font-medium text-white flex items-center gap-2">
+                          <div className="font-medium text-white light:text-[#252B29] flex items-center gap-2">
                             <span>{item.title}</span>
-                            <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-white/5 text-slate-400 border border-white/5">
+                            <span className="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-white/5 light:bg-[#F5F0E6] text-slate-400 light:text-[#5C6764] border border-white/5 light:border-[#89958B]/25">
                               {item.category}
                             </span>
                           </div>
-                          <div className="text-xs text-slate-400 truncate">{item.description}</div>
+                          <div className="text-xs text-slate-400 light:text-[#5C6764] truncate">{item.description}</div>
                         </div>
                       </div>
                       <ArrowRight
                         className={`w-4 h-4 shrink-0 transition-transform ${
-                          isSelected ? "opacity-100 translate-x-0.5 text-cyan-400" : "opacity-0"
+                          isSelected ? "opacity-100 translate-x-0.5 text-cyan-400 light:text-[#702B40]" : "opacity-0"
                         }`}
                       />
                     </button>
@@ -383,13 +383,13 @@ export function CommandPalette() {
             </div>
 
             {/* Footer Status Bar */}
-            <div className="flex items-center justify-between px-4 py-2.5 border-t border-white/5 bg-white/[0.02] text-[11px] text-slate-400 font-mono">
+            <div className="flex items-center justify-between px-4 py-2.5 border-t border-white/5 light:border-[#89958B]/25 bg-white/[0.02] light:bg-[#F5F0E6] text-[11px] text-slate-400 light:text-[#5C6764] font-mono">
               <div className="flex items-center gap-3">
                 <span>↑↓ Navigate</span>
                 <span>↵ Select</span>
                 <span>ESC Close</span>
               </div>
-              <div className="text-cyan-400/80">Command Palette Active</div>
+              <div className="text-cyan-400/80 light:text-[#702B40]">Command Palette Active</div>
             </div>
           </motion.div>
         </div>

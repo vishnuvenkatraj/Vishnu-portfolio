@@ -125,8 +125,8 @@ export function CategorizedSkills() {
             onClick={() => setSelectedCategory("All")}
             className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
               selectedCategory === "All"
-                ? "bg-cyan-500 light:bg-cyan-600 text-black light:text-white font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"
-                : "bg-white/5 light:bg-slate-100 text-slate-300 light:text-slate-700 hover:text-white light:hover:text-black hover:bg-white/10 light:hover:bg-slate-200 border border-white/10 light:border-slate-300"
+                ? "bg-cyan-500 light:bg-[#702B40] text-black light:text-[#FAF7F2] font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)] light:shadow-[0_2px_8px_rgba(112,43,64,0.25)]"
+                : "bg-white/5 light:bg-[#FAF7F2] text-slate-300 light:text-[#252B29] hover:text-white light:hover:text-[#702B40] hover:bg-white/10 light:hover:bg-[#F5F0E6] border border-white/10 light:border-[#89958B]/35"
             }`}
           >
             All Disciplines ({skillsData.length})
@@ -141,8 +141,8 @@ export function CategorizedSkills() {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer ${
                   isSelected
-                    ? "bg-cyan-500 light:bg-cyan-600 text-black light:text-white font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)]"
-                    : "bg-white/5 light:bg-slate-100 text-slate-300 light:text-slate-700 hover:text-white light:hover:text-black hover:bg-white/10 light:hover:bg-slate-200 border border-white/10 light:border-slate-300"
+                    ? "bg-cyan-500 light:bg-[#702B40] text-black light:text-[#FAF7F2] font-semibold shadow-[0_0_15px_rgba(6,182,212,0.4)] light:shadow-[0_2px_8px_rgba(112,43,64,0.25)]"
+                    : "bg-white/5 light:bg-[#FAF7F2] text-slate-300 light:text-[#252B29] hover:text-white light:hover:text-[#702B40] hover:bg-white/10 light:hover:bg-[#F5F0E6] border border-white/10 light:border-[#89958B]/35"
                 }`}
               >
                 {cat.label} ({count})
@@ -153,18 +153,18 @@ export function CategorizedSkills() {
 
         {/* Live Search Input */}
         <div className="relative w-full md:w-72 shrink-0">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 light:text-slate-500" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 light:text-[#89958B]" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search technologies..."
-            className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-xl bg-white/5 light:bg-white border border-white/10 light:border-slate-300 text-white light:text-slate-900 placeholder-slate-400 light:placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400/50 light:shadow-sm transition-all"
+            className="w-full pl-10 pr-4 py-2 text-xs sm:text-sm rounded-xl bg-white/5 light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/40 text-white light:text-[#252B29] placeholder-slate-400 light:placeholder-[#5E6A66] focus:outline-none focus:border-cyan-400 light:focus:border-[#702B40] focus:ring-1 focus:ring-cyan-400/50 light:focus:ring-[#702B40]/30 light:shadow-sm transition-all"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 light:text-slate-600 hover:text-white light:hover:text-black cursor-pointer"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-slate-400 light:text-[#702B40] hover:text-white light:hover:text-[#582031] cursor-pointer"
             >
               Clear
             </button>
@@ -174,8 +174,8 @@ export function CategorizedSkills() {
 
       {/* Skills Grid */}
       {filteredSkills.length === 0 ? (
-        <div className="p-12 text-center rounded-2xl bg-white/[0.02] border border-white/10">
-          <p className="text-slate-400 text-sm">
+        <div className="p-12 text-center rounded-2xl bg-white/[0.02] light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/35">
+          <p className="text-slate-400 light:text-[#4A5551] text-sm">
             No technologies found matching &ldquo;{searchQuery}&rdquo;
           </p>
         </div>
@@ -184,7 +184,7 @@ export function CategorizedSkills() {
           {filteredSkills.map((skill) => (
             <div
               key={skill.id}
-              className="p-5 rounded-2xl bg-white/[0.02] light:bg-white hover:bg-white/[0.05] light:hover:bg-slate-50 border border-white/10 light:border-slate-200 hover:border-cyan-500/40 light:hover:border-cyan-500/50 light:shadow-sm hover:light:shadow-md transition-all duration-300 group flex flex-col justify-between relative overflow-hidden"
+              className="p-5 rounded-2xl bg-white/[0.02] light:bg-[#FAF7F2] hover:bg-white/[0.05] light:hover:bg-[#FFFFFF] border border-white/10 light:border-[#89958B]/35 hover:border-cyan-500/40 light:hover:border-[#702B40]/40 light:shadow-sm hover:light:shadow-md transition-all duration-300 group flex flex-col justify-between relative overflow-hidden"
             >
               {/* Subtle accent border glow on top */}
               <div
@@ -197,16 +197,16 @@ export function CategorizedSkills() {
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div className="flex items-center gap-3">
                     <div
-                      className="p-2.5 rounded-xl bg-white/5 light:bg-slate-100 border border-white/10 light:border-slate-200 group-hover:scale-105 transition-transform"
+                      className="p-2.5 rounded-xl bg-white/5 light:bg-[#F5F0E6] border border-white/10 light:border-[#89958B]/30 group-hover:scale-105 transition-transform"
                       style={{ color: skill.color || "#38bdf8" }}
                     >
                       {SKILL_BRAND_ICONS[skill.id] || ICON_MAP[skill.iconName] || <Code2 className="w-5 h-5" />}
                     </div>
                     <div>
-                      <h4 className="font-semibold text-white light:text-slate-900 text-sm group-hover:text-cyan-300 light:group-hover:text-cyan-700 transition-colors">
+                      <h4 className="font-semibold text-white light:text-[#252B29] text-sm group-hover:text-cyan-300 light:group-hover:text-[#702B40] transition-colors">
                         {skill.name}
                       </h4>
-                      <span className="text-[11px] font-mono text-slate-400 light:text-slate-500">
+                      <span className="text-[11px] font-mono text-slate-400 light:text-[#5E6A66]">
                         {skill.categoryLabel}
                       </span>
                     </div>
@@ -216,12 +216,12 @@ export function CategorizedSkills() {
                   <span
                     className={`text-[10px] font-mono px-2.5 py-0.5 rounded-full border whitespace-nowrap ${
                       skill.level === "Comfortable"
-                        ? "bg-emerald-500/10 text-emerald-300 light:text-emerald-800 border-emerald-500/30 light:border-emerald-300"
+                        ? "bg-emerald-500/10 light:bg-[#89958B]/15 text-emerald-300 light:text-[#252B29] border-emerald-500/30 light:border-[#89958B]/40"
                         : skill.level === "Familiar"
-                        ? "bg-cyan-500/10 text-cyan-300 light:text-cyan-800 border-cyan-500/30 light:border-cyan-300"
+                        ? "bg-cyan-500/10 light:bg-[#702B40]/10 text-cyan-300 light:text-[#702B40] border-cyan-500/30 light:border-[#702B40]/30"
                         : skill.level === "Currently Learning"
-                        ? "bg-amber-500/10 text-amber-300 light:text-amber-800 border-amber-500/30 light:border-amber-300"
-                        : "bg-purple-500/10 text-purple-300 light:text-purple-800 border-purple-500/30 light:border-purple-300"
+                        ? "bg-amber-500/10 light:bg-[#89958B]/15 text-amber-300 light:text-[#702B40] border-amber-500/30 light:border-[#89958B]/35"
+                        : "bg-purple-500/10 light:bg-[#702B40]/10 text-purple-300 light:text-[#702B40] border-purple-500/30 light:border-[#702B40]/30"
                     }`}
                   >
                     {skill.level}
@@ -229,20 +229,20 @@ export function CategorizedSkills() {
                 </div>
 
                 {/* Description */}
-                <p className="text-xs text-slate-400 light:text-slate-600 leading-relaxed font-light">
+                <p className="text-xs text-slate-400 light:text-[#4A5551] leading-relaxed font-normal">
                   {skill.description}
                 </p>
               </div>
 
               {/* Bottom Tag */}
-              <div className="mt-4 pt-3 border-t border-white/5 light:border-slate-200 flex items-center justify-between text-[11px] font-mono text-slate-500 light:text-slate-600">
-                <span className="flex items-center gap-1.5 text-slate-400 light:text-slate-600">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 light:text-cyan-600" />
+              <div className="mt-4 pt-3 border-t border-white/5 light:border-[#89958B]/25 flex items-center justify-between text-[11px] font-mono text-slate-500 light:text-[#4A5551]">
+                <span className="flex items-center gap-1.5 text-slate-400 light:text-[#4A5551]">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 light:text-[#702B40]" />
+                  <span>Production Ready</span>
+                </span>
+                <span className="text-slate-400 light:text-[#5E6A66]">
                   {skill.categoryLabel}
                 </span>
-                {skill.featuredInSandbox && (
-                  <span className="text-cyan-400/80 light:text-cyan-700 font-medium">In Physics Sandbox</span>
-                )}
               </div>
             </div>
           ))}

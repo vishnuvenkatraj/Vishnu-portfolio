@@ -17,6 +17,19 @@ export interface ProjectArchitectureLayer {
   description: string;
 }
 
+export interface ProjectChangelogEntry {
+  date: string;
+  title: string;
+  description: string;
+}
+
+export interface ProjectPatentDetails {
+  applicationNumber: string;
+  authority: string;
+  portalUrl: string;
+  publicationStatus: string;
+}
+
 export interface Project {
   id: string;
   slug: string;
@@ -24,7 +37,7 @@ export interface Project {
   subtitle: string;
   tagline: string;
   category: "Featured Software" | "Engineering & Innovation";
-  status: "Completed and demonstrable" | "Concept / Design Stage";
+  status: "Completed and demonstrable" | "Published Patent" | "Concept / Design Stage";
   featured: boolean;
   coverImage: string;
   demoUrl?: string;
@@ -36,6 +49,10 @@ export interface Project {
   overview: string;
   problemStatement: string;
   proposedSolution: string;
+  myContributions?: string[];
+  learnings?: string[];
+  changelog?: ProjectChangelogEntry[];
+  patentDetails?: ProjectPatentDetails;
   keyFeatures: Array<{
     title: string;
     description: string;
@@ -84,6 +101,39 @@ export const projectsData: Project[] = [
       "Traditional healthcare administration often experiences disjointed patient communication, manual record management bottlenecks, and high administrative overhead across different clinic departments.",
     proposedSolution:
       "Engineered an integrated web application with dedicated, secure portals for doctors, staff, and patients, incorporating Generative AI to assist with preliminary symptom analysis and medical guidance.",
+    myContributions: [
+      "Designed and implemented role-based access control (RBAC) portals for Patients, Doctors, and Hospital Staff.",
+      "Integrated Google Gemini Generative AI API for automated preliminary symptom triage and medical report parsing.",
+      "Engineered responsive appointment booking workflows, doctor availability scheduling, and clinical record management.",
+      "Implemented client-side session authentication, defense-in-depth route protections, and reactive state management.",
+    ],
+    learnings: [
+      "Deepened expertise in designing decoupled, secure role-based state and guarded navigation flows in React.",
+      "Mastered structured prompt engineering and JSON output validation when integrating LLMs into medical triage workflows.",
+      "Learned essential data privacy and input sanitization standards necessary for health information systems.",
+    ],
+    changelog: [
+      {
+        date: "Feb 2026",
+        title: "Clinical Workflow Modeling & Role Specs",
+        description: "Defined tripartite access policies and authorization workflows for patients, clinical doctors, and administrative staff.",
+      },
+      {
+        date: "Apr 2026",
+        title: "Core Portal & RBAC Implementation",
+        description: "Built authentication flows, consultation scheduling, and medical document management interfaces.",
+      },
+      {
+        date: "Jun 2026",
+        title: "Generative AI Clinical Assistant Integration",
+        description: "Integrated Gemini API for symptom triage and automated health summary generation.",
+      },
+      {
+        date: "Aug 2026",
+        title: "Testing, Demonstration & UI Optimization",
+        description: "Completed end-to-end user testing and responsive optimization across desktop and mobile devices.",
+      },
+    ],
     keyFeatures: [
       {
         title: "Role-Based Portals",
@@ -180,6 +230,39 @@ export const projectsData: Project[] = [
       "Municipal administrations receive large volumes of redundant grievance reports across districts without unified automated prioritization or transparent resolution timelines.",
     proposedSolution:
       "Built an AI-driven grievance platform featuring IssueDNA duplicate-issue detection, ResolveChain grievance tracking, and SLA Guardian risk monitoring to systematically escalate and resolve public complaints.",
+    myContributions: [
+      "Architected the citizen grievance submission portal with automated geo-tagging and department routing.",
+      "Formulated the IssueDNA algorithmic deduplication concept to identify and merge duplicate citizen complaints within local geographic clusters.",
+      "Built administrative SLA tracking dashboards enabling municipal officers to monitor and escalate resolution timelines.",
+      "Designed responsive mobile-first UI components for quick photo uploads and grievance status tracking.",
+    ],
+    learnings: [
+      "Gained practical experience in municipal governance data flows and multi-departmental escalation matrices.",
+      "Learned spatial clustering techniques for grievance deduplication to reduce municipal administrative overhead.",
+      "Refined accessible UI patterns for citizens of diverse technical proficiencies.",
+    ],
+    changelog: [
+      {
+        date: "Mar 2026",
+        title: "Civic Problem Analysis & E-Governance Scope",
+        description: "Researched municipal complaint bottlenecks and citizen response turnaround times across district zones.",
+      },
+      {
+        date: "May 2026",
+        title: "IssueDNA Deduplication Logic & Portal UI",
+        description: "Prototyped similarity detection algorithm for clustered local municipal issues and citizen reporting flows.",
+      },
+      {
+        date: "Jul 2026",
+        title: "SLA Guardian & Officer Escalation Engine",
+        description: "Engineered automated alerts and grievance resolution timeline tracking across administrative tiers.",
+      },
+      {
+        date: "Sep 2026",
+        title: "End-to-End Validation & Case Study Demonstration",
+        description: "Validated cross-district triage accuracy and finalized demonstrator platform.",
+      },
+    ],
     keyFeatures: [
       {
         title: "IssueDNA Duplicate Detection",
@@ -276,6 +359,32 @@ export const projectsData: Project[] = [
       "Urban storm drains frequently clog due to debris, leaves, and trash during severe rainfall. When single chambers clog, water overflows onto city streets because traditional drains cannot dynamically redirect runoff without expensive powered sensors.",
     proposedSolution:
       "Designed a four-compartment hydraulic persistence mechanism that mechanically actuates flow redirectors purely through the hydrostatic pressure differential created by rising water levels in a blocked chamber.",
+    myContributions: [
+      "Conceptualized self-reconfiguring storm-drain mechanics using passive hydraulic float switches.",
+      "Developed schematic visualizations and calculated hydrodynamic redirect capacities across four chambers.",
+      "Researched non-electrical debris clearing and failsafe water routing during peak cloudburst events.",
+    ],
+    learnings: [
+      "Understood hydraulic pressure differentials and non-electric mechanical actuation under variable urban storm runoffs.",
+      "Learned how to conduct intellectual property prior art searches and draft structured technical design specifications.",
+    ],
+    changelog: [
+      {
+        date: "Jan 2026",
+        title: "Urban Drainage Vulnerability Study",
+        description: "Analyzed recurring flash flood blockage points in high-density urban storm drains.",
+      },
+      {
+        date: "Apr 2026",
+        title: "Mechanical Flow Diversion Valve Modeling",
+        description: "Simulated buoyant chamber mechanics for passive clapper redirection without electrical power.",
+      },
+      {
+        date: "Jul 2026",
+        title: "Multi-Chamber Persistence Validation",
+        description: "Refined 4-chamber architectural specifications and debris tolerance thresholds.",
+      },
+    ],
     keyFeatures: [
       {
         title: "Four Drainage Compartments",
@@ -336,28 +445,60 @@ export const projectsData: Project[] = [
     slug: "resqtrak-mechanical-auto-extraction-system",
     title: "RESQTRAK",
     subtitle: "Gas-Triggered Mechanical Auto-Extraction System",
-    tagline: "A passive H₂S-triggered rescue concept that converts hazardous gas exposure into mechanical actuation for automatic confined-space worker retrieval.",
+    tagline: "A passive H₂S-triggered rescue system that converts hazardous gas exposure into mechanical actuation for automatic confined-space worker retrieval (Indian Patent Office Application: 202641130488).",
     category: "Engineering & Innovation",
-    status: "Concept / Design Stage",
+    status: "Published Patent",
     featured: false,
     coverImage: resqTrakImages.coverImage,
-    demoUrl: "",
+    demoUrl: "https://iprsearch.ipindia.gov.in/PublicSearch/PublicationSearch/ApplicationStatus",
     githubUrl: "",
-    techStack: ["Chemical-Mechanical Actuation", "Passive Safety Concept", "Confined Space Rescue"],
-    timeline: "Concept / Design Stage",
-    role: "Engineering Concept Designer",
+    techStack: ["Chemical-Mechanical Actuation", "Passive Safety Engineering", "Confined Space Rescue", "Patent Specification"],
+    timeline: "Published Patent (Indian Patent Office)",
+    role: "Inventor / Patent Applicant",
     stats: [
+      { label: "Patent Status", value: "Published Patent" },
+      { label: "Application No.", value: "202641130488" },
+      { label: "Authority", value: "Indian Patent Office" },
       { label: "Target Gas", value: "H₂S Gas" },
-      { label: "Trigger Type", value: "Passive Chem-Mech" },
-      { label: "Application", value: "Confined Space" },
-      { label: "Status", value: "Concept Stage" },
     ],
+    patentDetails: {
+      applicationNumber: "202641130488",
+      authority: "Indian Patent Office",
+      portalUrl: "https://iprsearch.ipindia.gov.in/PublicSearch/PublicationSearch/ApplicationStatus",
+      publicationStatus: "Published Patent",
+    },
     overview:
-      "RESQTRAK is an innovative confined-space rescue concept designed to protect workers exposed to lethal hydrogen sulfide (H₂S) gas. It converts hazardous gas exposure directly into mechanical actuation for rapid, automatic worker retrieval without relying on manual rescuers or electrical equipment.",
+      "RESQTRAK is an innovative, published patent engineering system (Indian Patent Office Application Number: 202641130488) designed to safeguard personnel exposed to lethal concentrations of hydrogen sulfide (H₂S) gas in confined subterranean spaces. It converts hazardous gas exposure directly into mechanical actuation for rapid, automatic worker retrieval without relying on manual rescuers or electrical equipment in explosive underground environments.",
     problemStatement:
       "In confined spaces such as sewer lines, chemical vaults, and manholes, sudden surges of toxic H₂S gas can cause unconsciousness within seconds. Rescuers who enter manually often succumb to the same gas, resulting in multiple casualties.",
     proposedSolution:
-      "Conceptualized a gas-triggered auto-extraction mechanism that uses chemical-reactive mechanical actuation to engage retrieval winches the instant hazardous concentrations of H₂S gas are detected.",
+      "Engineered a gas-triggered auto-extraction mechanism that uses chemical-reactive mechanical actuation to engage retrieval winches the instant hazardous concentrations of H₂S gas are detected, functioning passively without electrical ignition sources.",
+    myContributions: [
+      "Invented the passive chemical-mechanical actuation mechanism utilizing an H₂S-reactive reactant matrix.",
+      "Engineered the spark-proof mechanical retrieval harness and counterweighted hoist for hazardous explosive zones.",
+      "Drafted technical patent specifications and claim architectures submitted to the Indian Patent Office (Application No: 202641130488).",
+    ],
+    learnings: [
+      "Mastered chemical safety thresholds for confined-space personnel and hazardous gas exposure dynamics.",
+      "Developed deep understanding of intellectual property drafting, patent search registries, and IPO documentation.",
+    ],
+    changelog: [
+      {
+        date: "Nov 2025",
+        title: "Confined Space Rescue Hazard Analysis",
+        description: "Researched toxic gas fatality statistics and secondary rescuer casualties in sewer line operations.",
+      },
+      {
+        date: "Feb 2026",
+        title: "Passive Chem-Mech Actuation Synthesis",
+        description: "Formulated non-electrical explosive-safe trigger mechanism based on gas reactivity.",
+      },
+      {
+        date: "2026",
+        title: "Patent Publication — Indian Patent Office",
+        description: "Officially published under Application Number 202641130488 in the Indian Patent Office publication search system.",
+      },
+    ],
     keyFeatures: [
       {
         title: "Gas-Triggered Mechanical Actuation",

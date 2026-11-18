@@ -17,6 +17,10 @@ import {
   Linkedin,
   Mail,
   Sparkles,
+  Award,
+  GraduationCap,
+  CheckCircle2,
+  Briefcase,
 } from "lucide-react";
 
 export function Hero() {
@@ -61,7 +65,7 @@ export function Hero() {
           >
             {/* Availability Pill */}
             <motion.div variants={itemVariants} className="inline-flex items-center gap-2">
-              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 light:bg-cyan-50 border border-cyan-500/30 light:border-cyan-300 text-xs font-mono text-cyan-300 light:text-cyan-800 backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.15)] font-semibold">
+              <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/60 light:bg-[#FAF7F2] border border-cyan-500/30 light:border-[#89958B]/40 text-xs font-mono text-cyan-300 light:text-[#702B40] backdrop-blur-md shadow-[0_0_15px_rgba(6,182,212,0.15)] light:shadow-sm font-semibold">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
@@ -72,13 +76,13 @@ export function Hero() {
 
             {/* Editable Name & Role Placeholder */}
             <motion.div variants={itemVariants} className="space-y-2">
-              <div className="text-sm uppercase tracking-widest text-cyan-400 light:text-cyan-700 font-mono font-semibold flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-cyan-400 light:text-cyan-600" />
+              <div className="text-sm uppercase tracking-widest text-cyan-400 light:text-[#702B40] font-mono font-semibold flex items-center gap-2">
+                <Sparkles className="w-4 h-4 text-cyan-400 light:text-[#702B40]" />
                 <span>{profileData.role}</span>
               </div>
-              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white light:text-slate-900 leading-[1.08]">
+              <h1 className="text-4xl sm:text-6xl xl:text-7xl font-extrabold tracking-tight text-white light:text-[#252B29] leading-[1.08]">
                 Hi, I&apos;m{" "}
-                <span className="text-gradient-cyan drop-shadow-[0_0_35px_rgba(56,189,248,0.25)]">
+                <span className="text-gradient-cyan drop-shadow-[0_0_35px_rgba(56,189,248,0.25)] light:drop-shadow-none">
                   {profileData.name}
                 </span>
               </h1>
@@ -87,14 +91,14 @@ export function Hero() {
             {/* Headline & Short Bio */}
             <motion.p
               variants={itemVariants}
-              className="text-base sm:text-lg text-slate-300 dark:text-slate-300 light:text-slate-700 max-w-2xl leading-relaxed font-light"
+              className="text-base sm:text-lg text-slate-300 dark:text-slate-300 light:text-[#252B29] max-w-2xl leading-relaxed font-light"
             >
               {profileData.headline}
             </motion.p>
 
             <motion.p
               variants={itemVariants}
-              className="text-sm text-slate-400 dark:text-slate-400 light:text-slate-600 max-w-xl leading-relaxed"
+              className="text-sm text-slate-400 dark:text-slate-400 light:text-[#4A5551] max-w-xl leading-relaxed font-normal"
             >
               {profileData.shortBio}
             </motion.p>
@@ -108,7 +112,7 @@ export function Hero() {
                 onClick={() => scrollToElement("projects")}
                 className="cursor-pointer"
               >
-                <div className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-black font-semibold text-sm shadow-[0_0_25px_rgba(6,182,212,0.4)] transition-all duration-300 group">
+                <div className="flex items-center gap-2 px-6 py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 light:from-[#702B40] light:to-[#8B3751] light:hover:from-[#582031] light:hover:to-[#702B40] text-black light:text-[#FAF7F2] font-semibold text-sm shadow-[0_0_25px_rgba(6,182,212,0.4)] light:shadow-[0_4px_16px_rgba(112,43,64,0.3)] transition-all duration-300 group">
                   <span>Explore Projects</span>
                   <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                 </div>
@@ -121,31 +125,73 @@ export function Hero() {
                 rel="noopener noreferrer"
                 className="cursor-pointer"
               >
-                <div className="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.04] light:bg-white hover:bg-white/[0.08] light:hover:bg-slate-50 text-white light:text-slate-800 border border-white/10 light:border-slate-300 hover:border-cyan-500/40 text-sm font-medium transition-all duration-300 backdrop-blur-md light:shadow-sm group">
-                  <Download className="w-4 h-4 text-cyan-400 light:text-cyan-600 transition-transform group-hover:-translate-y-0.5" />
+                <div className="flex items-center gap-2 px-5 py-3.5 rounded-xl bg-white/[0.04] light:bg-[#FAF7F2] hover:bg-white/[0.08] light:hover:bg-[#F5F0E6] text-white light:text-[#252B29] border border-white/10 light:border-[#89958B]/40 hover:border-cyan-500/40 light:hover:border-[#702B40]/50 text-sm font-medium transition-all duration-300 backdrop-blur-md light:shadow-sm group">
+                  <Download className="w-4 h-4 text-cyan-400 light:text-[#702B40] transition-transform group-hover:-translate-y-0.5" />
                   <span>Download Resume</span>
                 </div>
               </MagneticButton>
 
               <Link
                 href="/resume"
-                className="flex items-center gap-1.5 px-4 py-3.5 rounded-xl bg-white/[0.03] light:bg-white hover:bg-white/[0.08] light:hover:bg-slate-50 text-slate-300 light:text-slate-700 hover:text-white light:hover:text-black border border-white/10 light:border-slate-300 hover:border-cyan-500/30 text-xs font-mono transition-all duration-300 light:shadow-sm"
+                className="flex items-center gap-1.5 px-4 py-3.5 rounded-xl bg-white/[0.03] light:bg-[#FAF7F2] hover:bg-white/[0.08] light:hover:bg-[#F5F0E6] text-slate-300 light:text-[#252B29] hover:text-white light:hover:text-[#702B40] border border-white/10 light:border-[#89958B]/40 hover:border-cyan-500/30 light:hover:border-[#702B40]/50 text-xs font-mono transition-all duration-300 light:shadow-sm"
                 title="View formatted web resume"
               >
-                <FileText className="w-3.5 h-3.5 text-cyan-400 light:text-cyan-600" />
+                <FileText className="w-3.5 h-3.5 text-cyan-400 light:text-[#702B40]" />
                 <span>View Online</span>
               </Link>
             </motion.div>
 
+            {/* Recruiter-Friendly Fast Facts Snapshot */}
+            <motion.div
+              variants={itemVariants}
+              className="p-3.5 rounded-2xl bg-white/[0.02] light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/35 light:shadow-sm backdrop-blur-md grid grid-cols-2 sm:grid-cols-4 gap-2.5"
+            >
+              <div className="space-y-0.5">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 light:text-[#5C6764] flex items-center gap-1 font-semibold">
+                  <GraduationCap className="w-3 h-3 text-cyan-400 light:text-[#702B40]" />
+                  <span>Degree</span>
+                </div>
+                <div className="text-xs font-bold text-white light:text-[#252B29]">B.Tech CSBS</div>
+                <div className="text-[10px] font-mono text-cyan-300 light:text-[#702B40]">CGPA: 8.10 / 10</div>
+              </div>
+
+              <div className="space-y-0.5">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 light:text-[#5C6764] flex items-center gap-1 font-semibold">
+                  <Award className="w-3 h-3 text-amber-400 light:text-[#702B40]" />
+                  <span>Patent</span>
+                </div>
+                <div className="text-xs font-bold text-white light:text-[#252B29]">Published Patent</div>
+                <div className="text-[10px] font-mono text-amber-300 light:text-[#702B40]">IPO #202641130488</div>
+              </div>
+
+              <div className="space-y-0.5">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 light:text-[#5C6764] flex items-center gap-1 font-semibold">
+                  <Briefcase className="w-3 h-3 text-emerald-400 light:text-[#2E5E44]" />
+                  <span>Internship</span>
+                </div>
+                <div className="text-xs font-bold text-white light:text-[#252B29]">Embedded Dev</div>
+                <div className="text-[10px] font-mono text-emerald-300 light:text-[#2E5E44]">Crapersoft</div>
+              </div>
+
+              <div className="space-y-0.5">
+                <div className="text-[10px] font-mono uppercase tracking-wider text-slate-400 light:text-[#5C6764] flex items-center gap-1 font-semibold">
+                  <CheckCircle2 className="w-3 h-3 text-indigo-400 light:text-[#702B40]" />
+                  <span>Availability</span>
+                </div>
+                <div className="text-xs font-bold text-white light:text-[#252B29]">Full-Time / Intern</div>
+                <div className="text-[10px] font-mono text-emerald-400 light:text-[#2E5E44]">Immediate</div>
+              </div>
+            </motion.div>
+
             {/* Social Media Links */}
             <motion.div variants={itemVariants} className="flex items-center gap-4 pt-4">
-              <span className="text-xs font-mono text-slate-400 light:text-slate-600">CONNECT:</span>
+              <span className="text-xs font-mono text-slate-400 light:text-[#5E6A66]">CONNECT:</span>
               <div className="flex items-center gap-2">
                 <a
                   href={profileData.socials.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-white/5 light:bg-white border border-white/10 light:border-slate-300 text-slate-300 light:text-slate-700 hover:text-cyan-400 light:hover:text-cyan-600 hover:border-cyan-400/50 hover:bg-white/10 light:hover:bg-slate-100 light:shadow-sm transition-all"
+                  className="p-2.5 rounded-lg bg-white/5 light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/40 text-slate-300 light:text-[#252B29] hover:text-cyan-400 light:hover:text-[#702B40] hover:border-cyan-400/50 light:hover:border-[#702B40]/50 hover:bg-white/10 light:hover:bg-[#F5F0E6] light:shadow-sm transition-all"
                   aria-label="GitHub Profile"
                   title="GitHub Profile"
                 >
@@ -155,7 +201,7 @@ export function Hero() {
                   href={profileData.socials.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-white/5 light:bg-white border border-white/10 light:border-slate-300 text-slate-300 light:text-slate-700 hover:text-cyan-400 light:hover:text-cyan-600 hover:border-cyan-400/50 hover:bg-white/10 light:hover:bg-slate-100 light:shadow-sm transition-all"
+                  className="p-2.5 rounded-lg bg-white/5 light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/40 text-slate-300 light:text-[#252B29] hover:text-cyan-400 light:hover:text-[#702B40] hover:border-cyan-400/50 light:hover:border-[#702B40]/50 hover:bg-white/10 light:hover:bg-[#F5F0E6] light:shadow-sm transition-all"
                   aria-label="LinkedIn Profile"
                   title="LinkedIn Profile"
                 >
@@ -165,7 +211,7 @@ export function Hero() {
                   href={profileData.socials.hackerrank}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-2.5 rounded-lg bg-white/5 light:bg-white border border-white/10 light:border-slate-300 text-slate-300 light:text-slate-700 hover:text-emerald-400 light:hover:text-emerald-600 hover:border-emerald-400/50 hover:bg-white/10 light:hover:bg-slate-100 light:shadow-sm transition-all"
+                  className="p-2.5 rounded-lg bg-white/5 light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/40 text-slate-300 light:text-[#252B29] hover:text-emerald-400 light:hover:text-[#702B40] hover:border-emerald-400/50 light:hover:border-[#702B40]/50 hover:bg-white/10 light:hover:bg-[#F5F0E6] light:shadow-sm transition-all"
                   aria-label="HackerRank Profile"
                   title="HackerRank Profile"
                 >
@@ -173,7 +219,7 @@ export function Hero() {
                 </a>
                 <a
                   href={`mailto:${profileData.socials.email}`}
-                  className="p-2.5 rounded-lg bg-white/5 light:bg-white border border-white/10 light:border-slate-300 text-slate-300 light:text-slate-700 hover:text-cyan-400 light:hover:text-cyan-600 hover:border-cyan-400/50 hover:bg-white/10 light:hover:bg-slate-100 light:shadow-sm transition-all"
+                  className="p-2.5 rounded-lg bg-white/5 light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/40 text-slate-300 light:text-[#252B29] hover:text-cyan-400 light:hover:text-[#702B40] hover:border-cyan-400/50 light:hover:border-[#702B40]/50 hover:bg-white/10 light:hover:bg-[#F5F0E6] light:shadow-sm transition-all"
                   aria-label="Send Email"
                   title="Send Email"
                 >

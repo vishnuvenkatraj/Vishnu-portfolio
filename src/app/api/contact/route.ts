@@ -75,6 +75,34 @@ export async function POST(request: Request) {
       );
     }
 
+    // 0. Honeypot & bot detection check
+    if (body && typeof body === "object") {
+      const payloadObj = body as Record<string, unknown>;
+
+      // Honeypot trap: if website field is populated, silently acknowledge without db storage
+      if (typeof payloadObj.website === "string" && payloadObj.website.trim().length > 0) {
+        console.warn(`[Contact API] Honeypot triggered from IP: ${ipAddress}`);
+        return NextResponse.json(
+          {
+            success: true,
+            message: "Thank you! Your message has been received.",
+          },
+          { status: 200 }
+        );
+      }
+
+      // Timing check: flag automated bot submissions faster than 1200ms
+      if (typeof payloadObj._elapsed === "number" && payloadObj._elapsed < 1200) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: "Form was submitted abnormally fast. Please review your message.",
+          },
+          { status: 400 }
+        );
+      }
+    }
+
     // 1. Validate and sanitize all incoming fields
     const { isValid, errors, sanitized } = validateAndSanitizeContactInput(body);
 
@@ -89,42 +117,47 @@ export async function POST(request: Request) {
       );
     }
 
-    // 3. Connect to MongoDB Atlas securely
-    try {
-      await connectToDatabase();
-    } catch (dbError) {
-      console.error("[Contact API] Database connection failure:", dbError);
-      return NextResponse.json(
-        {
-          success: false,
-          error:
-            "Database service is currently unreachable. Please verify MONGODB_URI or try again shortly.",
-        },
-        { status: 503 }
+    // 3. Connect to MongoDB Atlas if configured, or gracefully log in fallback mode
+    let savedToDatabase = false;
+    let savedId: string | undefined = undefined;
+
+    if (process.env.MONGODB_URI && process.env.MONGODB_URI.trim() !== "") {
+      try {
+        await connectToDatabase();
+        const newContact = await ContactMessage.create({
+          name: sanitized.name,
+          email: sanitized.email,
+          subject: sanitized.subject,
+          message: sanitized.message,
+          status: "unread",
+          ipAddress,
+          userAgent,
+        });
+        savedToDatabase = true;
+        savedId = newContact._id.toString();
+        console.log(
+          `[Contact API] Message #${newContact._id} saved to MongoDB from ${sanitized.email}`
+        );
+      } catch (dbError) {
+        console.warn(
+          "[Contact API] Database connection failed, falling back to server log:",
+          dbError
+        );
+      }
+    } else {
+      console.log(
+        `[Contact API] MONGODB_URI not set. Message recorded in server runtime logs from ${sanitized.name} (${sanitized.email}):`,
+        sanitized.message
       );
     }
-
-    // 4. Create and persist the contact record
-    const newContact = await ContactMessage.create({
-      name: sanitized.name,
-      email: sanitized.email,
-      subject: sanitized.subject,
-      message: sanitized.message,
-      status: "unread",
-      ipAddress,
-      userAgent,
-    });
-
-    console.log(
-      `[Contact API] Message #${newContact._id} saved successfully from ${sanitized.email}`
-    );
 
     return NextResponse.json(
       {
         success: true,
         message:
-          "Thank you! Your message has been received and securely stored. I will get back to you shortly.",
-        id: newContact._id,
+          "Thank you! Your message has been received. I will review and reply to your inquiry shortly.",
+        savedToDatabase,
+        id: savedId,
       },
       { status: 200 }
     );
@@ -149,11 +182,12 @@ export async function GET() {
     if (!process.env.MONGODB_URI) {
       return NextResponse.json(
         {
-          status: "misconfigured",
-          database: "disconnected",
-          message: "MONGODB_URI environment variable is not defined in .env.local",
+          status: "fallback_mode",
+          database: "not_configured",
+          message:
+            "MONGODB_URI is not set. Contact API is operating in graceful runtime logging fallback mode.",
         },
-        { status: 503 }
+        { status: 200 }
       );
     }
 

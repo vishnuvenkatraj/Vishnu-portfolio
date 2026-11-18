@@ -55,16 +55,16 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
       animate={{ rotateX, rotateY }}
       transition={{ type: "spring", stiffness: 220, damping: 20, mass: 0.2 }}
       style={{ perspective: 1000 }}
-      className={`relative rounded-2xl bg-white/[0.02] light:bg-white border border-white/10 light:border-slate-200 hover:border-cyan-500/40 light:hover:border-cyan-500/50 transition-all duration-300 flex flex-col justify-between overflow-hidden group shadow-xl light:shadow-md hover:shadow-[0_12px_40px_rgba(6,182,212,0.15)] hover:light:shadow-xl ${
+      className={`relative rounded-2xl bg-white/[0.02] light:bg-[#FAF7F2] border border-white/10 light:border-[#89958B]/35 hover:border-cyan-500/40 light:hover:border-[#702B40]/40 transition-all duration-300 flex flex-col justify-between overflow-hidden group shadow-xl light:shadow-md light:shadow-[#252B29]/5 hover:shadow-[0_12px_40px_rgba(6,182,212,0.15)] hover:light:shadow-xl ${
         isAsymmetricSpan ? "lg:col-span-2" : "lg:col-span-1"
       }`}
     >
       {/* Top subtle highlight */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-500 via-sky-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10" />
+      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-cyan-500 via-sky-400 to-transparent light:from-[#702B40] light:via-[#8B3751] light:to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10" />
 
       <div>
         {/* Preview Image Container with Zoom & Overlay */}
-        <div className="relative w-full h-64 sm:h-72 overflow-hidden bg-slate-950 light:bg-slate-900">
+        <div className="relative w-full h-64 sm:h-72 overflow-hidden bg-slate-950 light:bg-[#F5F0E6]">
           <SafeProjectImage
             src={project.coverImage}
             alt={project.title}
@@ -74,21 +74,21 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
           />
 
           {/* Vignette Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060a17] via-transparent to-transparent opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#060a17] light:from-[#252B29]/30 via-transparent to-transparent opacity-90" />
 
           {/* Category Badge & Status Pill */}
           <div className="absolute top-4 left-4 flex flex-wrap items-center gap-2 z-10">
-            <span className="px-3 py-1 rounded-full bg-[#060a17]/80 light:bg-white/90 backdrop-blur-md border border-white/10 light:border-slate-300 text-xs font-mono text-cyan-300 light:text-cyan-800 font-semibold shadow-sm">
+            <span className="px-3 py-1 rounded-full bg-[#060a17]/80 light:bg-[#FAF7F2]/95 backdrop-blur-md border border-white/10 light:border-[#89958B]/35 text-xs font-mono text-cyan-300 light:text-[#702B40] font-semibold shadow-sm">
               {project.category}
             </span>
             <span
               className={`px-2.5 py-1 rounded-full backdrop-blur-md border text-[10px] font-mono flex items-center gap-1 font-semibold ${
                 project.status === "Completed and demonstrable"
-                  ? "bg-emerald-500/20 light:bg-emerald-50 border-emerald-500/30 light:border-emerald-300 text-emerald-300 light:text-emerald-800"
-                  : "bg-amber-500/20 light:bg-amber-50 border-amber-500/30 light:border-amber-300 text-amber-300 light:text-amber-800"
+                  ? "bg-emerald-500/20 light:bg-[#89958B]/20 border-emerald-500/30 light:border-[#89958B]/40 text-emerald-300 light:text-[#2E5E44]"
+                  : "bg-amber-500/20 light:bg-[#702B40]/15 border-amber-500/30 light:border-[#702B40]/30 text-amber-300 light:text-[#702B40]"
               }`}
             >
-              <Sparkles className="w-3 h-3 text-cyan-400 light:text-cyan-600" />
+              <Sparkles className="w-3 h-3 text-cyan-400 light:text-[#702B40]" />
               {project.status}
             </span>
           </div>
@@ -97,7 +97,7 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
           <button
             onClick={() => onOpenModal(project)}
             aria-label={`Quick view ${project.title}`}
-            className="absolute top-4 right-4 p-2.5 rounded-full bg-[#060a17]/80 light:bg-white/90 backdrop-blur-md border border-white/10 light:border-slate-300 text-slate-300 light:text-slate-800 hover:text-white light:hover:text-black hover:bg-cyan-500/20 light:hover:bg-cyan-100 hover:border-cyan-400/50 transition-all cursor-pointer opacity-0 group-hover:opacity-100 focus:opacity-100 z-10 shadow-sm"
+            className="absolute top-4 right-4 p-2.5 rounded-full bg-[#060a17]/80 light:bg-[#FAF7F2]/95 backdrop-blur-md border border-white/10 light:border-[#89958B]/35 text-slate-300 light:text-[#252B29] hover:text-white light:hover:text-[#702B40] hover:bg-cyan-500/20 light:hover:bg-[#F5F0E6] hover:border-cyan-400/50 light:hover:border-[#702B40]/50 transition-all cursor-pointer opacity-0 group-hover:opacity-100 focus:opacity-100 z-10 shadow-sm"
             title="Open Quick Case Study Modal"
           >
             <Maximize2 className="w-4 h-4" />
@@ -107,13 +107,13 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
         {/* Card Content Area */}
         <div className="p-6 sm:p-7 space-y-4">
           {/* Key Metrics Strip */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 py-2 px-3 rounded-xl bg-white/[0.02] light:bg-slate-50 border border-white/5 light:border-slate-200">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 py-2 px-3 rounded-xl bg-white/[0.02] light:bg-[#F5F0E6] border border-white/5 light:border-[#89958B]/30">
             {project.stats.slice(0, 4).map((stat, i) => (
               <div key={i} className="text-left">
-                <div className="text-[10px] font-mono text-slate-400 light:text-slate-500 uppercase">
+                <div className="text-[10px] font-mono text-slate-400 light:text-[#5E6A66] uppercase">
                   {stat.label}
                 </div>
-                <div className="text-xs font-semibold text-cyan-300 light:text-cyan-800 font-mono">
+                <div className="text-xs font-semibold text-cyan-300 light:text-[#702B40] font-mono">
                   {stat.value}
                 </div>
               </div>
@@ -122,15 +122,15 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
 
           {/* Title & Tagline */}
           <div>
-            <h3 className="text-xl sm:text-2xl font-bold text-white light:text-slate-900 group-hover:text-cyan-300 light:group-hover:text-cyan-700 transition-colors">
+            <h3 className="text-xl sm:text-2xl font-bold text-white light:text-[#252B29] group-hover:text-cyan-300 light:group-hover:text-[#702B40] transition-colors">
               {project.title}
             </h3>
-            <p className="text-xs font-mono text-cyan-400/80 light:text-cyan-700 mt-1 font-medium">
+            <p className="text-xs font-mono text-cyan-400/80 light:text-[#702B40] mt-1 font-semibold">
               {project.subtitle}
             </p>
           </div>
 
-          <p className="text-sm text-slate-300 light:text-slate-700 leading-relaxed font-light line-clamp-2">
+          <p className="text-sm text-slate-300 light:text-[#4A5551] leading-relaxed font-normal line-clamp-2">
             {project.tagline}
           </p>
 
@@ -139,7 +139,7 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
             {project.techStack.map((tech) => (
               <span
                 key={tech}
-                className="px-2.5 py-0.5 rounded-md bg-white/5 light:bg-slate-100 border border-white/5 light:border-slate-200 text-[11px] font-mono text-slate-300 light:text-slate-700"
+                className="px-2.5 py-0.5 rounded-md bg-white/5 light:bg-[#F5F0E6] border border-white/5 light:border-[#89958B]/30 text-[11px] font-mono text-slate-300 light:text-[#252B29] font-medium"
               >
                 {tech}
               </span>
@@ -149,12 +149,12 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
       </div>
 
       {/* Card Footer Actions */}
-      <div className="px-6 sm:px-7 pb-6 pt-3 border-t border-white/5 light:border-slate-200 flex items-center justify-between gap-4">
+      <div className="px-6 sm:px-7 pb-6 pt-3 border-t border-white/5 light:border-[#89958B]/25 flex items-center justify-between gap-4">
         {/* Case Study Link */}
         <div className="flex items-center gap-3">
           <Link
             href={`/projects/${project.slug}`}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 light:text-cyan-700 hover:text-cyan-300 light:hover:text-cyan-800 group/link transition-colors"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-cyan-400 light:text-[#702B40] hover:text-cyan-300 light:hover:text-[#582031] group/link transition-colors"
           >
             <span>Full Case Study</span>
             <ChevronRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
@@ -162,7 +162,7 @@ export function ProjectCard({ project, onOpenModal, index }: ProjectCardProps) {
 
           <button
             onClick={() => onOpenModal(project)}
-            className="text-xs text-slate-400 light:text-slate-600 hover:text-white light:hover:text-black transition-colors cursor-pointer"
+            className="text-xs text-slate-400 light:text-[#5E6A66] hover:text-white light:hover:text-[#702B40] transition-colors cursor-pointer"
           >
             Quick View
           </button>

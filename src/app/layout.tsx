@@ -79,6 +79,69 @@ export default function RootLayout({
             `,
           }}
         />
+
+        {/* JSON-LD Structured Data Schema */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "Person",
+                  "@id": "https://vishnuvenkatraj.dev/#person",
+                  name: profileData.name,
+                  jobTitle: profileData.role,
+                  description: profileData.headline,
+                  email: `mailto:${profileData.socials.email}`,
+                  telephone: profileData.socials.phone,
+                  alumniOf: {
+                    "@type": "EducationalOrganization",
+                    name: "Sri Krishna College of Technology",
+                  },
+                  knowsAbout: [
+                    "Software Engineering",
+                    "React 19",
+                    "Next.js 15",
+                    "TypeScript",
+                    "Node.js",
+                    "Generative AI",
+                    "MongoDB",
+                    "Computer Science and Business Systems",
+                  ],
+                  sameAs: [
+                    profileData.socials.github,
+                    profileData.socials.linkedin,
+                    profileData.socials.hackerrank,
+                  ],
+                  hasOccupation: {
+                    "@type": "Occupation",
+                    name: "Software Developer",
+                    occupationLocation: {
+                      "@type": "Country",
+                      name: "India",
+                    },
+                  },
+                  award: [
+                    "Innoverse 2026 — 1st Place Winner",
+                    "Gencraft Hackathon — 3rd Place Winner",
+                    "Dr. Kalam Young Achiever Award",
+                  ],
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://vishnuvenkatraj.dev/#website",
+                  url: "https://vishnuvenkatraj.dev",
+                  name: `${profileData.name} • Engineering Portfolio`,
+                  description: profileData.shortBio,
+                  publisher: {
+                    "@id": "https://vishnuvenkatraj.dev/#person",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body
         className="min-h-screen bg-background text-foreground flex flex-col font-sans antialiased overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-200 transition-colors duration-300"
