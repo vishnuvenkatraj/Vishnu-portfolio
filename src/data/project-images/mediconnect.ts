@@ -15,10 +15,10 @@
  */
 export const mediConnectImages = {
   // Main Card & Header Cover
-  coverImage: "/images/projects/mediconnect/cover.jpg",
+  coverImage: "/images/projects/mediconnect/cover.png",
 
   // 3 Project Gallery Images
-  gallery1: "/images/projects/mediconnect/gallery-1.jpg",
-  gallery2: "/images/projects/mediconnect/gallery-2.jpg",
-  gallery3: "/images/projects/mediconnect/gallery-3.jpg",
+  gallery1: "/images/projects/mediconnect/gallery-1.png",
+  gallery2: "/images/projects/mediconnect/gallery-2.png",
+  gallery3: "/images/projects/mediconnect/gallery-3.png",
 };

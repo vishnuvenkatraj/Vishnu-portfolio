@@ -15,10 +15,10 @@
  */
 export const flowVaultImages = {
   // Main Card & Header Cover
-  coverImage: "/images/projects/flowvault/cover.jpg",
+  coverImage: "/images/projects/flowvault/cover.jpeg",
 
   // 3 Project Gallery Images
-  gallery1: "/images/projects/flowvault/gallery-1.jpg",
-  gallery2: "/images/projects/flowvault/gallery-2.jpg",
-  gallery3: "/images/projects/flowvault/gallery-3.jpg",
+  gallery1: "/images/projects/flowvault/gallery-1.jpeg",
+  gallery2: "/images/projects/flowvault/gallery-2.jpeg",
+  gallery3: "/images/projects/flowvault/gallery-3.jpeg",
 };

@@ -79,7 +79,7 @@ export const projectsData: Project[] = [
     slug: "mediconnect-healthcare-management-system",
     title: "MediConnect",
     subtitle: "AI-Powered Healthcare Management System",
-    tagline: "An integrated healthcare platform designed to digitize clinical workflows with role-based access for doctors, staff, and patients.",
+    tagline: "A unified healthcare platform connecting patients, doctors, nurses, laboratory technicians, pharmacy staff, and administrators through integrated digital healthcare services.",
     category: "Featured Software",
     status: "Completed and demonstrable",
     featured: true,
@@ -187,18 +187,18 @@ export const projectsData: Project[] = [
     ],
     gallery: [
       {
-        title: "Clinical Portal & Patient Dashboard",
-        caption: "Multi-role scheduling and consultation interface for doctors, administrative staff, and patients.",
+        title: "Hospital WayFinder & Accessible Navigation",
+        caption: "Interactive multi-floor hospital navigation system featuring room locations, step-by-step directions, wheelchair-accessible routes, and hands-free navigation assistance.",
         imageUrl: mediConnectImages.gallery1,
       },
       {
-        title: "AI-Assisted Symptom Analysis Module",
-        caption: "Generative AI diagnostic assistance interface guiding preliminary clinical categorization.",
+        title: "Patient Dashboard & Health Overview",
+        caption: "Personalized patient dashboard displaying OPD queue status, upcoming appointments, prescriptions, medical records, billing details, and wellness tracking.",
         imageUrl: mediConnectImages.gallery2,
       },
       {
-        title: "Administrative Insights & Clinical Throughput",
-        caption: "Administrative analytics console monitoring appointment queues, patient throughput, and department efficiency.",
+        title: "Multi-Role Portal Selection",
+        caption: "Role-based portal interface providing separate access for patients, doctors, nurses, laboratory technicians, pharmacy staff, and administrators.",
         imageUrl: mediConnectImages.gallery3,
       },
     ],
@@ -534,18 +534,18 @@ export const projectsData: Project[] = [
     ],
     gallery: [
       {
-        title: "Confined Space Entry & Hazard Zone",
-        caption: "Underground manhole and sewer vault setup where hazardous H2S gas surges incapacitate personnel.",
+        title: "Mechanical Retrieval Unit – Detailed Assembly",
+        caption: "Detailed engineering drawing of the surface retrieval mechanism, illustrating the preloaded spring, mechanical latch, retrieval drum, braking assembly, cable shaft and protective housing.",
         imageUrl: resqTrakImages.gallery1,
       },
       {
-        title: "Mechanical Auto-Extraction Layout",
-        caption: "Non-electrical worker retrieval harness and rapid mechanical hoist mechanism for explosive environments.",
+        title: "Wearable Safety Harness – Rear Assembly",
+        caption: "Rear-view technical illustration of the wearable harness featuring the dorsal D-ring, adjustable shoulder straps, H₂S trigger cartridge mounting plate, push rod, lever mechanism and Bowden cable routing.",
         imageUrl: resqTrakImages.gallery2,
       },
       {
-        title: "Gas-Triggered Passive Extraction Hoist",
-        caption: "Spark-proof chemical reactant trigger converting toxic threshold concentration into immediate mechanical worker ascent.",
+        title: "H₂S Trigger Cartridge – Exploded View",
+        caption: "Detailed sectional and exploded engineering views illustrating the gas inlet, silver reactive layer, bilayer sensing element, push rod, lever arm, return spring and Bowden cable connection.",
         imageUrl: resqTrakImages.gallery3,
       },
     ],
