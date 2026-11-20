@@ -25,6 +25,7 @@ import {
 import { profileData } from "@/data/profile";
 import { projectsData } from "@/data/projects";
 import { scrollToElement } from "@/lib/utils";
+import { showToast } from "@/components/ui/ToastNotification";
 
 interface CommandItem {
   id: string;
@@ -181,6 +182,17 @@ export function CommandPalette() {
 
     const actionItems: CommandItem[] = [
       {
+        id: "act-recruiter-brief",
+        title: "Open 30-Second Recruiter Brief",
+        description: "Quick candidate scorecard, academic metrics & patent summary",
+        category: "Actions",
+        icon: <Sparkles className="w-4 h-4 text-cyan-400" />,
+        action: () => {
+          window.dispatchEvent(new CustomEvent("open-recruiter-modal"));
+          setIsOpen(false);
+        },
+      },
+      {
         id: "act-resume",
         title: "Download Resume PDF",
         description: profileData.resume.filename,
@@ -210,7 +222,7 @@ export function CommandPalette() {
         icon: <Mail className="w-4 h-4 text-cyan-300" />,
         action: () => {
           navigator.clipboard.writeText(profileData.socials.email);
-          alert(`Copied ${profileData.socials.email} to clipboard!`);
+          showToast(`Copied ${profileData.socials.email} to clipboard!`);
           setIsOpen(false);
         },
       },
@@ -222,7 +234,7 @@ export function CommandPalette() {
         icon: <Phone className="w-4 h-4 text-cyan-300" />,
         action: () => {
           navigator.clipboard.writeText(profileData.socials.phone);
-          alert(`Copied ${profileData.socials.phone} to clipboard!`);
+          showToast(`Copied ${profileData.socials.phone} to clipboard!`);
           setIsOpen(false);
         },
       },

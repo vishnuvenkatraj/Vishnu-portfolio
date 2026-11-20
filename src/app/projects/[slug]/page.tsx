@@ -3,6 +3,8 @@ import Link from "next/link";
 import { projectsData } from "@/data/projects";
 import { InteractiveProjectGallery } from "@/components/projects/InteractiveProjectGallery";
 import { InteractiveArchitectureDiagram } from "@/components/projects/InteractiveArchitectureDiagram";
+import { ProjectSimulatorSandbox } from "@/components/projects/ProjectSimulatorSandbox";
+import { CopyButton } from "@/components/ui/CopyButton";
 import {
   ArrowLeft,
   ExternalLink,
@@ -157,9 +159,16 @@ export default async function ProjectDetailPage({
                 <Award className="w-4 h-4" />
                 <span>Official Published Patent Record</span>
               </div>
-              <span className="px-3 py-1 rounded-full bg-amber-500/20 light:bg-[#702B40]/20 text-amber-300 light:text-[#702B40] border border-amber-500/40 light:border-[#702B40]/30 font-mono text-xs font-bold">
-                Application Number: {project.patentDetails.applicationNumber}
-              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="px-3 py-1 rounded-full bg-amber-500/20 light:bg-[#702B40]/20 text-amber-300 light:text-[#702B40] border border-amber-500/40 light:border-[#702B40]/30 font-mono text-xs font-bold">
+                  Application Number: {project.patentDetails.applicationNumber}
+                </span>
+                <CopyButton
+                  text={project.patentDetails.applicationNumber}
+                  label="Copy App No"
+                  className="bg-amber-500/10 light:bg-[#702B40]/10 text-amber-300 light:text-[#702B40] border-amber-500/30 light:border-[#702B40]/30 hover:bg-amber-500/20"
+                />
+              </div>
             </div>
             <p className="text-xs sm:text-sm text-slate-300 light:text-[#252B29] leading-relaxed">
               This intellectual property is officially published under the <strong>{project.patentDetails.authority}</strong> publication search system. Search records and status updates can be validated directly on the official IPO search database using Application Number <strong>{project.patentDetails.applicationNumber}</strong>.
@@ -294,6 +303,11 @@ export default async function ProjectDetailPage({
           {(project.id === "project-mediconnect" || project.id === "project-civicconnect") && (
             <InteractiveArchitectureDiagram projectId={project.id} />
           )}
+
+          {/* Interactive Algorithmic Simulation Sandbox */}
+          <div className="pt-2">
+            <ProjectSimulatorSandbox projectId={project.id} />
+          </div>
         </section>
 
         {/* Deep Dive 5: Personal Technical Contributions (When Available) */}

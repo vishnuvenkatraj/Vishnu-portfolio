@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Project } from "@/data/projects";
 import { SafeProjectImage } from "./SafeProjectImage";
 import { ImageLightbox, LightboxImage } from "@/components/ui/ImageLightbox";
+import { ProjectSimulatorSandbox } from "./ProjectSimulatorSandbox";
 import {
   X,
   ExternalLink,
@@ -314,6 +315,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
                   </div>
                 ))}
               </div>
+            </div>
+
+            {/* Interactive Algorithmic Simulation Sandbox */}
+            <div className="pt-2">
+              <ProjectSimulatorSandbox projectId={project.id} />
             </div>
 
             {/* Development Challenges */}

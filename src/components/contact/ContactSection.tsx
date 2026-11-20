@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { profileData } from "@/data/profile";
+import { showToast } from "@/components/ui/ToastNotification";
 import {
   Mail,
   Phone,
@@ -47,12 +48,14 @@ export function ContactSection() {
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(profileData.socials.email);
     setCopiedEmail(true);
+    showToast(`Copied ${profileData.socials.email} to clipboard!`);
     setTimeout(() => setCopiedEmail(false), 2000);
   };
 
   const handleCopyPhone = () => {
     navigator.clipboard.writeText(profileData.socials.phone);
     setCopiedPhone(true);
+    showToast(`Copied ${profileData.socials.phone} to clipboard!`);
     setTimeout(() => setCopiedPhone(false), 2000);
   };
 

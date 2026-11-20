@@ -122,6 +122,16 @@ export function Navbar() {
 
         {/* Right Actions: Command Palette Button, Theme Toggle, Mobile Toggle */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {/* Recruiter 30s Sheet Trigger */}
+          <button
+            onClick={() => window.dispatchEvent(new CustomEvent("open-recruiter-modal"))}
+            className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-semibold rounded-lg bg-cyan-500/10 light:bg-[#702B40]/10 hover:bg-cyan-500/20 light:hover:bg-[#702B40]/20 text-cyan-300 light:text-[#702B40] border border-cyan-500/30 light:border-[#702B40]/30 transition-all cursor-pointer shadow-[0_0_12px_rgba(6,182,212,0.15)] light:shadow-sm"
+            title="Open 30-Second Recruiter Fast-Track Brief"
+          >
+            <Sparkles className="w-3.5 h-3.5 text-cyan-400 light:text-[#702B40]" />
+            <span className="hidden sm:inline">Recruiter Brief</span>
+          </button>
+
           {/* Command Palette Trigger */}
           <button
             onClick={openPalette}
@@ -169,6 +179,19 @@ export function Navbar() {
                 </button>
               );
             })}
+
+            <div className="pt-2 mt-2 border-t border-white/10 dark:border-white/10 light:border-[#89958B]/25">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  window.dispatchEvent(new CustomEvent("open-recruiter-modal"));
+                }}
+                className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl bg-cyan-500/15 light:bg-[#702B40]/10 text-cyan-300 light:text-[#702B40] border border-cyan-500/30 light:border-[#702B40]/30 font-semibold text-sm cursor-pointer"
+              >
+                <Sparkles className="w-4 h-4 text-cyan-400 light:text-[#702B40]" />
+                <span>Recruiter 30s Fast-Track Brief</span>
+              </button>
+            </div>
           </nav>
         </div>
       )}

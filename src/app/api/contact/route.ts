@@ -151,12 +151,94 @@ export async function POST(request: Request) {
       );
     }
 
+    // 4. Dispatch Email Notification if email provider key is configured
+    let emailDispatched = false;
+    const recipientEmail = process.env.NOTIFICATION_EMAIL || "vishnuvenkatraj@gmail.com";
+
+    // Option A: Resend API support (zero npm dependency, native HTTP POST)
+    if (process.env.RESEND_API_KEY) {
+      try {
+        const resendRes = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+          },
+          body: JSON.stringify({
+            from: "Portfolio Contact <onboarding@resend.dev>",
+            to: [recipientEmail],
+            reply_to: sanitized.email,
+            subject: `[Portfolio Inquiry] ${sanitized.subject} - from ${sanitized.name}`,
+            html: `
+              <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
+                <h2 style="color: #0284c7; margin-bottom: 16px;">New Message from Developer Portfolio</h2>
+                <p><strong>Sender:</strong> ${sanitized.name} (${sanitized.email})</p>
+                <p><strong>Subject:</strong> ${sanitized.subject}</p>
+                <p><strong>Timestamp:</strong> ${new Date().toLocaleString()}</p>
+                <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 16px 0;" />
+                <h3 style="color: #334155;">Message Content:</h3>
+                <div style="background: #f8fafc; padding: 16px; border-radius: 6px; white-space: pre-wrap; font-size: 14px; line-height: 1.6; color: #1e293b;">
+                  ${sanitized.message.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+                </div>
+              </div>
+            `,
+          }),
+        });
+        if (resendRes.ok) {
+          emailDispatched = true;
+          console.log(`[Contact API] Email notification dispatched via Resend to ${recipientEmail}`);
+        }
+      } catch (emailErr) {
+        console.warn("[Contact API] Resend email dispatch failed:", emailErr);
+      }
+    }
+
+    // Option B: Web3Forms API support (free key)
+    if (!emailDispatched && process.env.WEB3FORMS_ACCESS_KEY) {
+      try {
+        const web3Res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            access_key: process.env.WEB3FORMS_ACCESS_KEY,
+            name: sanitized.name,
+            email: sanitized.email,
+            subject: `[Portfolio Inquiry] ${sanitized.subject}`,
+            message: sanitized.message,
+            from_name: "Vishnu Portfolio Contact Form",
+          }),
+        });
+        if (web3Res.ok) {
+          emailDispatched = true;
+          console.log(`[Contact API] Email notification dispatched via Web3Forms to ${recipientEmail}`);
+        }
+      } catch (w3Err) {
+        console.warn("[Contact API] Web3Forms email dispatch failed:", w3Err);
+      }
+    }
+
+    // Option C: Generic Webhook (Discord / Slack / Telegram) support
+    if (process.env.NOTIFICATION_WEBHOOK_URL) {
+      try {
+        await fetch(process.env.NOTIFICATION_WEBHOOK_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            content: `**New Portfolio Message!**\n**From:** ${sanitized.name} (${sanitized.email})\n**Subject:** ${sanitized.subject}\n**Message:**\n${sanitized.message}`,
+          }),
+        });
+      } catch (webhookErr) {
+        console.warn("[Contact API] Webhook dispatch failed:", webhookErr);
+      }
+    }
+
     return NextResponse.json(
       {
         success: true,
         message:
           "Thank you! Your message has been received. I will review and reply to your inquiry shortly.",
         savedToDatabase,
+        emailDispatched,
         id: savedId,
       },
       { status: 200 }

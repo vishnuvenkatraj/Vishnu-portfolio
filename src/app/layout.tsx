@@ -7,8 +7,11 @@ import { CommandPalette } from "@/components/navigation/CommandPalette";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { BackToTop } from "@/components/ui/BackToTop";
 import { LenisProvider } from "@/components/animations/LenisProvider";
+import { ToastNotification } from "@/components/ui/ToastNotification";
+import { GlobalRecruiterModal } from "@/components/recruiter/GlobalRecruiterModal";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://vishnu-portfolio.vercel.app"),
   title: `${profileData.name} • ${profileData.role}`,
   description: profileData.headline,
   keywords: [
@@ -35,10 +38,10 @@ export const metadata: Metadata = {
     siteName: `${profileData.name} Developer Portfolio`,
     images: [
       {
-        url: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+        url: "/api/og",
         width: 1200,
         height: 630,
-        alt: `${profileData.name} Developer Portfolio`,
+        alt: `${profileData.name} Developer Portfolio & Engineering Case Studies`,
       },
     ],
   },
@@ -97,7 +100,7 @@ export default function RootLayout({
                   telephone: profileData.socials.phone,
                   alumniOf: {
                     "@type": "EducationalOrganization",
-                    name: "Sri Krishna College of Technology",
+                    name: "M. Kumarasamy College of Engineering, Karur",
                   },
                   knowsAbout: [
                     "Software Engineering",
@@ -158,6 +161,12 @@ export default function RootLayout({
 
           {/* Page Body Content */}
           <div className="flex-1">{children}</div>
+
+          {/* Global Recruiter Fast-Track Modal */}
+          <GlobalRecruiterModal />
+
+          {/* Global Toast Notification System */}
+          <ToastNotification />
 
           {/* Footer */}
           <Footer />
